@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		161255BB170CE1A1000FE590 /* bottone.png in Resources */ = {isa = PBXBuildFile; fileRef = 161255BA170CE1A1000FE590 /* bottone.png */; };
 		1640CC03170B719D00CC4570 /* TTHeaderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1640CC02170B719D00CC4570 /* TTHeaderImageView.m */; };
 		1640CC05170B754500CC4570 /* Archer-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1640CC04170B754500CC4570 /* Archer-Semibold.otf */; };
 		1687485B170B89FE005F0049 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 1687485A170B89FE005F0049 /* texture.png */; };
@@ -48,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		161255BA170CE1A1000FE590 /* bottone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottone.png; path = titto/bottone.png; sourceTree = "<group>"; };
 		1640CC01170B719D00CC4570 /* TTHeaderImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTHeaderImageView.h; sourceTree = "<group>"; };
 		1640CC02170B719D00CC4570 /* TTHeaderImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTHeaderImageView.m; sourceTree = "<group>"; };
 		1640CC04170B754500CC4570 /* Archer-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archer-Semibold.otf"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 		161255B6170CD683000FE590 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				161255BA170CE1A1000FE590 /* bottone.png */,
 				614AEE861704DCD20039D0DF /* first.png */,
 				614AEE881704DCD20039D0DF /* first@2x.png */,
 				614AEE8D1704DCD20039D0DF /* second.png */,
@@ -331,6 +334,7 @@
 				1687485B170B89FE005F0049 /* texture.png in Resources */,
 				1687485D170B936D005F0049 /* logot.png in Resources */,
 				16874861170B95B4005F0049 /* pin.png in Resources */,
+				161255BB170CE1A1000FE590 /* bottone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

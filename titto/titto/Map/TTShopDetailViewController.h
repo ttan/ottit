@@ -17,13 +17,14 @@
     IBOutlet TTHeaderImageView * headerImageView;
 
     IBOutlet UIScrollView * scrollView;
-    
+
     IBOutlet UILabel * shadowLabel;
     IBOutlet UIView * contentView;
-    
+
     IBOutlet UILabel * indirizzoLabel;
     IBOutlet UILabel * cittaLabel;
     IBOutlet UILabel * orarioAperturaLabel;
+
     IBOutlet UILabel * lunediLabel;
     IBOutlet UILabel * martediLabel;
     IBOutlet UILabel * mercolediLabel;
@@ -31,10 +32,20 @@
     IBOutlet UILabel * venerdiLabel;
     IBOutlet UILabel * sabatoLabel;
     IBOutlet UILabel * domenicaLabel;
+
+    IBOutlet UILabel * orarioLunediLabel;
+    IBOutlet UILabel * orarioMartediLabel;
+    IBOutlet UILabel * orarioMercolediLabel;
+    IBOutlet UILabel * orarioGiovediLabel;
+    IBOutlet UILabel * orarioVenerdiLabel;
+    IBOutlet UILabel * orarioSabatoLabel;
+    IBOutlet UILabel * orarioDomenicaLabel;
+
     IBOutlet UILabel * emailLabel;
     IBOutlet UILabel * emailContentLabel;
 
     IBOutlet UIButton * predefinedButton;
+
 }
 
 @property (nonatomic,strong)NSDictionary * infoDict;

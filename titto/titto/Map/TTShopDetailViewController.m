@@ -41,7 +41,7 @@
     [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
     [[TTFoursquareManager sharedInstance]setDelegate:self];
     [[TTFoursquareManager sharedInstance] requestHoursInfoForIDVenue:[_infoDict objectForKey:@"foursquare"]];
-    
+
     [[shadowLabel layer] setShadowColor:[UIColor blackColor].CGColor];
     [[shadowLabel layer] setShadowOffset:CGSizeMake(0, -3)];
     [[shadowLabel layer] setShadowOpacity:0.5];
@@ -74,17 +74,19 @@
     [emailLabel setText:@"EMAIL"];
     [emailLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
     [emailContentLabel setText:[_infoDict objectForKey:@"mail"]];
-    [emailContentLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [emailContentLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:18]];
 
-    
+    [predefinedButton setBackgroundImage:[UIImage imageNamed:@"bottone.png"] forState:UIControlStateNormal];
+    [[predefinedButton titleLabel]setFont:[UIFont fontWithName:@"Archer-Semibold" size:16]];
+    [predefinedButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [predefinedButton setTitle:@"Preferito" forState:UIControlStateNormal];
-    
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    
+    [scrollView setContentOffset:CGPointMake(0, 0)];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -112,37 +114,42 @@
     
             switch ([days intValue]){
                 case 1:
-                    [lunediLabel setText:[NSString stringWithFormat:@"lun %@-%@",startHour,endHour]];
-                    
+                    [orarioLunediLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioLunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     [lunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     break;
                 case 2:
-                    [martediLabel setText:[NSString stringWithFormat:@"mar %@-%@",startHour,endHour]];
+                    [orarioMartediLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioMartediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     [martediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-
                     break;
                 case 3:
-                    [mercolediLabel setText:[NSString stringWithFormat:@"mer %@-%@",startHour,endHour]];
+                    [orarioMercolediLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioMercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     [mercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;
                 case 4:
-                    [giovediLabel setText:[NSString stringWithFormat:@"gio %@-%@",startHour,endHour]];
+                    [orarioGiovediLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioGiovediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     [giovediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;
                 case 5:
-                    [venerdiLabel setText:[NSString stringWithFormat:@"ven %@-%@",startHour,endHour]];
+                    [orarioVenerdiLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioVenerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     [venerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;
                 case 6:
-                    [sabatoLabel setText:[NSString stringWithFormat:@"sab %@-%@",startHour,endHour]];
+                    [orarioSabatoLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioSabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     [sabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;
                 case 7:
-                    [domenicaLabel setText:[NSString stringWithFormat:@"dom %@-%@",startHour,endHour]];
+                    [orarioDomenicaLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioDomenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     [domenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;

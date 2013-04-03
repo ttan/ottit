@@ -30,10 +30,12 @@
                                                                                bundle:nil];
     UIViewController *viewController3 = [[TTFeedViewController alloc] initWithNibName:@"TTFeedViewController"
                                                                                bundle:nil];
+
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = @[navController, viewController2, viewController3];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+        
     return YES;
 }
 

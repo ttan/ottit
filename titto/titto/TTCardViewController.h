@@ -12,12 +12,12 @@
 @interface TTCardViewController : UIViewController {
     IBOutlet UILabel *facebookStatus;
     IBOutlet UIButton *loginButton;
-    
+
     IBOutlet UILabel *name;
     IBOutlet UILabel *surname;
     IBOutlet UILabel *email;
     IBOutlet FBProfilePictureView *imageView;
-    
+
 }
 
 - (IBAction)loginPressed:(id)sender;

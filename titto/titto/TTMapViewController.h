@@ -15,13 +15,11 @@
 #import "TTShopDetailViewController.h"
 
 @interface TTMapViewController : UIViewController <MKMapViewDelegate,TTMapManagerDelegate>{
-    
+
     MKMapView * mapView;
-    
     NSMutableArray * shopArray;
-    
     TTShopDetailViewController * shopViewController;
-    
+
 }
 
 @end

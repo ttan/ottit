@@ -12,7 +12,7 @@
     
     UIView * noFavoriteShopView;
     UIWebView * favoriteWebView;
-    
+    UIButton * shopButton;
     
 }
 

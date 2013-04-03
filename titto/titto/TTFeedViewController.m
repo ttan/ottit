@@ -9,6 +9,8 @@
 #import "TTFeedViewController.h"
 #import "TTConfigDefines.h"
 
+#define BASE_URL @"http://www.titto.it/app/loadPage.php?pv="
+
 @interface TTFeedViewController ()
 
 @end
@@ -35,7 +37,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
 
-    NSString * urlString = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP_ADDRESS];
+    NSString * urlString = [NSString stringWithFormat:@"%@%@",BASE_URL,[[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP_ADDRESS]];
 
     if (urlString){
 
@@ -57,12 +59,28 @@
             favoriteWebView=nil;
         }
 
-        if (!noFavoriteShopView) {
+        if (!noFavoriteShopView){
             noFavoriteShopView = [[UIView alloc]initWithFrame:self.view.frame];
+            [noFavoriteShopView setBackgroundColor:[UIColor redColor]];
             [[self view] addSubview:noFavoriteShopView];
-        }
 
+            
+            if (!shopButton) {
+                shopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                [shopButton setFrame:CGRectMake(110, 300, 100, 30)];
+                [shopButton setTitle:@"Select your shop" forState:UIControlStateNormal];
+                [shopButton addTarget:self action:@selector(setShopAction) forControlEvents:UIControlEventTouchUpInside];
+                [[self view] addSubview:shopButton];
+            }
+        }
     }
+}
+
+
+-(void)setShopAction{
+    
+    [[self tabBarController] setSelectedIndex:0];
+    
 }
 
 - (void)didReceiveMemoryWarning

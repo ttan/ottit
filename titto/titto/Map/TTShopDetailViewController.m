@@ -155,9 +155,9 @@
 
 -(IBAction)predefinedButtonAction:(id)sender;
 {
-    NSLog(@"%@",_infoDict);
 
-    [[NSUserDefaults standardUserDefaults] setObject:[_infoDict objectForKey:@"fb"] forKey:FAVORITE_SHOP_ADDRESS];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[_infoDict objectForKey:@"cod_fb"] forKey:FAVORITE_SHOP_ADDRESS];
 
 }
 

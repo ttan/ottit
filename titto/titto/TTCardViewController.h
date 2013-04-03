@@ -16,6 +16,7 @@
     IBOutlet UILabel *name;
     IBOutlet UILabel *surname;
     IBOutlet UILabel *email;
+    IBOutlet UILabel *tessera;
     IBOutlet FBProfilePictureView *imageView;
 
 }

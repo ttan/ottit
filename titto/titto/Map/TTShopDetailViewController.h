@@ -39,5 +39,6 @@
 
 @property (nonatomic,strong)NSDictionary * infoDict;
 
+-(IBAction)predefinedButtonAction:(id)sender;
 
 @end

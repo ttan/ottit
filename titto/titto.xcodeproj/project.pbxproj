@@ -51,6 +51,7 @@
 		1640CC01170B719D00CC4570 /* TTHeaderImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTHeaderImageView.h; sourceTree = "<group>"; };
 		1640CC02170B719D00CC4570 /* TTHeaderImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTHeaderImageView.m; sourceTree = "<group>"; };
 		1640CC04170B754500CC4570 /* Archer-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archer-Semibold.otf"; sourceTree = "<group>"; };
+		165CBF7F170CC56C003B25AC /* TTConfigDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTConfigDefines.h; sourceTree = "<group>"; };
 		1687485A170B89FE005F0049 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
 		1687485C170B936D005F0049 /* logot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logot.png; sourceTree = "<group>"; };
 		16874860170B95B4005F0049 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 				61A859591704E2EC003CD439 /* TTCardViewController.xib */,
 				61A859601704E42B003CD439 /* TTFeedViewController.xib */,
 				614AEE721704DCD20039D0DF /* Supporting Files */,
+				165CBF7F170CC56C003B25AC /* TTConfigDefines.h */,
 			);
 			path = titto;
 			sourceTree = "<group>";

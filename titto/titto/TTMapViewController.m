@@ -74,20 +74,19 @@
         
         [pinArray addObject:pin];
     }
-    
-    [mapView addAnnotations:pinArray];
-    
-}
 
+    [mapView addAnnotations:pinArray];
+
+}
 
 #pragma mark - MAP METHODS
 
 - (MKAnnotationView *)mapView:(MKMapView *)aMapView viewForAnnotation:(id<MKAnnotation>)annotation {
     static NSString *const kAnnotationReuseIdentifier = @"CPAnnotationView";
-    
+
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
-    
+
     MKAnnotationView *annotationView = [aMapView dequeueReusableAnnotationViewWithIdentifier:kAnnotationReuseIdentifier];
     if (annotationView == nil) {
         annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kAnnotationReuseIdentifier];

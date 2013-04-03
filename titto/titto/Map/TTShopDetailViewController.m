@@ -9,6 +9,8 @@
 #import "TTShopDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
+#import "TTConfigDefines.h"
+
 @interface TTShopDetailViewController ()
 
 @end
@@ -76,6 +78,7 @@
 
     
     [predefinedButton setTitle:@"Preferito" forState:UIControlStateNormal];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -146,13 +149,17 @@
                 default:
                     break;
             }
-            
         }
-
     }
-    
 }
 
+-(IBAction)predefinedButtonAction:(id)sender;
+{
+    NSLog(@"%@",_infoDict);
+
+    [[NSUserDefaults standardUserDefaults] setObject:[_infoDict objectForKey:@"fb"] forKey:FAVORITE_SHOP_ADDRESS];
+
+}
 
 - (void)didReceiveMemoryWarning
 {

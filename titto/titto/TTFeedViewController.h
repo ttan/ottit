@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TTFeedViewController : UIViewController
+@interface TTFeedViewController : UIViewController{
+    
+    UIView * noFavoriteShopView;
+    UIWebView * favoriteWebView;
+    
+    
+}
 
 @end

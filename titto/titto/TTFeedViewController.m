@@ -7,6 +7,7 @@
 //
 
 #import "TTFeedViewController.h"
+#import "TTConfigDefines.h"
 
 @interface TTFeedViewController ()
 
@@ -29,6 +30,39 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    NSString * urlString = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP_ADDRESS];
+
+    if (urlString){
+
+        if (noFavoriteShopView) {
+            [noFavoriteShopView removeFromSuperview];
+            noFavoriteShopView=nil;
+        }
+
+        if (!favoriteWebView) {
+            favoriteWebView = [[UIWebView alloc] initWithFrame:self.view.frame];
+            [favoriteWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
+            [[self view] addSubview:favoriteWebView];
+        }
+
+    }else{
+
+        if (favoriteWebView){
+            [favoriteWebView removeFromSuperview];
+            favoriteWebView=nil;
+        }
+
+        if (!noFavoriteShopView) {
+            noFavoriteShopView = [[UIView alloc]initWithFrame:self.view.frame];
+            [[self view] addSubview:noFavoriteShopView];
+        }
+
+    }
 }
 
 - (void)didReceiveMemoryWarning

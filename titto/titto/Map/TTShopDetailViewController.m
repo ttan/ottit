@@ -42,10 +42,10 @@
     [[TTFoursquareManager sharedInstance]setDelegate:self];
     [[TTFoursquareManager sharedInstance] requestHoursInfoForIDVenue:[_infoDict objectForKey:@"foursquare"]];
 
-    [[shadowLabel layer] setShadowColor:[UIColor blackColor].CGColor];
-    [[shadowLabel layer] setShadowOffset:CGSizeMake(0, -3)];
-    [[shadowLabel layer] setShadowOpacity:0.5];
-    [[shadowLabel layer] setMasksToBounds:NO];
+    [[contentView layer] setShadowColor:[UIColor blackColor].CGColor];
+    [[contentView layer] setShadowOffset:CGSizeMake(0, -1)];
+    [[contentView layer] setShadowOpacity:0.5];
+    [[contentView layer] setMasksToBounds:NO];
 
     [self setTitle:[_infoDict objectForKey:@"citta"]];
 
@@ -70,11 +70,12 @@
     [orarioAperturaLabel setNumberOfLines:2];
     [orarioAperturaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
-
     [emailLabel setText:@"EMAIL"];
     [emailLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-    [emailContentLabel setText:[_infoDict objectForKey:@"mail"]];
-    [emailContentLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:18]];
+
+    [emailContentLabel setTitle:[_infoDict objectForKey:@"mail"] forState:UIControlStateNormal];
+    [[emailContentLabel titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:18]];
+    [emailContentLabel setTitleColor:[UIColor colorWithRed:.41 green:.41 blue:.41 alpha:1] forState:UIControlStateNormal];
 
     [predefinedButton setBackgroundImage:[UIImage imageNamed:@"bottone.png"] forState:UIControlStateNormal];
     [[predefinedButton titleLabel]setFont:[UIFont fontWithName:@"Archer-Semibold" size:16]];

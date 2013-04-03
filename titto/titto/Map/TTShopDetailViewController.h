@@ -42,7 +42,7 @@
     IBOutlet UILabel * orarioDomenicaLabel;
 
     IBOutlet UILabel * emailLabel;
-    IBOutlet UILabel * emailContentLabel;
+    IBOutlet UIButton * emailContentLabel;
 
     IBOutlet UIButton * predefinedButton;
 

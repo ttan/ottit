@@ -1,0 +1,466 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1640CC03170B719D00CC4570 /* TTHeaderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1640CC02170B719D00CC4570 /* TTHeaderImageView.m */; };
+		1640CC05170B754500CC4570 /* Archer-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1640CC04170B754500CC4570 /* Archer-Semibold.otf */; };
+		1687485B170B89FE005F0049 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 1687485A170B89FE005F0049 /* texture.png */; };
+		1687485D170B936D005F0049 /* logot.png in Resources */ = {isa = PBXBuildFile; fileRef = 1687485C170B936D005F0049 /* logot.png */; };
+		16874861170B95B4005F0049 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 16874860170B95B4005F0049 /* pin.png */; };
+		5A1E7E281706004600B7C116 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614AEE6F1704DCD20039D0DF /* CoreGraphics.framework */; };
+		5A1E7E291706005400B7C116 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614AEE6D1704DCD20039D0DF /* Foundation.framework */; };
+		5A1E7E2A1706005C00B7C116 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614AEE6B1704DCD20039D0DF /* UIKit.framework */; };
+		61347B8B1704DEF40080D842 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61347B8A1704DEF40080D842 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		61347B8D1704DEF90080D842 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61347B8C1704DEF90080D842 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		61347B981704DF830080D842 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61347B971704DF830080D842 /* FacebookSDK.framework */; };
+		61347B9A1704DF8F0080D842 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 61347B991704DF8F0080D842 /* FacebookSDKResources.bundle */; };
+		614AEE761704DCD20039D0DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 614AEE741704DCD20039D0DF /* InfoPlist.strings */; };
+		614AEE781704DCD20039D0DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 614AEE771704DCD20039D0DF /* main.m */; };
+		614AEE7C1704DCD20039D0DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 614AEE7B1704DCD20039D0DF /* AppDelegate.m */; };
+		614AEE7E1704DCD20039D0DF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 614AEE7D1704DCD20039D0DF /* Default.png */; };
+		614AEE801704DCD20039D0DF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 614AEE7F1704DCD20039D0DF /* Default@2x.png */; };
+		614AEE821704DCD20039D0DF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 614AEE811704DCD20039D0DF /* Default-568h@2x.png */; };
+		614AEE871704DCD20039D0DF /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 614AEE861704DCD20039D0DF /* first.png */; };
+		614AEE891704DCD20039D0DF /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 614AEE881704DCD20039D0DF /* first@2x.png */; };
+		614AEE8E1704DCD20039D0DF /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 614AEE8D1704DCD20039D0DF /* second.png */; };
+		614AEE901704DCD20039D0DF /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 614AEE8F1704DCD20039D0DF /* second@2x.png */; };
+		61A859551704E281003CD439 /* TTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859531704E281003CD439 /* TTMapViewController.m */; };
+		61A859561704E281003CD439 /* TTMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61A859541704E281003CD439 /* TTMapViewController.xib */; };
+		61A8595A1704E2EC003CD439 /* TTCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859581704E2EC003CD439 /* TTCardViewController.m */; };
+		61A8595B1704E2EC003CD439 /* TTCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61A859591704E2EC003CD439 /* TTCardViewController.xib */; };
+		61A8595D1704E368003CD439 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A8595C1704E368003CD439 /* Social.framework */; };
+		61A859611704E42B003CD439 /* TTFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A8595F1704E42B003CD439 /* TTFeedViewController.m */; };
+		61A859621704E42B003CD439 /* TTFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61A859601704E42B003CD439 /* TTFeedViewController.xib */; };
+		61A859661704E54A003CD439 /* TTFacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859651704E54A003CD439 /* TTFacebookManager.m */; };
+		61A859691704F824003CD439 /* TTFacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859681704F824003CD439 /* TTFacebookUser.m */; };
+		61A8596B170506C3003CD439 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A8596A170506C3003CD439 /* MapKit.framework */; };
+		61A8596D170506CA003CD439 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A8596C170506CA003CD439 /* CoreLocation.framework */; };
+		61A859781705077E003CD439 /* PinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859701705077E003CD439 /* PinAnnotation.m */; };
+		61A859791705077E003CD439 /* TTFoursquareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859721705077E003CD439 /* TTFoursquareManager.m */; };
+		61A8597A1705077E003CD439 /* TTMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859741705077E003CD439 /* TTMapManager.m */; };
+		61A8597B1705077E003CD439 /* TTShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859761705077E003CD439 /* TTShopDetailViewController.m */; };
+		61A8597C1705077E003CD439 /* TTShopDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61A859771705077E003CD439 /* TTShopDetailViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1640CC01170B719D00CC4570 /* TTHeaderImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTHeaderImageView.h; sourceTree = "<group>"; };
+		1640CC02170B719D00CC4570 /* TTHeaderImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTHeaderImageView.m; sourceTree = "<group>"; };
+		1640CC04170B754500CC4570 /* Archer-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archer-Semibold.otf"; sourceTree = "<group>"; };
+		1687485A170B89FE005F0049 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
+		1687485C170B936D005F0049 /* logot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logot.png; sourceTree = "<group>"; };
+		16874860170B95B4005F0049 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
+		61347B8A1704DEF40080D842 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		61347B8C1704DEF90080D842 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		61347B971704DF830080D842 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		61347B991704DF8F0080D842 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		614AEE681704DCD20039D0DF /* titto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = titto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		614AEE6B1704DCD20039D0DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		614AEE6D1704DCD20039D0DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		614AEE6F1704DCD20039D0DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		614AEE731704DCD20039D0DF /* titto-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "titto-Info.plist"; sourceTree = "<group>"; };
+		614AEE751704DCD20039D0DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		614AEE771704DCD20039D0DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		614AEE791704DCD20039D0DF /* titto-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "titto-Prefix.pch"; sourceTree = "<group>"; };
+		614AEE7A1704DCD20039D0DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		614AEE7B1704DCD20039D0DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		614AEE7D1704DCD20039D0DF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		614AEE7F1704DCD20039D0DF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		614AEE811704DCD20039D0DF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		614AEE861704DCD20039D0DF /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		614AEE881704DCD20039D0DF /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		614AEE8D1704DCD20039D0DF /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		614AEE8F1704DCD20039D0DF /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		61A859521704E281003CD439 /* TTMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTMapViewController.h; sourceTree = "<group>"; };
+		61A859531704E281003CD439 /* TTMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMapViewController.m; sourceTree = "<group>"; };
+		61A859541704E281003CD439 /* TTMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTMapViewController.xib; sourceTree = "<group>"; };
+		61A859571704E2EC003CD439 /* TTCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTCardViewController.h; sourceTree = "<group>"; };
+		61A859581704E2EC003CD439 /* TTCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTCardViewController.m; sourceTree = "<group>"; };
+		61A859591704E2EC003CD439 /* TTCardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTCardViewController.xib; sourceTree = "<group>"; };
+		61A8595C1704E368003CD439 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		61A8595E1704E42B003CD439 /* TTFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFeedViewController.h; sourceTree = "<group>"; };
+		61A8595F1704E42B003CD439 /* TTFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTFeedViewController.m; sourceTree = "<group>"; };
+		61A859601704E42B003CD439 /* TTFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTFeedViewController.xib; sourceTree = "<group>"; };
+		61A859641704E54A003CD439 /* TTFacebookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFacebookManager.h; sourceTree = "<group>"; };
+		61A859651704E54A003CD439 /* TTFacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTFacebookManager.m; sourceTree = "<group>"; };
+		61A859671704F824003CD439 /* TTFacebookUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFacebookUser.h; sourceTree = "<group>"; };
+		61A859681704F824003CD439 /* TTFacebookUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTFacebookUser.m; sourceTree = "<group>"; };
+		61A8596A170506C3003CD439 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		61A8596C170506CA003CD439 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		61A8596F1705077E003CD439 /* PinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinAnnotation.h; sourceTree = "<group>"; };
+		61A859701705077E003CD439 /* PinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinAnnotation.m; sourceTree = "<group>"; };
+		61A859711705077E003CD439 /* TTFoursquareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFoursquareManager.h; sourceTree = "<group>"; };
+		61A859721705077E003CD439 /* TTFoursquareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTFoursquareManager.m; sourceTree = "<group>"; };
+		61A859731705077E003CD439 /* TTMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTMapManager.h; sourceTree = "<group>"; };
+		61A859741705077E003CD439 /* TTMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMapManager.m; sourceTree = "<group>"; };
+		61A859751705077E003CD439 /* TTShopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTShopDetailViewController.h; sourceTree = "<group>"; };
+		61A859761705077E003CD439 /* TTShopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTShopDetailViewController.m; sourceTree = "<group>"; };
+		61A859771705077E003CD439 /* TTShopDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTShopDetailViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		614AEE651704DCD20039D0DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A1E7E2A1706005C00B7C116 /* UIKit.framework in Frameworks */,
+				5A1E7E291706005400B7C116 /* Foundation.framework in Frameworks */,
+				5A1E7E281706004600B7C116 /* CoreGraphics.framework in Frameworks */,
+				61A8596D170506CA003CD439 /* CoreLocation.framework in Frameworks */,
+				61A8596B170506C3003CD439 /* MapKit.framework in Frameworks */,
+				61A8595D1704E368003CD439 /* Social.framework in Frameworks */,
+				61347B8D1704DEF90080D842 /* AdSupport.framework in Frameworks */,
+				61347B8B1704DEF40080D842 /* Accounts.framework in Frameworks */,
+				61347B981704DF830080D842 /* FacebookSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		614AEE5F1704DCD20039D0DF = {
+			isa = PBXGroup;
+			children = (
+				614AEE711704DCD20039D0DF /* titto */,
+				614AEE6A1704DCD20039D0DF /* Frameworks */,
+				614AEE691704DCD20039D0DF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		614AEE691704DCD20039D0DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				614AEE681704DCD20039D0DF /* titto.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		614AEE6A1704DCD20039D0DF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				61347B8A1704DEF40080D842 /* Accounts.framework */,
+				61347B8C1704DEF90080D842 /* AdSupport.framework */,
+				614AEE6F1704DCD20039D0DF /* CoreGraphics.framework */,
+				61A8596C170506CA003CD439 /* CoreLocation.framework */,
+				61347B971704DF830080D842 /* FacebookSDK.framework */,
+				61347B991704DF8F0080D842 /* FacebookSDKResources.bundle */,
+				614AEE6D1704DCD20039D0DF /* Foundation.framework */,
+				61A8596A170506C3003CD439 /* MapKit.framework */,
+				61A8595C1704E368003CD439 /* Social.framework */,
+				614AEE6B1704DCD20039D0DF /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		614AEE711704DCD20039D0DF /* titto */ = {
+			isa = PBXGroup;
+			children = (
+				16874860170B95B4005F0049 /* pin.png */,
+				1687485C170B936D005F0049 /* logot.png */,
+				1687485A170B89FE005F0049 /* texture.png */,
+				1640CC04170B754500CC4570 /* Archer-Semibold.otf */,
+				61A8596E1705077D003CD439 /* Map */,
+				61A859631704E528003CD439 /* Services */,
+				614AEE7A1704DCD20039D0DF /* AppDelegate.h */,
+				614AEE7B1704DCD20039D0DF /* AppDelegate.m */,
+				61A859521704E281003CD439 /* TTMapViewController.h */,
+				61A859531704E281003CD439 /* TTMapViewController.m */,
+				61A859571704E2EC003CD439 /* TTCardViewController.h */,
+				61A859581704E2EC003CD439 /* TTCardViewController.m */,
+				61A8595E1704E42B003CD439 /* TTFeedViewController.h */,
+				61A8595F1704E42B003CD439 /* TTFeedViewController.m */,
+				614AEE861704DCD20039D0DF /* first.png */,
+				614AEE881704DCD20039D0DF /* first@2x.png */,
+				614AEE8D1704DCD20039D0DF /* second.png */,
+				614AEE8F1704DCD20039D0DF /* second@2x.png */,
+				61A859541704E281003CD439 /* TTMapViewController.xib */,
+				61A859591704E2EC003CD439 /* TTCardViewController.xib */,
+				61A859601704E42B003CD439 /* TTFeedViewController.xib */,
+				614AEE721704DCD20039D0DF /* Supporting Files */,
+			);
+			path = titto;
+			sourceTree = "<group>";
+		};
+		614AEE721704DCD20039D0DF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				614AEE731704DCD20039D0DF /* titto-Info.plist */,
+				614AEE741704DCD20039D0DF /* InfoPlist.strings */,
+				614AEE771704DCD20039D0DF /* main.m */,
+				614AEE791704DCD20039D0DF /* titto-Prefix.pch */,
+				614AEE7D1704DCD20039D0DF /* Default.png */,
+				614AEE7F1704DCD20039D0DF /* Default@2x.png */,
+				614AEE811704DCD20039D0DF /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		61A859631704E528003CD439 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				61A859641704E54A003CD439 /* TTFacebookManager.h */,
+				61A859651704E54A003CD439 /* TTFacebookManager.m */,
+				61A859671704F824003CD439 /* TTFacebookUser.h */,
+				61A859681704F824003CD439 /* TTFacebookUser.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		61A8596E1705077D003CD439 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				61A8596F1705077E003CD439 /* PinAnnotation.h */,
+				61A859701705077E003CD439 /* PinAnnotation.m */,
+				61A859711705077E003CD439 /* TTFoursquareManager.h */,
+				61A859721705077E003CD439 /* TTFoursquareManager.m */,
+				61A859731705077E003CD439 /* TTMapManager.h */,
+				61A859741705077E003CD439 /* TTMapManager.m */,
+				61A859751705077E003CD439 /* TTShopDetailViewController.h */,
+				61A859761705077E003CD439 /* TTShopDetailViewController.m */,
+				61A859771705077E003CD439 /* TTShopDetailViewController.xib */,
+				1640CC01170B719D00CC4570 /* TTHeaderImageView.h */,
+				1640CC02170B719D00CC4570 /* TTHeaderImageView.m */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		614AEE671704DCD20039D0DF /* titto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 614AEE991704DCD20039D0DF /* Build configuration list for PBXNativeTarget "titto" */;
+			buildPhases = (
+				614AEE641704DCD20039D0DF /* Sources */,
+				614AEE651704DCD20039D0DF /* Frameworks */,
+				614AEE661704DCD20039D0DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = titto;
+			productName = titto;
+			productReference = 614AEE681704DCD20039D0DF /* titto.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		614AEE601704DCD20039D0DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = titto;
+			};
+			buildConfigurationList = 614AEE631704DCD20039D0DF /* Build configuration list for PBXProject "titto" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 614AEE5F1704DCD20039D0DF;
+			productRefGroup = 614AEE691704DCD20039D0DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				614AEE671704DCD20039D0DF /* titto */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		614AEE661704DCD20039D0DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				614AEE761704DCD20039D0DF /* InfoPlist.strings in Resources */,
+				614AEE7E1704DCD20039D0DF /* Default.png in Resources */,
+				614AEE801704DCD20039D0DF /* Default@2x.png in Resources */,
+				614AEE821704DCD20039D0DF /* Default-568h@2x.png in Resources */,
+				614AEE871704DCD20039D0DF /* first.png in Resources */,
+				614AEE891704DCD20039D0DF /* first@2x.png in Resources */,
+				614AEE8E1704DCD20039D0DF /* second.png in Resources */,
+				614AEE901704DCD20039D0DF /* second@2x.png in Resources */,
+				61347B9A1704DF8F0080D842 /* FacebookSDKResources.bundle in Resources */,
+				61A859561704E281003CD439 /* TTMapViewController.xib in Resources */,
+				61A8595B1704E2EC003CD439 /* TTCardViewController.xib in Resources */,
+				61A859621704E42B003CD439 /* TTFeedViewController.xib in Resources */,
+				61A8597C1705077E003CD439 /* TTShopDetailViewController.xib in Resources */,
+				1640CC05170B754500CC4570 /* Archer-Semibold.otf in Resources */,
+				1687485B170B89FE005F0049 /* texture.png in Resources */,
+				1687485D170B936D005F0049 /* logot.png in Resources */,
+				16874861170B95B4005F0049 /* pin.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		614AEE641704DCD20039D0DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				614AEE781704DCD20039D0DF /* main.m in Sources */,
+				614AEE7C1704DCD20039D0DF /* AppDelegate.m in Sources */,
+				61A859551704E281003CD439 /* TTMapViewController.m in Sources */,
+				61A8595A1704E2EC003CD439 /* TTCardViewController.m in Sources */,
+				61A859611704E42B003CD439 /* TTFeedViewController.m in Sources */,
+				61A859661704E54A003CD439 /* TTFacebookManager.m in Sources */,
+				61A859691704F824003CD439 /* TTFacebookUser.m in Sources */,
+				61A859781705077E003CD439 /* PinAnnotation.m in Sources */,
+				61A859791705077E003CD439 /* TTFoursquareManager.m in Sources */,
+				61A8597A1705077E003CD439 /* TTMapManager.m in Sources */,
+				61A8597B1705077E003CD439 /* TTShopDetailViewController.m in Sources */,
+				1640CC03170B719D00CC4570 /* TTHeaderImageView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		614AEE741704DCD20039D0DF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				614AEE751704DCD20039D0DF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		614AEE971704DCD20039D0DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		614AEE981704DCD20039D0DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		614AEE9A1704DCD20039D0DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../FacebookSDK\"",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "titto/titto-Prefix.pch";
+				INFOPLIST_FILE = "titto/titto-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lsqlite3.0",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		614AEE9B1704DCD20039D0DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../FacebookSDK\"",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "titto/titto-Prefix.pch";
+				INFOPLIST_FILE = "titto/titto-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lsqlite3.0",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		614AEE631704DCD20039D0DF /* Build configuration list for PBXProject "titto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				614AEE971704DCD20039D0DF /* Debug */,
+				614AEE981704DCD20039D0DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		614AEE991704DCD20039D0DF /* Build configuration list for PBXNativeTarget "titto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				614AEE9A1704DCD20039D0DF /* Debug */,
+				614AEE9B1704DCD20039D0DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 614AEE601704DCD20039D0DF /* Project object */;
+}

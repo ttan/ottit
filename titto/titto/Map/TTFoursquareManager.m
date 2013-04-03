@@ -41,28 +41,25 @@
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               
-                               if (!error) {
-                                   NSDictionary * dataDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-                                   
-                                   if ([[[dataDict objectForKey:@"meta"] objectForKey:@"code"] integerValue]==200){
+           
+           if (!error) {
+               NSDictionary * dataDict = [NSJSONSerialization JSONObjectWithData:data
+                                                                         options:NSJSONReadingAllowFragments
+                                                                           error:nil];
+               
+               if ([[[dataDict objectForKey:@"meta"] objectForKey:@"code"] integerValue]==200){
 
-                                       NSArray * array = [[[dataDict objectForKey:@"response"] objectForKey:@"hours"] objectForKey:@"timeframes"];
-                                       
-                                       dispatch_async(dispatch_get_main_queue(), ^{
-                                           
-                                           if ([[self delegate] respondsToSelector:@selector(foursquareManagerDidGetHour:)]) {
-                                               [[self delegate] foursquareManagerDidGetHour:array];
-                                           }
+                   NSArray * array = [[[dataDict objectForKey:@"response"] objectForKey:@"hours"] objectForKey:@"timeframes"];
 
-                                           
-                                       });
-                                       
-                                   }
-                               }
-                           }];
-    
-    
+                   dispatch_async(dispatch_get_main_queue(), ^{
+                       
+                       if ([[self delegate] respondsToSelector:@selector(foursquareManagerDidGetHour:)]) {
+                           [[self delegate] foursquareManagerDidGetHour:array];
+                       }
+                   });
+               }
+           }
+       }];
 }
 
 @end

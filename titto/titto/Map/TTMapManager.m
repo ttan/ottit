@@ -32,7 +32,8 @@
 
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError *error) {
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse * response, NSData * data, NSError *error) {
 
         if (!error && data) {
 
@@ -53,7 +54,9 @@
     
     NSError * jsonError;
     
-    NSArray * jsonResult = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&jsonError];
+    NSArray * jsonResult = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                           options:NSJSONReadingAllowFragments
+                                                             error:&jsonError];
     
     if (!jsonError && jsonResult) {
         

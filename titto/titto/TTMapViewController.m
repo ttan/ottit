@@ -53,11 +53,8 @@
     }
 
     shopArray = [[NSMutableArray alloc] initWithArray:infoList];
-    
     [self updatePinList];
-
 }
-
 
 
 -(void)updatePinList{

@@ -9,8 +9,6 @@
 #import "TTFeedViewController.h"
 #import "TTConfigDefines.h"
 
-#define BASE_URL @"http://www.titto.it/app/loadPage.php?pv="
-
 @interface TTFeedViewController ()
 
 @end
@@ -37,7 +35,9 @@
 
 -(void)viewWillAppear:(BOOL)animated{
 
-    NSString * urlString = [NSString stringWithFormat:@"%@%@",BASE_URL,[[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP_ADDRESS]];
+    NSString * pvString = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP_ADDRESS];
+    
+    NSString * urlString = [NSString stringWithFormat:@"%@%@",BASE_FEED_URL,pvString];
 
     if (urlString){
 
@@ -48,9 +48,10 @@
 
         if (!favoriteWebView) {
             favoriteWebView = [[UIWebView alloc] initWithFrame:self.view.frame];
-            [favoriteWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
             [[self view] addSubview:favoriteWebView];
         }
+        
+        [favoriteWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
 
     }else{
 

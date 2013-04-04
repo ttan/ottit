@@ -103,7 +103,6 @@
         [[self view] addSubview:messageLabel];
 
     }
-    
 }
 
 -(void)loadNoFavoriteShopView{

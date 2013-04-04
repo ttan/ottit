@@ -47,28 +47,35 @@
 
 
 -(void)mapManagerDidLoadData:(NSArray *)infoList{
-    
+
     if (shopArray) {
         shopArray=nil;
     }
 
     shopArray = [[NSMutableArray alloc] initWithArray:infoList];
     [self updatePinList];
+
+}
+
+
+-(void)mapManagerDidFailLoadData{
+
+    
+
 }
 
 
 -(void)updatePinList{
-    
+
     NSMutableArray * pinArray = [[NSMutableArray alloc]init];
-    
     for (NSDictionary * dict in shopArray) {
-        
+
         PinAnnotation * pin = [[PinAnnotation alloc]init];
         [pin setTitle:[dict objectForKey:@"indirizzo"]];
-        
+
         CGFloat latitude = [[dict objectForKey:@"coordinate_x"]floatValue];
         CGFloat longitude = [[dict objectForKey:@"coordinate_y"]floatValue];
-        
+
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude , longitude);
         [pin setCoordinate:coordinate];
         

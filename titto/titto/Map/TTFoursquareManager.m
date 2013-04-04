@@ -7,7 +7,8 @@
 //
 
 #import "TTFoursquareManager.h"
-
+#import "TTConfigDefines.h"
+#import "Reachability.h"
 
 #define CLIENT_ID @"WYPZONHB2WDWWL05LABGI0O4XSEZMJ2GCGUVZJIDULULDADZ"
 #define CLIENT_SECRET @"CADNRRT125NR4M4SAM2YDRMLO1IWNYL2A0FWK0UP32ANQ1OG"
@@ -31,35 +32,55 @@
 
 -(void)requestHoursInfoForIDVenue:(NSString *)idVenue{
     
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"YYYYMMdd"];
-    
-    NSString * stringURL = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/4d5006e0253d6a310c6b5e29/hours?client_id=%@&client_secret=%@&v=%@",CLIENT_ID,CLIENT_SECRET,[dateFormatter stringFromDate:[NSDate date]]];
-    
-    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:stringURL]];
-    
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-           
-           if (!error) {
-               NSDictionary * dataDict = [NSJSONSerialization JSONObjectWithData:data
-                                                                         options:NSJSONReadingAllowFragments
-                                                                           error:nil];
-               
-               if ([[[dataDict objectForKey:@"meta"] objectForKey:@"code"] integerValue]==200){
+    if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
+        
+        
+        NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"YYYYMMdd"];
+        
+        NSString * stringURL = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/4d5006e0253d6a310c6b5e29/hours?client_id=%@&client_secret=%@&v=%@",CLIENT_ID,CLIENT_SECRET,[dateFormatter stringFromDate:[NSDate date]]];
+        
+        NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:stringURL]];
+        
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                   
+                                   if (!error) {
+                                       NSDictionary * dataDict = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                 options:NSJSONReadingAllowFragments
+                                                                                                   error:nil];
+                                       
+                                       if ([[[dataDict objectForKey:@"meta"] objectForKey:@"code"] integerValue]==200){
+                                           
+                                           NSArray * array = [[[dataDict objectForKey:@"response"] objectForKey:@"hours"] objectForKey:@"timeframes"];
+                                           
+                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                               
+                                               if ([[self delegate] respondsToSelector:@selector(foursquareManagerDidGetHour:)]) {
+                                                   [[self delegate] foursquareManagerDidGetHour:array];
+                                               }
+                                           });
+                                       }
+                                   }
+                               }];
+        
+    }else{
+        
+        NSArray * array = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"%@%@",FS_PREFIX_INFO,idVenue]];
 
-                   NSArray * array = [[[dataDict objectForKey:@"response"] objectForKey:@"hours"] objectForKey:@"timeframes"];
+        if (array) {
+            if ([[self delegate] respondsToSelector:@selector(foursquareManagerDidGetHour:)]) {
+                [[self delegate] foursquareManagerDidGetHour:array];
+            }
+        }else{
+            if ([[self delegate] respondsToSelector:@selector(foursquareManagerGetHourDidFail)]) {
+                [[self delegate] foursquareManagerGetHourDidFail];
+            }
+            
+        }
+    }
 
-                   dispatch_async(dispatch_get_main_queue(), ^{
-                       
-                       if ([[self delegate] respondsToSelector:@selector(foursquareManagerDidGetHour:)]) {
-                           [[self delegate] foursquareManagerDidGetHour:array];
-                       }
-                   });
-               }
-           }
-       }];
 }
 
 @end

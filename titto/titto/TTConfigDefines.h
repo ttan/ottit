@@ -10,6 +10,9 @@
 #define titto_TTConfigDefines_h
 
 #define FAVORITE_SHOP_ADDRESS @"SHOP_ADDRESS"
+#define MAP_PINS_CACHE @"MAP_PIN_CACHE"
 #define BASE_FEED_URL @"http://www.titto.it/app/loadPage.php?pv="
+
+#define FS_PREFIX_INFO @"FS_VENUE"
 
 #endif

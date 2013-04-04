@@ -11,6 +11,7 @@
 @protocol TTMapManagerDelegate <NSObject>
 
 -(void)mapManagerDidLoadData:(NSArray *)infoList;
+-(void)mapManagerDidFailLoadData;
 
 @end
 
@@ -23,7 +24,6 @@
 @property (unsafe_unretained) id delegate;
 
 + (TTMapManager *)sharedInstance;
-
 
 -(void)loadShopsInformations;
 

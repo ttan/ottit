@@ -11,6 +11,7 @@
 @protocol TTFoursquareManagerDelegate <NSObject>
 
 -(void)foursquareManagerDidGetHour:(NSArray *)hours;
+-(void)foursquareManagerGetHourDidFail;
 
 @end
 

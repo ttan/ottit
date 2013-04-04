@@ -45,11 +45,13 @@
     IBOutlet UIButton * emailContentLabel;
 
     IBOutlet UIButton * predefinedButton;
+    
+    IBOutlet UILabel * noConnectionLabel;
 
 }
 
 @property (nonatomic,strong)NSDictionary * infoDict;
 
 -(IBAction)predefinedButtonAction:(id)sender;
-
+-(IBAction)openMail:(id)sender;
 @end

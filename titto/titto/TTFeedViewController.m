@@ -8,6 +8,8 @@
 
 #import "TTFeedViewController.h"
 #import "TTConfigDefines.h"
+#import "Reachability.h"
+
 
 @interface TTFeedViewController ()
 
@@ -34,10 +36,16 @@
 
 -(void)viewWillAppear:(BOOL)animated{
 
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP_ADDRESS]){
-        [self loadWebView];
+    if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
+        
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP_ADDRESS]){
+            
+            [self loadWebView];
+        }else{
+            [self loadNoFavoriteShopView];
+        }
     }else{
-        [self loadNoFavoriteShopView];
+        [self loadNoConnectionView];
     }
 }
 
@@ -53,6 +61,11 @@
         noFavoriteShopView=nil;
     }
     
+    if (noConnectionView) {
+        [noConnectionView removeFromSuperview];
+        noConnectionView=nil;
+    }
+    
     if (!favoriteWebView) {
         favoriteWebView = [[UIWebView alloc] initWithFrame:self.view.frame];
         [[self view] addSubview:favoriteWebView];
@@ -63,12 +76,46 @@
     
 }
 
-
--(void)loadNoFavoriteShopView{
+-(void)loadNoConnectionView{
     
     if (favoriteWebView){
         [favoriteWebView removeFromSuperview];
         favoriteWebView=nil;
+    }
+
+    if (noFavoriteShopView) {
+        [noFavoriteShopView removeFromSuperview];
+        noFavoriteShopView=nil;
+    }
+    
+    if (!noConnectionView) {
+        noConnectionView = [[UIView alloc]initWithFrame:self.view.frame];
+        [noConnectionView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+        [[self view] addSubview:noConnectionView];
+
+        UILabel * messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 120, 280, 100)];
+        [messageLabel setText:@"Hai bisogno di una connessione ad internet per visualizzare gli aggiornamenti"];
+        [messageLabel setBackgroundColor:[UIColor clearColor]];
+        [messageLabel setNumberOfLines:4];
+        [messageLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+        [messageLabel setTextColor:[UIColor colorWithRed:0.41 green:0.41 blue:0.41 alpha:1.0]];
+        [messageLabel setTextAlignment:NSTextAlignmentCenter];
+        [[self view] addSubview:messageLabel];
+
+    }
+    
+}
+
+-(void)loadNoFavoriteShopView{
+
+    if (favoriteWebView){
+        [favoriteWebView removeFromSuperview];
+        favoriteWebView=nil;
+    }
+
+    if (noConnectionView) {
+        [noConnectionView removeFromSuperview];
+        noConnectionView=nil;
     }
 
     if (!noFavoriteShopView){
@@ -77,8 +124,8 @@
         [[self view] addSubview:noFavoriteShopView];
 
         if (!shopButton) {
-
-            UILabel * messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 120, 240, 100)];
+             UILabel * messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 120, 240, 100)];
+        
             [messageLabel setText:@"Seleziona il tuo negozio preferito per ricevere tutti gli aggiornamenti"];
             [messageLabel setBackgroundColor:[UIColor clearColor]];
             [messageLabel setNumberOfLines:3];
@@ -94,10 +141,8 @@
             [shopButton addTarget:self action:@selector(setShopAction) forControlEvents:UIControlEventTouchUpInside];
             [[shopButton titleLabel]setFont:[UIFont fontWithName:@"Archer-Semibold" size:16]];
             [[self view] addSubview:shopButton];
-
         }
     }
-
 }
 
 -(void)setShopAction{

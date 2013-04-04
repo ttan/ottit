@@ -11,6 +11,7 @@
 @interface TTFeedViewController : UIViewController{
     
     UIView * noFavoriteShopView;
+    UIView * noConnectionView;
     UIWebView * favoriteWebView;
     UIButton * shopButton;
     

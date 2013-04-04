@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "TTFoursquareManager.h"
 #import "TTHeaderImageView.h"
+#import <MessageUI/MessageUI.h>
 
-@interface TTShopDetailViewController : UIViewController<TTFoursquareManagerDelegate>
+
+@interface TTShopDetailViewController : UIViewController<TTFoursquareManagerDelegate,MFMailComposeViewControllerDelegate>
 {
     NSDictionary * _infoDict;
 
@@ -47,6 +49,8 @@
     IBOutlet UIButton * predefinedButton;
     
     IBOutlet UILabel * noConnectionLabel;
+    
+    MFMailComposeViewController *mailer ;
 
 }
 

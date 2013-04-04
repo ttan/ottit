@@ -10,7 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Reachability.h"
 #import "TTConfigDefines.h"
-#import <MessageUI/MessageUI.h>
 
 @interface TTShopDetailViewController ()
 
@@ -208,8 +207,9 @@
         
         if ([MFMailComposeViewController canSendMail])
         {
-            MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+            mailer = [[MFMailComposeViewController alloc] init];
             [mailer setSubject:@"Info"];
+            [mailer setMailComposeDelegate:self];
             NSArray *toRecipients = [NSArray arrayWithObjects:[[emailContentLabel titleLabel] text], nil];
             [mailer setToRecipients:toRecipients];
             [self presentViewController:mailer animated:YES completion:^{
@@ -217,6 +217,14 @@
             }];
         }
     }
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    
+    [mailer dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
 }
 
 

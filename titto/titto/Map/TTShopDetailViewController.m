@@ -34,6 +34,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [lunediLabel setAlpha:0];
+    [martediLabel setAlpha:0];
+    [mercolediLabel setAlpha:0];
+    [giovediLabel setAlpha:0];
+    [venerdiLabel setAlpha:0];
+    [sabatoLabel setAlpha:0];
+    [domenicaLabel setAlpha:0];
 
     [scrollView setBackgroundColor:[UIColor clearColor]];
 
@@ -112,14 +120,6 @@
     [noConnectionLabel setAlpha:0];
     [orarioAperturaLabel setAlpha:1];
 
-    [lunediLabel setAlpha:1];
-    [martediLabel setAlpha:1];
-    [mercolediLabel setAlpha:1];
-    [giovediLabel setAlpha:1];
-    [venerdiLabel setAlpha:1];
-    [sabatoLabel setAlpha:1];
-    [domenicaLabel setAlpha:1];
-
     for (NSDictionary * info in hours) {
         NSDictionary * hours = [[info objectForKey:@"open"] objectAtIndex:0];
         for (id days in [info objectForKey:@"days"]) {
@@ -176,6 +176,15 @@
             }
         }
     }
+    
+    [lunediLabel setAlpha:1];
+    [martediLabel setAlpha:1];
+    [mercolediLabel setAlpha:1];
+    [giovediLabel setAlpha:1];
+    [venerdiLabel setAlpha:1];
+    [sabatoLabel setAlpha:1];
+    [domenicaLabel setAlpha:1];
+
 }
 
 
@@ -221,10 +230,10 @@
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     
-    [mailer dismissViewControllerAnimated:YES completion:^{
+        [mailer dismissViewControllerAnimated:YES completion:^{
         
     }];
-    
+
 }
 
 

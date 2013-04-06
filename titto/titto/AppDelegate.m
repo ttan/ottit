@@ -9,10 +9,9 @@
 #import "AppDelegate.h"
 
 #import "TTMapViewController.h"
-
 #import "TTCardViewController.h"
-
 #import "TTFeedViewController.h"
+#import "TTSettingsViewController.h"
 
 @implementation AppDelegate
 
@@ -30,9 +29,12 @@
                                                                                bundle:nil];
     UIViewController *viewController3 = [[TTFeedViewController alloc] initWithNibName:@"TTFeedViewController"
                                                                                bundle:nil];
+    
+    UIViewController *viewController4 = [[TTSettingsViewController alloc] initWithNibName:@"TTSettingsViewController"
+                                                                               bundle:nil];
 
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[navController, viewController2, viewController3];
+    self.tabBarController.viewControllers = @[navController, viewController2, viewController3,viewController4];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
 

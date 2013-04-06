@@ -55,6 +55,8 @@
                                            
                                            NSArray * array = [[[dataDict objectForKey:@"response"] objectForKey:@"hours"] objectForKey:@"timeframes"];
                                            
+                                           [[NSUserDefaults standardUserDefaults]setObject:array forKey:[NSString stringWithFormat:@"%@%@",FS_PREFIX_INFO,idVenue]];
+                                           
                                            dispatch_async(dispatch_get_main_queue(), ^{
                                                
                                                if ([[self delegate] respondsToSelector:@selector(foursquareManagerDidGetHour:)]) {
@@ -69,7 +71,7 @@
         
         NSArray * array = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"%@%@",FS_PREFIX_INFO,idVenue]];
 
-        if (array) {
+        if (array){
             if ([[self delegate] respondsToSelector:@selector(foursquareManagerDidGetHour:)]) {
                 [[self delegate] foursquareManagerDidGetHour:array];
             }

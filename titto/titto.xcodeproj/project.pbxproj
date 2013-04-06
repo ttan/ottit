@@ -17,6 +17,8 @@
 		1687485B170B89FE005F0049 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 1687485A170B89FE005F0049 /* texture.png */; };
 		1687485D170B936D005F0049 /* logot.png in Resources */ = {isa = PBXBuildFile; fileRef = 1687485C170B936D005F0049 /* logot.png */; };
 		16874861170B95B4005F0049 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 16874860170B95B4005F0049 /* pin.png */; };
+		16E0973517102BC300F20FB5 /* TTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E0973317102BC300F20FB5 /* TTSettingsViewController.m */; };
+		16E0973617102BC300F20FB5 /* TTSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16E0973417102BC300F20FB5 /* TTSettingsViewController.xib */; };
 		5A1E7E281706004600B7C116 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614AEE6F1704DCD20039D0DF /* CoreGraphics.framework */; };
 		5A1E7E291706005400B7C116 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614AEE6D1704DCD20039D0DF /* Foundation.framework */; };
 		5A1E7E2A1706005C00B7C116 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614AEE6B1704DCD20039D0DF /* UIKit.framework */; };
@@ -68,6 +70,9 @@
 		1687485A170B89FE005F0049 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = texture.png; path = titto/texture.png; sourceTree = "<group>"; };
 		1687485C170B936D005F0049 /* logot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logot.png; path = titto/logot.png; sourceTree = "<group>"; };
 		16874860170B95B4005F0049 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin.png; path = titto/pin.png; sourceTree = "<group>"; };
+		16E0973217102BC300F20FB5 /* TTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSettingsViewController.h; sourceTree = "<group>"; };
+		16E0973317102BC300F20FB5 /* TTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSettingsViewController.m; sourceTree = "<group>"; };
+		16E0973417102BC300F20FB5 /* TTSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTSettingsViewController.xib; sourceTree = "<group>"; };
 		5ACD70ED170D5C06000F12E9 /* icona.fw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icona.fw.png; sourceTree = "<group>"; };
 		5ACD70EF170D5C15000F12E9 /* icona.small.fw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icona.small.fw.png; sourceTree = "<group>"; };
 		61347B8A1704DEF40080D842 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -192,7 +197,9 @@
 		614AEE5F1704DCD20039D0DF = {
 			isa = PBXGroup;
 			children = (
-				161A7970170E2719006DC5C5 /* MessageUI.framework */,
+				16E0973217102BC300F20FB5 /* TTSettingsViewController.h */,
+				16E0973317102BC300F20FB5 /* TTSettingsViewController.m */,
+				16E0973417102BC300F20FB5 /* TTSettingsViewController.xib */,
 				5ACD70EF170D5C15000F12E9 /* icona.small.fw.png */,
 				5ACD70ED170D5C06000F12E9 /* icona.fw.png */,
 				614AEE711704DCD20039D0DF /* titto */,
@@ -212,6 +219,7 @@
 		614AEE6A1704DCD20039D0DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				161A7970170E2719006DC5C5 /* MessageUI.framework */,
 				161A796E170E1ADA006DC5C5 /* SystemConfiguration.framework */,
 				61347B8A1704DEF40080D842 /* Accounts.framework */,
 				61347B8C1704DEF90080D842 /* AdSupport.framework */,
@@ -360,6 +368,7 @@
 				161A7973170E27A1006DC5C5 /* header.png in Resources */,
 				5ACD70EE170D5C06000F12E9 /* icona.fw.png in Resources */,
 				5ACD70F0170D5C15000F12E9 /* icona.small.fw.png in Resources */,
+				16E0973617102BC300F20FB5 /* TTSettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +392,7 @@
 				61A8597B1705077E003CD439 /* TTShopDetailViewController.m in Sources */,
 				1640CC03170B719D00CC4570 /* TTHeaderImageView.m in Sources */,
 				161A796D170E1704006DC5C5 /* Reachability.m in Sources */,
+				16E0973517102BC300F20FB5 /* TTSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

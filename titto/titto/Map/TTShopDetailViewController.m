@@ -11,7 +11,7 @@
 #import "Reachability.h"
 #import "TTConfigDefines.h"
 
-#define HEADER_IMAGE_HEIGHT 300
+#define HEADER_IMAGE_HEIGHT 278
 
 @interface TTShopDetailViewController ()
 
@@ -104,17 +104,30 @@
     [predefinedButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [predefinedButton setTitle:@"Preferito" forState:UIControlStateNormal];
 
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     [scrollView setContentOffset:CGPointMake(0, 0)];
+    
+    [self updateStarStatus];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
-    
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
+}
+
+
+-(void)updateStarStatus{
+    
+    if ([[_infoDict objectForKey:@"cod_fb"] isEqualToString:[[NSUserDefaults standardUserDefaults]objectForKey:FAVORITE_SHOP_ADDRESS]]) {
+        
+        [starImageView setImage:[UIImage imageNamed:@"first.png"]];
+    }else{
+        [starImageView setImage:[UIImage imageNamed:@"second.png"]];
+    }
     
 }
 
@@ -202,7 +215,6 @@
     [venerdiLabel setAlpha:0];
     [sabatoLabel setAlpha:0];
     [domenicaLabel setAlpha:0];
-
     [noConnectionLabel setAlpha:1];
 
     [noConnectionLabel setText:@"Hai bisogno di una connessione ad internet per visualizzare gli orari"];
@@ -214,9 +226,7 @@
 
 
 -(IBAction)openMail:(id)sender;
-{
-    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable) {
-        
+{        
         if ([MFMailComposeViewController canSendMail])
         {
             mailer = [[MFMailComposeViewController alloc] init];
@@ -228,7 +238,6 @@
 
             }];
         }
-    }
 }
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
@@ -244,6 +253,7 @@
 
     [[NSUserDefaults standardUserDefaults] setObject:[_infoDict objectForKey:@"cod_fb"] forKey:FAVORITE_SHOP_ADDRESS];
 
+    [self updateStarStatus];
 }
 
 - (void)didReceiveMemoryWarning
@@ -254,7 +264,7 @@
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)aScrollView{
-
+    
     NSInteger yOffest = aScrollView.contentOffset.y;
 
     if (yOffest<0) {

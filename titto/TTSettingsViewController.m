@@ -17,13 +17,15 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+
     if (self) {
         // Custom initialization
-        
+
         self.title = @"Settings";
         self.tabBarItem.image = [UIImage imageNamed:@"second.png"];
 
     }
+
     return self;
 }
 
@@ -31,81 +33,75 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
+    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+    
+    [impostazioniLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [negozioLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [negozioPreferitoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [[cambiaNegozioButton titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [accessoFacebookLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [accessoUserLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [[logoutButton titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+
+    [copyLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
+    [srlLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
+    [viaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
+    [cittaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
+    [piLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
+    [telLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
+    [[sitoButton titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
+    [[emailButton titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
+
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+-(void)viewWillAppear:(BOOL)animated{
+
+
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+
+-(IBAction)cambiaNegozio:(id)sender;
 {
-    switch (section) {
-        case 0:
-            return 1;
-            break;
-        case 1:
-            return 2;
-            break;
-            
-        default:
-            break;
-    }
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     
-    switch (section) {
-        case 0:
-            return @"lalalala";
-            break;
-        case 1:
-            return @"Infos";
-            break;
-            
-        default:
-            break;
-    }
+    [[self tabBarController] setSelectedIndex:0];
     
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+-(IBAction)fbLogout:(id)sender;{
+    
+    
+}
+
+-(IBAction)openSite:(id)sender;
 {
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-    }
-    
-    switch (indexPath.section) {
-        case 0:
-            break;
-        case 1:
-            switch (indexPath.row) {
-                case 0:
-                    cell.textLabel.text = @"Credits";
-                    break;
-                case 1:
-                    cell.textLabel.text = @"About";
-                    break;
-                default:
-                    break;
-            }
-            break;
-        default:
-            break;
-    }
-
-    return cell;
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.titto.it"]];
     
 }
-//
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-//{
-//    
-//    
-//}
+
+-(IBAction)openMail:(id)sender;
+{
+        if ([MFMailComposeViewController canSendMail])
+        {
+            mailer = [[MFMailComposeViewController alloc] init];
+            [mailer setSubject:@"Info"];
+            [mailer setMailComposeDelegate:self];
+            NSArray *toRecipients = [NSArray arrayWithObjects:@"info@titto.it", nil];
+            [mailer setToRecipients:toRecipients];
+            [self presentViewController:mailer animated:YES completion:^{
+                
+            }];
+        }
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    
+    [mailer dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

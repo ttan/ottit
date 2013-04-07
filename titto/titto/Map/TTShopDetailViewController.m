@@ -259,9 +259,8 @@
 
     if (yOffest<0) {
         yOffest=yOffest*(-1);
-        [headerImageView setFrame:CGRectMake(0, 0, headerImageView.frame.size.width, HEADER_IMAGE_HEIGHT+yOffest)];
+        [headerImageView setFrame:CGRectMake(0, (yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
     }
-
 }
 
 @end

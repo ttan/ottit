@@ -11,7 +11,7 @@
 #import "Reachability.h"
 #import "TTConfigDefines.h"
 
-#define HEADER_IMAGE_HEIGHT 150
+#define HEADER_IMAGE_HEIGHT 300
 
 @interface TTShopDetailViewController ()
 
@@ -253,13 +253,13 @@
 }
 
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+-(void)scrollViewDidScroll:(UIScrollView *)aScrollView{
 
-    NSInteger yOffest = scrollView.contentOffset.y;
+    NSInteger yOffest = aScrollView.contentOffset.y;
 
     if (yOffest<0) {
         yOffest=yOffest*(-1);
-        [headerImageView setFrame:CGRectMake(0, (yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        [headerImageView setFrame:CGRectMake(0, (-75)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
     }
 }
 

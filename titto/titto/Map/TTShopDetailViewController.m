@@ -11,6 +11,8 @@
 #import "Reachability.h"
 #import "TTConfigDefines.h"
 
+#define HEADER_IMAGE_HEIGHT 150
+
 @interface TTShopDetailViewController ()
 
 @end
@@ -43,6 +45,7 @@
     [sabatoLabel setAlpha:0];
     [domenicaLabel setAlpha:0];
 
+    [scrollView setDelegate:self];
     [scrollView setBackgroundColor:[UIColor clearColor]];
 
     [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
@@ -229,11 +232,10 @@
 }
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
-    
-        [mailer dismissViewControllerAnimated:YES completion:^{
-        
-    }];
 
+        [mailer dismissViewControllerAnimated:YES completion:^{
+
+    }];
 }
 
 
@@ -248,6 +250,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+    NSInteger yOffest = scrollView.contentOffset.y;
+
+    if (yOffest<0) {
+        yOffest=yOffest*(-1);
+        [headerImageView setFrame:CGRectMake(0, 0, headerImageView.frame.size.width, HEADER_IMAGE_HEIGHT+yOffest)];
+    }
+
 }
 
 @end

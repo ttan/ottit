@@ -138,7 +138,6 @@
         [shopViewController setInfoDict:[array objectAtIndex:0]];
         [[self navigationController] pushViewController:shopViewController animated:YES];
     }
-    
 }
 
 

@@ -12,7 +12,7 @@
 #import <MessageUI/MessageUI.h>
 
 
-@interface TTShopDetailViewController : UIViewController<TTFoursquareManagerDelegate,MFMailComposeViewControllerDelegate>
+@interface TTShopDetailViewController : UIViewController<TTFoursquareManagerDelegate,MFMailComposeViewControllerDelegate,UIScrollViewDelegate>
 {
     NSDictionary * _infoDict;
 

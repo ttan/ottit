@@ -74,9 +74,7 @@
 
         [accessoUserLabel setAlpha:0];
         [logoutButton setTitle:@"Login" forState:UIControlStateNormal];
-
     }
-    
 }
 
 -(IBAction)cambiaNegozio:(id)sender;
@@ -84,7 +82,8 @@
     [[self tabBarController] setSelectedIndex:0];
 }
 
--(IBAction)fbLogout:(id)sender;{
+-(IBAction)fbLogout:(id)sender;
+{
 
     if ([[[logoutButton titleLabel] text] isEqualToString:@"Login"]) {
         [[self tabBarController] setSelectedIndex:1];

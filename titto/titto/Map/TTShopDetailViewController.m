@@ -113,7 +113,7 @@
     [scrollView setContentOffset:CGPointMake(0, 0)];
 
     [self updateStarStatus];
-
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -121,7 +121,6 @@
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 
 }
-
 
 -(void)updateStarStatus{
 
@@ -134,7 +133,6 @@
         [starImageView setImage:[UIImage imageNamed:@"second.png"]];
 
     }
-
 }
 
 -(void)foursquareManagerDidGetHour:(NSArray *)hours{
@@ -143,9 +141,10 @@
     [orarioAperturaLabel setAlpha:1];
 
     for (NSDictionary * info in hours) {
+
         NSDictionary * hours = [[info objectForKey:@"open"] objectAtIndex:0];
         for (id days in [info objectForKey:@"days"]) {
-            
+
             NSString * startHour = [hours objectForKey:@"start"];
             NSString * endHour = [hours objectForKey:@"end"];
 
@@ -198,7 +197,7 @@
             }
         }
     }
-    
+
     [lunediLabel setAlpha:1];
     [martediLabel setAlpha:1];
     [mercolediLabel setAlpha:1];
@@ -206,6 +205,12 @@
     [venerdiLabel setAlpha:1];
     [sabatoLabel setAlpha:1];
     [domenicaLabel setAlpha:1];
+    
+    if ([self isShopOpenWithInfo:hours]) {
+        
+    }else{
+        
+    }
 
 }
 
@@ -229,6 +234,48 @@
 
 }
 
+
+-(BOOL)isShopOpenWithInfo:(NSArray *)info{
+
+    BOOL isOpen = NO;
+    
+    NSDateFormatter * dayDateFormatter = [[NSDateFormatter alloc] init];
+    [dayDateFormatter setDateFormat:@"c"];
+    NSInteger currentDay = [[dayDateFormatter stringFromDate:[NSDate date]] integerValue];
+
+    NSDateFormatter * currentDateFormatter = [[NSDateFormatter alloc] init];
+    [currentDateFormatter setDateFormat:@"HHMM"];
+
+    NSInteger currentHour = [[currentDateFormatter stringFromDate:[NSDate date]] integerValue];
+
+    for (NSDictionary * hour in info) {
+        NSArray * days = [hour objectForKey:@"days"];
+
+        for (id day in days){
+
+            if ([day integerValue]==currentDay){
+
+                if ([hour objectForKey:@"includesToday"]){
+
+                    NSDictionary * hours = [[hour objectForKey:@"open"] objectAtIndex:0];
+
+                    NSInteger openHour = [[hours objectForKey:@"start"] integerValue];
+                    NSInteger closeHour = [[hours objectForKey:@"end"] integerValue];
+                    
+                    if (currentHour>=openHour && currentHour<closeHour) {
+                        
+                        isOpen = YES;
+                        
+                    }
+
+                }
+            }
+        }
+    }
+
+    return isOpen;
+
+}
 
 
 -(IBAction)openMail:(id)sender;
@@ -270,7 +317,7 @@
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)aScrollView{
-    
+
     NSInteger yOffest = aScrollView.contentOffset.y;
 
     if (yOffest<0) {

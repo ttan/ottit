@@ -66,9 +66,9 @@
                                        }
                                    }
                                }];
-        
+
     }else{
-        
+
         NSArray * array = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"%@%@",FS_PREFIX_INFO,idVenue]];
 
         if (array){
@@ -83,6 +83,50 @@
         }
     }
 
+}
+
+
+-(BOOL)isShopOpenWithIdVenue:(NSString *)idVenue{
+
+    NSArray * info = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"%@%@",FS_PREFIX_INFO,idVenue]];
+
+    BOOL isOpen = NO;
+    
+    NSDateFormatter * dayDateFormatter = [[NSDateFormatter alloc] init];
+    [dayDateFormatter setDateFormat:@"c"];
+    NSInteger currentDay = [[dayDateFormatter stringFromDate:[NSDate date]] integerValue];
+    
+    NSDateFormatter * currentDateFormatter = [[NSDateFormatter alloc] init];
+    [currentDateFormatter setDateFormat:@"HHMM"];
+    
+    NSInteger currentHour = [[currentDateFormatter stringFromDate:[NSDate date]] integerValue];
+    
+    for (NSDictionary * hour in info) {
+        NSArray * days = [hour objectForKey:@"days"];
+        
+        for (id day in days){
+            
+            if ([day integerValue]==currentDay){
+                
+                if ([hour objectForKey:@"includesToday"]){
+                    
+                    NSDictionary * hours = [[hour objectForKey:@"open"] objectAtIndex:0];
+                    
+                    NSInteger openHour = [[hours objectForKey:@"start"] integerValue];
+                    NSInteger closeHour = [[hours objectForKey:@"end"] integerValue];
+                    
+                    if (currentHour>=openHour && currentHour<closeHour) {
+                        
+                        isOpen = YES;
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    return isOpen;
+    
 }
 
 @end

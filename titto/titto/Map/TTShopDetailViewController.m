@@ -59,13 +59,13 @@
     [[contentView layer] setMasksToBounds:NO];
 
     [self setTitle:[_infoDict objectForKey:@"citta"]];
-    
-    
+
     UIImage *img;
     
     if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable) {
 
         NSString * stringURL;
+
         if ([[_infoDict objectForKey:@"img"] length]>0){
 
             stringURL = [[NSString alloc]initWithString:[_infoDict objectForKey:@"img"]];
@@ -114,6 +114,15 @@
 
     [self updateStarStatus];
     
+    if ([[TTFoursquareManager sharedInstance]isShopOpenWithIdVenue:[_infoDict objectForKey:@"foursquare"]]) {
+        
+        
+        
+    }else{
+        
+        
+    }
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -126,11 +135,11 @@
 
     if ([[_infoDict objectForKey:@"cod_fb"] isEqualToString:[[[NSUserDefaults standardUserDefaults]objectForKey:FAVORITE_SHOP] objectForKey:@"cod_fb"]]) {
 
-        [starImageView setImage:[UIImage imageNamed:@"first.png"]];
+        [starImageView setImage:[UIImage imageNamed:@"star.png"]];
 
     }else{
 
-        [starImageView setImage:[UIImage imageNamed:@"second.png"]];
+        [starImageView setImage:[UIImage imageNamed:@"star-vuota.png"]];
 
     }
 }
@@ -205,12 +214,7 @@
     [venerdiLabel setAlpha:1];
     [sabatoLabel setAlpha:1];
     [domenicaLabel setAlpha:1];
-    
-    if ([self isShopOpenWithInfo:hours]) {
-        
-    }else{
-        
-    }
+
 
 }
 
@@ -231,49 +235,6 @@
     [noConnectionLabel setText:@"Hai bisogno di una connessione ad internet per visualizzare gli orari"];
     [noConnectionLabel setNumberOfLines:3];
     [noConnectionLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-
-}
-
-
--(BOOL)isShopOpenWithInfo:(NSArray *)info{
-
-    BOOL isOpen = NO;
-    
-    NSDateFormatter * dayDateFormatter = [[NSDateFormatter alloc] init];
-    [dayDateFormatter setDateFormat:@"c"];
-    NSInteger currentDay = [[dayDateFormatter stringFromDate:[NSDate date]] integerValue];
-
-    NSDateFormatter * currentDateFormatter = [[NSDateFormatter alloc] init];
-    [currentDateFormatter setDateFormat:@"HHMM"];
-
-    NSInteger currentHour = [[currentDateFormatter stringFromDate:[NSDate date]] integerValue];
-
-    for (NSDictionary * hour in info) {
-        NSArray * days = [hour objectForKey:@"days"];
-
-        for (id day in days){
-
-            if ([day integerValue]==currentDay){
-
-                if ([hour objectForKey:@"includesToday"]){
-
-                    NSDictionary * hours = [[hour objectForKey:@"open"] objectAtIndex:0];
-
-                    NSInteger openHour = [[hours objectForKey:@"start"] integerValue];
-                    NSInteger closeHour = [[hours objectForKey:@"end"] integerValue];
-                    
-                    if (currentHour>=openHour && currentHour<closeHour) {
-                        
-                        isOpen = YES;
-                        
-                    }
-
-                }
-            }
-        }
-    }
-
-    return isOpen;
 
 }
 

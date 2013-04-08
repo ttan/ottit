@@ -51,7 +51,8 @@
     IBOutlet UILabel * noConnectionLabel;
     
     IBOutlet UIImageView * starImageView;
-    
+    IBOutlet UIImageView * nastrinoImageView;
+
     MFMailComposeViewController *mailer ;
 
 }

@@ -12,6 +12,7 @@
 		161A796F170E1ADA006DC5C5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161A796E170E1ADA006DC5C5 /* SystemConfiguration.framework */; };
 		161A7971170E2719006DC5C5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161A7970170E2719006DC5C5 /* MessageUI.framework */; };
 		161A7973170E27A1006DC5C5 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 161A7972170E27A1006DC5C5 /* header.png */; };
+		162A746317137ABD00600F04 /* ribbon.aperto.png in Resources */ = {isa = PBXBuildFile; fileRef = 162A746217137ABD00600F04 /* ribbon.aperto.png */; };
 		1640CC03170B719D00CC4570 /* TTHeaderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1640CC02170B719D00CC4570 /* TTHeaderImageView.m */; };
 		1640CC05170B754500CC4570 /* Archer-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1640CC04170B754500CC4570 /* Archer-Semibold.otf */; };
 		166BDFA9171378D100FA53C9 /* star-vuota.png in Resources */ = {isa = PBXBuildFile; fileRef = 166BDFA7171378D100FA53C9 /* star-vuota.png */; };
@@ -65,6 +66,7 @@
 		161A796E170E1ADA006DC5C5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		161A7970170E2719006DC5C5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		161A7972170E27A1006DC5C5 /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = header.png; path = titto/header.png; sourceTree = "<group>"; };
+		162A746217137ABD00600F04 /* ribbon.aperto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ribbon.aperto.png; path = titto/ribbon.aperto.png; sourceTree = "<group>"; };
 		1640CC01170B719D00CC4570 /* TTHeaderImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTHeaderImageView.h; sourceTree = "<group>"; };
 		1640CC02170B719D00CC4570 /* TTHeaderImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTHeaderImageView.m; sourceTree = "<group>"; };
 		1640CC04170B754500CC4570 /* Archer-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archer-Semibold.otf"; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		161255B6170CD683000FE590 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				162A746217137ABD00600F04 /* ribbon.aperto.png */,
 				166BDFA7171378D100FA53C9 /* star-vuota.png */,
 				166BDFA8171378D100FA53C9 /* star.png */,
 				161A7972170E27A1006DC5C5 /* header.png */,
@@ -377,6 +380,7 @@
 				16E0973617102BC300F20FB5 /* TTSettingsViewController.xib in Resources */,
 				166BDFA9171378D100FA53C9 /* star-vuota.png in Resources */,
 				166BDFAA171378D100FA53C9 /* star.png in Resources */,
+				162A746317137ABD00600F04 /* ribbon.aperto.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

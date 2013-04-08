@@ -104,7 +104,6 @@
     [predefinedButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [predefinedButton setTitle:@"Preferito" forState:UIControlStateNormal];
 
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -115,11 +114,13 @@
     [self updateStarStatus];
     
     if ([[TTFoursquareManager sharedInstance]isShopOpenWithIdVenue:[_infoDict objectForKey:@"foursquare"]]) {
-        
-        
+
+        [nastrinoImageView setAlpha:1];
+        [nastrinoImageView setImage:[UIImage imageNamed:@"ribbon.aperto.png"]];
         
     }else{
         
+        [nastrinoImageView setAlpha:0];
         
     }
     

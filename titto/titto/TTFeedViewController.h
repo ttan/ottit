@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TTFeedViewController : UIViewController{
+@interface TTFeedViewController : UIViewController <UIWebViewDelegate>{
     
     UIView * noFavoriteShopView;
     UIView * noConnectionView;
     UIWebView * favoriteWebView;
     UIButton * shopButton;
-    
+
+    IBOutlet UIActivityIndicatorView * activityIndicator;
+
 }
 
 @end

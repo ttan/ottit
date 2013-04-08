@@ -32,14 +32,19 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
 
     if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
         
+        [activityIndicator startAnimating];
+        
         if ([[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP]){
-            
+
             [self loadWebView];
         }else{
             [self loadNoFavoriteShopView];
@@ -68,12 +73,18 @@
     
     if (!favoriteWebView) {
         favoriteWebView = [[UIWebView alloc] initWithFrame:self.view.frame];
-        [[self view] addSubview:favoriteWebView];
+        [favoriteWebView setDelegate:self];
     }
     
     [favoriteWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
 
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
     
+    [activityIndicator stopAnimating];
+    [[self view] addSubview:favoriteWebView];
+
 }
 
 -(void)loadNoConnectionView{
@@ -87,10 +98,10 @@
         [noFavoriteShopView removeFromSuperview];
         noFavoriteShopView=nil;
     }
-    
+
     if (!noConnectionView) {
         noConnectionView = [[UIView alloc]initWithFrame:self.view.frame];
-        [noConnectionView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+        [noConnectionView setBackgroundColor:[UIColor clearColor]];
         [[self view] addSubview:noConnectionView];
 
         UILabel * messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 120, 280, 100)];
@@ -123,8 +134,9 @@
         [[self view] addSubview:noFavoriteShopView];
 
         if (!shopButton) {
+
              UILabel * messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 120, 240, 100)];
-        
+
             [messageLabel setText:@"Seleziona il tuo negozio preferito per ricevere tutti gli aggiornamenti"];
             [messageLabel setBackgroundColor:[UIColor clearColor]];
             [messageLabel setNumberOfLines:3];

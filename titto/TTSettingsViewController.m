@@ -63,12 +63,14 @@
     [negozioPreferitoLabel setText:indirizzo];
 
     
-    if (1){
+    if ([[TTFacebookManager sharedInstance]isFacebookLoggedIn]){
+
         [accessoUserLabel setAlpha:1];
-        
+
         NSString * name = [NSString stringWithFormat:@"%@ %@",[TTFacebookUser currentUser].name,[TTFacebookUser currentUser].surname];
         [accessoUserLabel setText:name];
         [accessoUserLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+        [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
 
     }else{
 
@@ -85,13 +87,13 @@
 -(IBAction)fbLogout:(id)sender;
 {
 
-    if ([[[logoutButton titleLabel] text] isEqualToString:@"Login"]) {
+    if (![[TTFacebookManager sharedInstance]isFacebookLoggedIn]){
         [[self tabBarController] setSelectedIndex:1];
     }else{
         [[TTFacebookManager sharedInstance]logout];
         [accessoUserLabel setText:@""];
         [accessoUserLabel setAlpha:0];
-        [logoutButton setTitle:@"Login" forState:UIControlStateNormal];
+        [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
 
     }
 }

@@ -19,9 +19,13 @@
     return sharedInstance;
 }
 
+- (BOOL)isFacebookLoggedIn {
+    return (FBSession.activeSession.state == FBSessionStateOpen);
+}
+
 - (void)login {
     
-    [FBSession openActiveSessionWithReadPermissions:@[@"email"]
+    [FBSession openActiveSessionWithReadPermissions:@[@"email, user_birthday"]
                                        allowLoginUI:YES
                                   completionHandler:
      ^(FBSession *session,
@@ -77,7 +81,9 @@
     [[FBRequest requestForMe] startWithCompletionHandler:
      ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
          if (!error) {
+             
              NSLog(@"\n%@", [user allKeys]);
+             
              [[TTFacebookUser currentUser] setBirthday:[user objectForKey:@"birthday"]];
              [[TTFacebookUser currentUser] setEmail:[user objectForKey:@"email"]];
              [[TTFacebookUser currentUser] setName:[user objectForKey:@"first_name"]];

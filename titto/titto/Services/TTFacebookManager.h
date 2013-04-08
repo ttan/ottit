@@ -17,6 +17,8 @@
 
 +(TTFacebookManager*)sharedInstance;
 
+- (BOOL)isFacebookLoggedIn;
+
 - (void)login;
 - (void)logout;
 - (void)loadUserInfos;

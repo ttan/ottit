@@ -9,18 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "TTFacebookManager.h"
 
-@interface TTCardViewController : UIViewController {
-    IBOutlet UILabel *facebookStatus;
+@interface TTCardViewController : UIViewController < UIScrollViewDelegate > {
+    
+    IBOutlet UIScrollView *scrollView;
+    IBOutlet UIImageView  *headerImage;
+    
+    IBOutlet UIView *loginView;
     IBOutlet UIButton *loginButton;
-
+    IBOutlet UILabel *facebookLoginMessage;
+    
+    IBOutlet UIView  *cardView;
     IBOutlet UILabel *name;
-    IBOutlet UILabel *surname;
-    IBOutlet UILabel *email;
     IBOutlet UILabel *tessera;
+    IBOutlet UILabel *negozio;
+    IBOutlet UIButton *actionButton;
+    
     IBOutlet FBProfilePictureView *imageView;
-
+    NSDateFormatter *dateFormatter;
 }
 
 - (IBAction)loginPressed:(id)sender;
+- (IBAction)actionPressed:(id)sender;
 
 @end

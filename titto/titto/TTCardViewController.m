@@ -8,6 +8,8 @@
 
 #import "TTCardViewController.h"
 
+#define HEADER_IMAGE_HEIGHT 278
+
 @interface TTCardViewController ()
 
 @end
@@ -44,7 +46,25 @@ static id ObjectOrNull(id object)
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    imageView = [[FBProfilePictureView alloc] init];
+    
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    
+    [loginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+    [cardView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+    
+    name.font = negozio.font = tessera.font = [UIFont fontWithName:@"Archer-Semibold" size:25];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    if ([[TTFacebookManager sharedInstance] isFacebookLoggedIn]) {
+        [self hideFacebookView];
+    }else {
+        [self showFacebookView];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,40 +74,102 @@ static id ObjectOrNull(id object)
 }
 
 - (void)updateProfileInfo {
-        
+    
     imageView.profileID = [[TTFacebookUser currentUser] userID];
     [name setText:[[TTFacebookUser currentUser] name]];
-    [surname setText:[[TTFacebookUser currentUser] surname]];
-    [email setText:[[TTFacebookUser currentUser] email]];
+//    [surname setText:[[TTFacebookUser currentUser] surname]];
+//    [email setText:[[TTFacebookUser currentUser] email]];
     
-//    NSDictionary *dict = @{@"user_id" : ObjectOrNull([[TTFacebookUser currentUser] userID]),
-//                           @"user_name" : ObjectOrNull([[TTFacebookUser currentUser] name]),
-//                           @"user_surname" : ObjectOrNull([[TTFacebookUser currentUser] surname]),
-//                           @"user_email" : ObjectOrNull([[TTFacebookUser currentUser] email]),
-//                           @"user_gender" : ObjectOrNull([[TTFacebookUser currentUser] gender]),
-//                           @"user_birthday" : ObjectOrNull([[TTFacebookUser currentUser] birthday]),
-//                           @"user_link" : ObjectOrNull([[TTFacebookUser currentUser] userLink]),
-//                           @"user_username" : ObjectOrNull([[TTFacebookUser currentUser] userName])};
-//    
-//    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-//    [dict setObject:@"negozzio"
-//             forKey:@"pv"];
-//    [dict setObject:[[TTFacebookUser currentUser] userID]
-//             forKey:@"user_id"];
-//    [dict setObject:[[TTFacebookUser currentUser] name]
-//             forKey:@"user_name"];
-//    [dict setObject:[[TTFacebookUser currentUser] surname]
-//             forKey:@"user_surname"];
-//    [dict setObject:[[TTFacebookUser currentUser] email]
-//             forKey:@"user_email"];
-//    [dict setObject:[[TTFacebookUser currentUser] gender]
-//             forKey:@"user_gender"];
-//    [dict setObject:[[TTFacebookUser currentUser] birthday]
-//             forKey:@"user_birthday"];
-//    [dict setObject:[[TTFacebookUser currentUser] userLink]
-//             forKey:@"user_link"];
-//    [dict setObject:[[TTFacebookUser currentUser] userName]
-//             forKey:@"user_username"];
+}
+
+- (BOOL)canGenerateCard {
+    
+    NSInteger age = 0;
+
+    if ([[TTFacebookUser currentUser] birthday]) {
+        
+        NSDate *birthday = [dateFormatter dateFromString:[[TTFacebookUser currentUser] birthday]];
+        
+        NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
+                                           components:NSYearCalendarUnit
+                                           fromDate:birthday
+                                           toDate:[NSDate date]
+                                           options:0];
+        age = [ageComponents year];
+        
+        NSLog(@"AGE %i", age);
+        
+    }
+    if (age>=13 && age<=21) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)facebookUserLoaded {
+    
+    [self updateProfileInfo];
+    
+    if ([self canGenerateCard]) {
+        // show loading card
+//        [self generateCard];
+        
+    }else {
+        
+        // show can't use card
+        [tessera setText:@"Nooooooo sei old!"];
+    }
+
+}
+
+- (void)facebookChanged {
+    
+    // See if we have a valid token for the current state.
+    if ([[TTFacebookManager sharedInstance] isFacebookLoggedIn]) {
+        [self hideFacebookView];
+        [[TTFacebookManager sharedInstance] loadUserInfos];
+    } else {
+        [self showFacebookView];
+        [[TTFacebookUser currentUser] clearAll];
+        [self updateProfileInfo];
+        
+    }
+}
+
+- (IBAction)loginPressed:(id)sender {
+    
+    // See if we have a valid token for the current state.
+    if ([[TTFacebookManager sharedInstance] isFacebookLoggedIn]) {
+        [[TTFacebookManager sharedInstance] logout];
+    } else {
+        [[TTFacebookManager sharedInstance] login];
+    }
+    
+}
+
+- (void)showFacebookView {
+    [UIView animateWithDuration:0.4f
+                     animations:^{
+                         loginView.alpha = 1.0f;
+                     }];
+}
+
+- (void)hideFacebookView {
+    [UIView animateWithDuration:0.4f
+                     animations:^{
+                         loginView.alpha = 0.0f;
+                     }];
+}
+
+- (IBAction)actionPressed:(id)sender {
+    
+    if ([[TTFacebookManager sharedInstance] isFacebookLoggedIn] && [self canGenerateCard]) {
+        [self generateCard];
+    }
+    
+}
+
+- (void)generateCard {
     
     NSString *urlString = [NSString stringWithFormat:@"http://backend.titto.it/app2013/tessera.php?pv=%@&user_id=%@&user_name=%@&user_surname=%@&user_email=%@&user_gender=%@&user_birthday=%@&user_link=%@&user_username=%@", @"BOG", [[TTFacebookUser currentUser] userID], [[TTFacebookUser currentUser]name], [[TTFacebookUser currentUser] surname], [[TTFacebookUser currentUser] email], [[TTFacebookUser currentUser] gender], [[TTFacebookUser currentUser]  birthday], [[TTFacebookUser currentUser] userLink], [[TTFacebookUser currentUser] userName]];
     
@@ -98,6 +180,7 @@ static id ObjectOrNull(id object)
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
                                NSLog(@"%@", response);
                                
                                NSString *code = [[NSString alloc] initWithData:data
@@ -105,41 +188,22 @@ static id ObjectOrNull(id object)
                                
                                NSLog(@"%@", code);
                                
+                               [negozio setText:@"Via Goito"];
                                [tessera setText:[NSString stringWithFormat:@"Tessera:\n%@", code]];
+                               
                            }];
     
 }
 
-- (void)facebookUserLoaded {
-    [self updateProfileInfo];
-}
-
-- (void)facebookChanged {
+-(void)scrollViewDidScroll:(UIScrollView *)aScrollView{
     
-    // See if we have a valid token for the current state.
-    if (FBSession.activeSession.state == FBSessionStateOpen) {
-        [facebookStatus setText:@"Logged In"];
-        [loginButton setTitle:@"LogOut"
-                     forState:UIControlStateNormal];
-        [[TTFacebookManager sharedInstance] loadUserInfos];
-    } else {
-        [facebookStatus setText:@"Logged Out"];
-        [loginButton setTitle:@"LogIn"
-                     forState:UIControlStateNormal];
-        [[TTFacebookUser currentUser] clearAll];
-        [self updateProfileInfo];
+    NSInteger yOffest = aScrollView.contentOffset.y;
+    
+    if (yOffest<0) {
+        yOffest=yOffest*(-1);
+        [headerImage setFrame:CGRectMake(0, (-75)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
     }
 }
 
-- (IBAction)loginPressed:(id)sender {
-    
-    // See if we have a valid token for the current state.
-    if (FBSession.activeSession.state == FBSessionStateOpen) {
-        [[TTFacebookManager sharedInstance] logout];
-    } else {
-        [[TTFacebookManager sharedInstance] login];
-    }
-    
-}
 
 @end

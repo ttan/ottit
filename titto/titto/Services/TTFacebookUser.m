@@ -18,6 +18,9 @@
 @synthesize userLink;
 @synthesize userName;
 
+@synthesize cardID;
+@synthesize shopID;
+
 +(TTFacebookUser*)currentUser {
     static dispatch_once_t once;
     static id sharedInstance;

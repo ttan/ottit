@@ -108,27 +108,33 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    
+
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     [scrollView setContentOffset:CGPointMake(0, 0)];
-    
+
     [self updateStarStatus];
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
+
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
+
 }
 
 
 -(void)updateStarStatus{
-    
-    if ([[_infoDict objectForKey:@"cod_fb"] isEqualToString:[[NSUserDefaults standardUserDefaults]objectForKey:FAVORITE_SHOP_ADDRESS]]) {
-        
+
+    if ([[_infoDict objectForKey:@"cod_fb"] isEqualToString:[[[NSUserDefaults standardUserDefaults]objectForKey:FAVORITE_SHOP] objectForKey:@"cod_fb"]]) {
+
         [starImageView setImage:[UIImage imageNamed:@"first.png"]];
+
     }else{
+
         [starImageView setImage:[UIImage imageNamed:@"second.png"]];
+
     }
-    
+
 }
 
 -(void)foursquareManagerDidGetHour:(NSArray *)hours{
@@ -251,7 +257,7 @@
 -(IBAction)predefinedButtonAction:(id)sender;
 {
 
-    [[NSUserDefaults standardUserDefaults] setObject:[_infoDict objectForKey:@"cod_fb"] forKey:FAVORITE_SHOP_ADDRESS];
+    [[NSUserDefaults standardUserDefaults] setObject:_infoDict forKey:FAVORITE_SHOP];
 
     [self updateStarStatus];
 }

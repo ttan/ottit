@@ -7,6 +7,9 @@
 //
 
 #import "TTSettingsViewController.h"
+#import "TTConfigDefines.h"
+#import "TTFacebookManager.h"
+#import "TTFacebookUser.h"
 
 @interface TTSettingsViewController ()
 
@@ -39,10 +42,9 @@
     [impostazioniLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
     [negozioLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
     [negozioPreferitoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-    [[cambiaNegozioButton titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [[cambiaNegozioButton titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:16]];
     [accessoFacebookLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-    [accessoUserLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-    [[logoutButton titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [[logoutButton titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:16]];
 
     [copyLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
     [srlLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
@@ -57,20 +59,42 @@
 
 -(void)viewWillAppear:(BOOL)animated{
 
+    NSString * indirizzo = [[[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP] objectForKey:@"indirizzo"];
+    [negozioPreferitoLabel setText:indirizzo];
 
+    
+    if (1){
+        [accessoUserLabel setAlpha:1];
+        
+        NSString * name = [NSString stringWithFormat:@"%@ %@",[TTFacebookUser currentUser].name,[TTFacebookUser currentUser].surname];
+        [accessoUserLabel setText:name];
+        [accessoUserLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+
+    }else{
+
+        [accessoUserLabel setAlpha:0];
+        [logoutButton setTitle:@"Login" forState:UIControlStateNormal];
+
+    }
+    
 }
-
 
 -(IBAction)cambiaNegozio:(id)sender;
 {
-    
     [[self tabBarController] setSelectedIndex:0];
-    
 }
 
 -(IBAction)fbLogout:(id)sender;{
-    
-    
+
+    if ([[[logoutButton titleLabel] text] isEqualToString:@"Login"]) {
+        [[self tabBarController] setSelectedIndex:1];
+    }else{
+        [[TTFacebookManager sharedInstance]logout];
+        [accessoUserLabel setText:@""];
+        [accessoUserLabel setAlpha:0];
+        [logoutButton setTitle:@"Login" forState:UIControlStateNormal];
+
+    }
 }
 
 -(IBAction)openSite:(id)sender;
@@ -90,7 +114,7 @@
             NSArray *toRecipients = [NSArray arrayWithObjects:@"info@titto.it", nil];
             [mailer setToRecipients:toRecipients];
             [self presentViewController:mailer animated:YES completion:^{
-                
+
             }];
         }
 }

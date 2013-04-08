@@ -38,7 +38,7 @@
 
     if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
         
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP_ADDRESS]){
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP]){
             
             [self loadWebView];
         }else{
@@ -52,7 +52,7 @@
 
 -(void)loadWebView{
     
-    NSString * pvString = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP_ADDRESS];
+    NSString * pvString = [[[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP] objectForKey:@"cod_fb"];
     
     NSString * urlString = [NSString stringWithFormat:@"%@%@",BASE_FEED_URL,pvString];
     

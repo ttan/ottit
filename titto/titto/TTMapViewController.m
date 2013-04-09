@@ -18,7 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Map";
+        self.title=@"Mappa";
         self.tabBarItem.image = [UIImage imageNamed:@"first.png"];
     }
     return self;
@@ -45,16 +45,20 @@
     [[TTMapManager sharedInstance]loadShopsInformations];
     
     [self performSelector:@selector(updateMapPosition) withObject:nil afterDelay:2];
+    
+//    
+    
 }
 
+
 -(void)updateMapPosition{
-    
+
     MKCoordinateRegion mapRegion;
     mapRegion.center = mapView.userLocation.coordinate;
     mapRegion.span.latitudeDelta = 0.2;
     mapRegion.span.longitudeDelta = 0.2;
     [mapView setRegion:mapRegion animated: YES];
-    
+
 }
 
 -(void)mapManagerDidLoadData:(NSArray *)infoList{

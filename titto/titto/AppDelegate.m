@@ -25,7 +25,7 @@
     UINavigationController * navController = [[UINavigationController alloc]initWithRootViewController:mapVC];
     [navController setNavigationBarHidden:YES];
     [[navController navigationBar] setBackgroundImage:[UIImage imageNamed:@"barbg.png"] forBarMetrics:UIBarMetricsDefault];
-    
+        
     UIViewController *viewController2 = [[TTCardViewController alloc] initWithNibName:@"TTCardViewController"
                                                                                bundle:nil];
     UIViewController *viewController3 = [[TTFeedViewController alloc] initWithNibName:@"TTFeedViewController"

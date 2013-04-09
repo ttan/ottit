@@ -11,6 +11,8 @@
 #import "Reachability.h"
 #import "TTConfigDefines.h"
 
+#import "UIBarButtonItem+StyledButton.h"
+
 #define HEADER_IMAGE_HEIGHT 278
 
 @interface TTShopDetailViewController ()
@@ -36,7 +38,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+
     [lunediLabel setAlpha:0];
     [martediLabel setAlpha:0];
     [mercolediLabel setAlpha:0];
@@ -61,7 +63,7 @@
     [self setTitle:[_infoDict objectForKey:@"citta"]];
 
     UIImage *img;
-    
+
     if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable) {
 
         NSString * stringURL;
@@ -112,19 +114,28 @@
     [scrollView setContentOffset:CGPointMake(0, 0)];
 
     [self updateStarStatus];
-    
+
     if ([[TTFoursquareManager sharedInstance]isShopOpenWithIdVenue:[_infoDict objectForKey:@"foursquare"]]) {
 
         [nastrinoImageView setAlpha:1];
         [nastrinoImageView setImage:[UIImage imageNamed:@"ribbon.aperto.png"]];
-        
+
     }else{
-        
+
         [nastrinoImageView setAlpha:0];
-        
+
     }
+
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
+
+}
+
+-(void)backToMap{
+    
+    [[self navigationController] popViewControllerAnimated:YES];
     
 }
+
 
 -(void)viewWillDisappear:(BOOL)animated{
 
@@ -279,15 +290,12 @@
     if (buttonIndex==1) {
         [self confirmFavoriteShop];
     }
-
 }
 
 -(void)confirmFavoriteShop{
     
     [[NSUserDefaults standardUserDefaults] setObject:_infoDict forKey:FAVORITE_SHOP];
-    
     [self updateStarStatus];
-    
     
 }
 

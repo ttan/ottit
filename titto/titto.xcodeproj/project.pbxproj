@@ -7,18 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1604C2411714984F00E57761 /* barbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1604C2401714984F00E57761 /* barbg.png */; };
 		161255BB170CE1A1000FE590 /* bottone.png in Resources */ = {isa = PBXBuildFile; fileRef = 161255BA170CE1A1000FE590 /* bottone.png */; };
 		161A796D170E1704006DC5C5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 161A796C170E1704006DC5C5 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		161A796F170E1ADA006DC5C5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161A796E170E1ADA006DC5C5 /* SystemConfiguration.framework */; };
 		161A7971170E2719006DC5C5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161A7970170E2719006DC5C5 /* MessageUI.framework */; };
-		161A7973170E27A1006DC5C5 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 161A7972170E27A1006DC5C5 /* header.png */; };
 		162A746317137ABD00600F04 /* ribbon.aperto.png in Resources */ = {isa = PBXBuildFile; fileRef = 162A746217137ABD00600F04 /* ribbon.aperto.png */; };
 		1640CC03170B719D00CC4570 /* TTHeaderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1640CC02170B719D00CC4570 /* TTHeaderImageView.m */; };
 		1640CC05170B754500CC4570 /* Archer-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1640CC04170B754500CC4570 /* Archer-Semibold.otf */; };
-		166BDFA9171378D100FA53C9 /* star-vuota.png in Resources */ = {isa = PBXBuildFile; fileRef = 166BDFA7171378D100FA53C9 /* star-vuota.png */; };
-		166BDFAA171378D100FA53C9 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 166BDFA8171378D100FA53C9 /* star.png */; };
-		1687485B170B89FE005F0049 /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 1687485A170B89FE005F0049 /* texture.png */; };
+		1672BFBC1714AC6400C570AE /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFBB1714AC6400C570AE /* backBtn.png */; };
+		1672BFC71714B77500C570AE /* barbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFC41714B77500C570AE /* barbg.png */; };
+		1672BFC91714B7EF00C570AE /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFC81714B7EF00C570AE /* texture.png */; };
+		1672BFCE1714B99900C570AE /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFCB1714B99900C570AE /* header.png */; };
+		1672BFCF1714B99900C570AE /* header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFCD1714B99900C570AE /* header@2x.png */; };
+		1672BFD21714BB1A00C570AE /* star-vuota.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFD01714BB1A00C570AE /* star-vuota.png */; };
+		1672BFD31714BB1A00C570AE /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFD11714BB1A00C570AE /* star.png */; };
+		1672BFD61714BB1F00C570AE /* star-vuota@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFD41714BB1F00C570AE /* star-vuota@2x.png */; };
+		1672BFD71714BB1F00C570AE /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFD51714BB1F00C570AE /* star@2x.png */; };
+		1672BFDA1714C3A800C570AE /* UIBarButtonItem+StyledButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672BFD91714C3A800C570AE /* UIBarButtonItem+StyledButton.m */; };
+		1672BFDD1714C3FC00C570AE /* UIButton+StyledButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672BFDC1714C3FC00C570AE /* UIButton+StyledButton.m */; };
+		1672BFDF1714CCBD00C570AE /* backBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFDE1714CCBC00C570AE /* backBtn@2x.png */; };
 		1687485D170B936D005F0049 /* logot.png in Resources */ = {isa = PBXBuildFile; fileRef = 1687485C170B936D005F0049 /* logot.png */; };
 		16874861170B95B4005F0049 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 16874860170B95B4005F0049 /* pin.png */; };
 		16E0973517102BC300F20FB5 /* TTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E0973317102BC300F20FB5 /* TTSettingsViewController.m */; };
@@ -61,21 +68,30 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1604C2401714984F00E57761 /* barbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barbg.png; path = titto/barbg.png; sourceTree = "<group>"; };
 		161255BA170CE1A1000FE590 /* bottone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottone.png; path = titto/bottone.png; sourceTree = "<group>"; };
 		161A796B170E1704006DC5C5 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		161A796C170E1704006DC5C5 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		161A796E170E1ADA006DC5C5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		161A7970170E2719006DC5C5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		161A7972170E27A1006DC5C5 /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = header.png; path = titto/header.png; sourceTree = "<group>"; };
 		162A746217137ABD00600F04 /* ribbon.aperto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ribbon.aperto.png; path = titto/ribbon.aperto.png; sourceTree = "<group>"; };
 		1640CC01170B719D00CC4570 /* TTHeaderImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTHeaderImageView.h; sourceTree = "<group>"; };
 		1640CC02170B719D00CC4570 /* TTHeaderImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTHeaderImageView.m; sourceTree = "<group>"; };
 		1640CC04170B754500CC4570 /* Archer-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archer-Semibold.otf"; sourceTree = "<group>"; };
 		165CBF7F170CC56C003B25AC /* TTConfigDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTConfigDefines.h; sourceTree = "<group>"; };
-		166BDFA7171378D100FA53C9 /* star-vuota.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star-vuota.png"; path = "titto/star-vuota.png"; sourceTree = "<group>"; };
-		166BDFA8171378D100FA53C9 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = titto/star.png; sourceTree = "<group>"; };
-		1687485A170B89FE005F0049 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = texture.png; path = titto/texture.png; sourceTree = "<group>"; };
+		1672BFBB1714AC6400C570AE /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backBtn.png; path = titto/backBtn.png; sourceTree = "<group>"; };
+		1672BFC41714B77500C570AE /* barbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barbg.png; sourceTree = "<group>"; };
+		1672BFC81714B7EF00C570AE /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
+		1672BFCB1714B99900C570AE /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
+		1672BFCD1714B99900C570AE /* header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header@2x.png"; sourceTree = "<group>"; };
+		1672BFD01714BB1A00C570AE /* star-vuota.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-vuota.png"; sourceTree = "<group>"; };
+		1672BFD11714BB1A00C570AE /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		1672BFD41714BB1F00C570AE /* star-vuota@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-vuota@2x.png"; sourceTree = "<group>"; };
+		1672BFD51714BB1F00C570AE /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@2x.png"; sourceTree = "<group>"; };
+		1672BFD81714C3A800C570AE /* UIBarButtonItem+StyledButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIBarButtonItem+StyledButton.h"; path = "titto/UIBarButtonItem+StyledButton.h"; sourceTree = SOURCE_ROOT; };
+		1672BFD91714C3A800C570AE /* UIBarButtonItem+StyledButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+StyledButton.m"; path = "titto/UIBarButtonItem+StyledButton.m"; sourceTree = SOURCE_ROOT; };
+		1672BFDB1714C3FC00C570AE /* UIButton+StyledButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+StyledButton.h"; sourceTree = "<group>"; };
+		1672BFDC1714C3FC00C570AE /* UIButton+StyledButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+StyledButton.m"; sourceTree = "<group>"; };
+		1672BFDE1714CCBC00C570AE /* backBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backBtn@2x.png"; path = "titto/backBtn@2x.png"; sourceTree = "<group>"; };
 		1687485C170B936D005F0049 /* logot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logot.png; path = titto/logot.png; sourceTree = "<group>"; };
 		16874860170B95B4005F0049 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin.png; path = titto/pin.png; sourceTree = "<group>"; };
 		16E0973217102BC300F20FB5 /* TTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSettingsViewController.h; sourceTree = "<group>"; };
@@ -156,11 +172,9 @@
 		161255B6170CD683000FE590 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				1604C2401714984F00E57761 /* barbg.png */,
+				1672BFDE1714CCBC00C570AE /* backBtn@2x.png */,
+				1672BFBB1714AC6400C570AE /* backBtn.png */,
 				162A746217137ABD00600F04 /* ribbon.aperto.png */,
-				166BDFA7171378D100FA53C9 /* star-vuota.png */,
-				166BDFA8171378D100FA53C9 /* star.png */,
-				161A7972170E27A1006DC5C5 /* header.png */,
 				161255BA170CE1A1000FE590 /* bottone.png */,
 				614AEE861704DCD20039D0DF /* first.png */,
 				614AEE881704DCD20039D0DF /* first@2x.png */,
@@ -168,7 +182,6 @@
 				614AEE8F1704DCD20039D0DF /* second@2x.png */,
 				16874860170B95B4005F0049 /* pin.png */,
 				1687485C170B936D005F0049 /* logot.png */,
-				1687485A170B89FE005F0049 /* texture.png */,
 			);
 			name = Images;
 			path = ..;
@@ -177,6 +190,10 @@
 		161255B7170CD6BF000FE590 /* ShopDetail */ = {
 			isa = PBXGroup;
 			children = (
+				1672BFD81714C3A800C570AE /* UIBarButtonItem+StyledButton.h */,
+				1672BFD91714C3A800C570AE /* UIBarButtonItem+StyledButton.m */,
+				1672BFDB1714C3FC00C570AE /* UIButton+StyledButton.h */,
+				1672BFDC1714C3FC00C570AE /* UIButton+StyledButton.m */,
 				61A859751705077E003CD439 /* TTShopDetailViewController.h */,
 				61A859761705077E003CD439 /* TTShopDetailViewController.m */,
 				61A859771705077E003CD439 /* TTShopDetailViewController.xib */,
@@ -204,6 +221,37 @@
 				61A859601704E42B003CD439 /* TTFeedViewController.xib */,
 			);
 			name = Feed;
+			sourceTree = "<group>";
+		};
+		1672BFBF1714B77500C570AE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1672BFCA1714B99900C570AE /* @1x */,
+				1672BFCC1714B99900C570AE /* @2x */,
+				1672BFC81714B7EF00C570AE /* texture.png */,
+				1672BFC41714B77500C570AE /* barbg.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		1672BFCA1714B99900C570AE /* @1x */ = {
+			isa = PBXGroup;
+			children = (
+				1672BFD01714BB1A00C570AE /* star-vuota.png */,
+				1672BFD11714BB1A00C570AE /* star.png */,
+				1672BFCB1714B99900C570AE /* header.png */,
+			);
+			path = "@1x";
+			sourceTree = "<group>";
+		};
+		1672BFCC1714B99900C570AE /* @2x */ = {
+			isa = PBXGroup;
+			children = (
+				1672BFD41714BB1F00C570AE /* star-vuota@2x.png */,
+				1672BFD51714BB1F00C570AE /* star@2x.png */,
+				1672BFCD1714B99900C570AE /* header@2x.png */,
+			);
+			path = "@2x";
 			sourceTree = "<group>";
 		};
 		614AEE5F1704DCD20039D0DF = {
@@ -266,6 +314,7 @@
 		614AEE721704DCD20039D0DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1672BFBF1714B77500C570AE /* Images */,
 				165CBF7F170CC56C003B25AC /* TTConfigDefines.h */,
 				161255B6170CD683000FE590 /* Images */,
 				1640CC04170B754500CC4570 /* Archer-Semibold.otf */,
@@ -373,18 +422,23 @@
 				61A859621704E42B003CD439 /* TTFeedViewController.xib in Resources */,
 				61A8597C1705077E003CD439 /* TTShopDetailViewController.xib in Resources */,
 				1640CC05170B754500CC4570 /* Archer-Semibold.otf in Resources */,
-				1687485B170B89FE005F0049 /* texture.png in Resources */,
 				1687485D170B936D005F0049 /* logot.png in Resources */,
 				16874861170B95B4005F0049 /* pin.png in Resources */,
 				161255BB170CE1A1000FE590 /* bottone.png in Resources */,
-				161A7973170E27A1006DC5C5 /* header.png in Resources */,
 				5ACD70EE170D5C06000F12E9 /* icona.fw.png in Resources */,
 				5ACD70F0170D5C15000F12E9 /* icona.small.fw.png in Resources */,
 				16E0973617102BC300F20FB5 /* TTSettingsViewController.xib in Resources */,
-				166BDFA9171378D100FA53C9 /* star-vuota.png in Resources */,
-				166BDFAA171378D100FA53C9 /* star.png in Resources */,
 				162A746317137ABD00600F04 /* ribbon.aperto.png in Resources */,
-				1604C2411714984F00E57761 /* barbg.png in Resources */,
+				1672BFBC1714AC6400C570AE /* backBtn.png in Resources */,
+				1672BFC71714B77500C570AE /* barbg.png in Resources */,
+				1672BFC91714B7EF00C570AE /* texture.png in Resources */,
+				1672BFCE1714B99900C570AE /* header.png in Resources */,
+				1672BFCF1714B99900C570AE /* header@2x.png in Resources */,
+				1672BFD21714BB1A00C570AE /* star-vuota.png in Resources */,
+				1672BFD31714BB1A00C570AE /* star.png in Resources */,
+				1672BFD61714BB1F00C570AE /* star-vuota@2x.png in Resources */,
+				1672BFD71714BB1F00C570AE /* star@2x.png in Resources */,
+				1672BFDF1714CCBD00C570AE /* backBtn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +463,8 @@
 				1640CC03170B719D00CC4570 /* TTHeaderImageView.m in Sources */,
 				161A796D170E1704006DC5C5 /* Reachability.m in Sources */,
 				16E0973517102BC300F20FB5 /* TTSettingsViewController.m in Sources */,
+				1672BFDA1714C3A800C570AE /* UIBarButtonItem+StyledButton.m in Sources */,
+				1672BFDD1714C3FC00C570AE /* UIButton+StyledButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

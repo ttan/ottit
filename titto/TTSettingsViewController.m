@@ -39,7 +39,7 @@
 
     [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
     
-    [impostazioniLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [impostazioniLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:24]];
     [negozioLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
     [negozioPreferitoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
     [[cambiaNegozioButton titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:16]];

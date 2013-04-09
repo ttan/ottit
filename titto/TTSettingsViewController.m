@@ -57,25 +57,38 @@
 
 }
 
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewDidAppear:(BOOL)animated{
 
     NSString * indirizzo = [[[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP] objectForKey:@"indirizzo"];
-    [negozioPreferitoLabel setText:indirizzo];
 
-    
+    if (indirizzo){
+        [cambiaNegozioButton setFrame:CGRectMake(cambiaNegozioButton.frame.origin.x, 105, cambiaNegozioButton.frame.size.width, cambiaNegozioButton.frame.size.height)];
+        [negozioPreferitoLabel setText:indirizzo];
+    }else{
+        [cambiaNegozioButton setFrame:CGRectMake(cambiaNegozioButton.frame.origin.x, 85, cambiaNegozioButton.frame.size.width, cambiaNegozioButton.frame.size.height)];
+    }
+
     if ([[TTFacebookManager sharedInstance]isFacebookLoggedIn]){
 
         [accessoUserLabel setAlpha:1];
-
         NSString * name = [NSString stringWithFormat:@"%@ %@",[TTFacebookUser currentUser].name,[TTFacebookUser currentUser].surname];
-        [accessoUserLabel setText:name];
-        [accessoUserLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-        [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
+        
+        if ([name length]>0) {
+            [accessoUserLabel setText:name];
+            [accessoUserLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+            [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
+            [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 203, logoutButton.frame.size.width, logoutButton.frame.size.height)];
+        }else{
+            [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 183, logoutButton.frame.size.width, logoutButton.frame.size.height)];
+        }
 
     }else{
 
         [accessoUserLabel setAlpha:0];
         [logoutButton setTitle:@"Login" forState:UIControlStateNormal];
+
+        [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 183, logoutButton.frame.size.width, logoutButton.frame.size.height)];
+
     }
 }
 
@@ -93,7 +106,9 @@
         [[TTFacebookManager sharedInstance]logout];
         [accessoUserLabel setText:@""];
         [accessoUserLabel setAlpha:0];
-        [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
+        [logoutButton setTitle:@"Login" forState:UIControlStateNormal];
+        
+        [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 183, logoutButton.frame.size.width, logoutButton.frame.size.height)];
 
     }
 }

@@ -74,6 +74,9 @@
     // We need to properly handle activation of the application with regards to Facebook Login
     // (e.g., returning from iOS 6.0 Login Dialog or from fast app switching).
     [FBSession.activeSession handleDidBecomeActive];
+    [[TTFacebookManager sharedInstance] performSelector:@selector(extendFacebook)
+                                             withObject:nil
+                                             afterDelay:1.0f];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

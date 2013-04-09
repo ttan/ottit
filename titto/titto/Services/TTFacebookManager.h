@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import <FacebookSDK/FBSessionTokenCachingStrategy.h>
 #import "TTFacebookUser.h"
+#import "Reachability.h"
 
 #define kTTFacebookManagerSessionChange @"kTTFacebookManagerSessionChange"
 #define kTTFacebookManagerUserLoaded @"kTTFacebookManagerUserLoaded"
@@ -18,6 +20,7 @@
 +(TTFacebookManager*)sharedInstance;
 
 - (BOOL)isFacebookLoggedIn;
+- (void)extendFacebook;
 
 - (void)login;
 - (void)logout;

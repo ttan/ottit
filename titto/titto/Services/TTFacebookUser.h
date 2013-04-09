@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TTConfigDefines.h"
 
 @interface TTFacebookUser : NSObject
 
@@ -21,9 +22,15 @@
 
 @property (nonatomic, strong) NSString *cardID;
 @property (nonatomic, strong) NSString *shopID;
+@property (nonatomic, strong) NSString *shopName;
+@property (nonatomic, strong) NSString *shopCity;
+@property (nonatomic, strong) NSString *shopAddress;
 
 +(TTFacebookUser*)currentUser;
 
 - (void)clearAll;
+
+- (void)saveUser;
+- (void)loadUser;
 
 @end

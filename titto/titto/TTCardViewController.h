@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "TTFacebookManager.h"
+#import "TTConfigDefines.h"
+
+#define CARD_MIN_AGE 26
 
 @interface TTCardViewController : UIViewController < UIScrollViewDelegate > {
     
@@ -19,6 +23,11 @@
     IBOutlet UILabel *facebookLoginMessage;
     
     IBOutlet UIView  *cardView;
+
+    IBOutlet UILabel *titlename;
+    IBOutlet UILabel *titletessera;
+    IBOutlet UILabel *titlenegozio;
+    
     IBOutlet UILabel *name;
     IBOutlet UILabel *tessera;
     IBOutlet UILabel *negozio;
@@ -26,6 +35,9 @@
     
     IBOutlet FBProfilePictureView *imageView;
     NSDateFormatter *dateFormatter;
+    
+    BOOL facebookInfoLoaded;
+    BOOL needShowTour;
 }
 
 - (IBAction)loginPressed:(id)sender;

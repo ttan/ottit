@@ -23,15 +23,28 @@
     return (FBSession.activeSession.state == FBSessionStateOpen);
 }
 
+- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI {
+        
+    return [FBSession openActiveSessionWithReadPermissions:@[@"email, user_birthday"]
+                                              allowLoginUI:allowLoginUI
+                                         completionHandler:^(FBSession *session,
+                                                             FBSessionState state,
+                                                             NSError *error) {
+                                             
+                                             NSLog(@"STATE   %i", state);
+
+//                                             if(allowLoginUI||error) {
+                                                 [self sessionStateChanged:session
+																	 state:state
+																	 error:error];
+//                                             }
+                                             
+                                         }];
+}
+
 - (void)login {
     
-    [FBSession openActiveSessionWithReadPermissions:@[@"email, user_birthday"]
-                                       allowLoginUI:YES
-                                  completionHandler:
-     ^(FBSession *session,
-       FBSessionState state, NSError *error) {
-         [self sessionStateChanged:session state:state error:error];
-     }];
+    [self openSessionWithAllowLoginUI:YES];
     
 }
 
@@ -39,19 +52,20 @@
                       state:(FBSessionState) state
                       error:(NSError *)error
 {
-    
+
     switch (state) {
         case FBSessionStateOpen:
             // logged in
             [[NSNotificationCenter defaultCenter] postNotificationName:kTTFacebookManagerSessionChange
                                                                 object:nil];
+//            [self loadUserInfos];
+            
             break;
         case FBSessionStateClosed:
         case FBSessionStateClosedLoginFailed:
             // Once the user has logged in, we want them to
             // be looking at the root view.
             [FBSession.activeSession closeAndClearTokenInformation];
-            
             [[NSNotificationCenter defaultCenter] postNotificationName:kTTFacebookManagerSessionChange
                                                                 object:nil];
             
@@ -72,34 +86,62 @@
     
 }
 
+-(void)extendFacebook {
+    
+    if ([FBSession activeSession] && [FBSession activeSession].isOpen) {
+        
+        [self openSessionWithAllowLoginUI:NO];
+        
+    } else {
+        
+//        // Initialize a new blank session instance...
+//        FBSession *newSession = [[FBSession alloc] initWithAppID:nil
+//                                                     permissions:nil
+//                                                 defaultAudience:FBSessionDefaultAudienceNone
+//                                                 urlSchemeSuffix:nil
+//                                              tokenCacheStrategy:[FBSessionTokenCachingStrategy nullCacheInstance]];
+//        
+//        [FBSession setActiveSession:newSession];
+        [self openSessionWithAllowLoginUI:NO];
+    }
+}
+
 - (void)logout {
     [FBSession.activeSession closeAndClearTokenInformation];
 }
 
 - (void)loadUserInfos {
     
-    [[FBRequest requestForMe] startWithCompletionHandler:
-     ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
-         if (!error) {
-             
-             NSLog(@"\n%@", [user allKeys]);
-             
-             [[TTFacebookUser currentUser] setBirthday:[user objectForKey:@"birthday"]];
-             [[TTFacebookUser currentUser] setEmail:[user objectForKey:@"email"]];
-             [[TTFacebookUser currentUser] setName:[user objectForKey:@"first_name"]];
-             [[TTFacebookUser currentUser] setSurname:[user objectForKey:@"last_name"]];
-             [[TTFacebookUser currentUser] setGender:[user objectForKey:@"gender"]];
-             [[TTFacebookUser currentUser] setUserID:[user objectForKey:@"id"]];
-             [[TTFacebookUser currentUser] setUserLink:[user objectForKey:@"link"]];
-             [[TTFacebookUser currentUser] setUserName:[user objectForKey:@"username"]];
-             
-             [[NSNotificationCenter defaultCenter] postNotificationName:kTTFacebookManagerUserLoaded
-                                                                 object:nil];
-         } else {
-             NSLog(@"error: %@", error);
-         }
-     }];
+    if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
     
+        [[FBRequest requestForMe] startWithCompletionHandler:
+         ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+             if (!error) {
+                 
+                 NSLog(@"\n%@", [user allKeys]);
+                 
+                 [[TTFacebookUser currentUser] setBirthday:[user objectForKey:@"birthday"]];
+                 [[TTFacebookUser currentUser] setEmail:[user objectForKey:@"email"]];
+                 [[TTFacebookUser currentUser] setName:[user objectForKey:@"first_name"]];
+                 [[TTFacebookUser currentUser] setSurname:[user objectForKey:@"last_name"]];
+                 [[TTFacebookUser currentUser] setGender:[user objectForKey:@"gender"]];
+                 [[TTFacebookUser currentUser] setUserID:[user objectForKey:@"id"]];
+                 [[TTFacebookUser currentUser] setUserLink:[user objectForKey:@"link"]];
+                 [[TTFacebookUser currentUser] setUserName:[user objectForKey:@"username"]];
+                 [[TTFacebookUser currentUser] saveUser];
+                 
+                 [[NSNotificationCenter defaultCenter] postNotificationName:kTTFacebookManagerUserLoaded
+                                                                     object:nil];
+             } else {
+                 NSLog(@"error: %@", error);
+             }
+         }];
+        
+    }else {
+        
+        [[TTFacebookUser currentUser] loadUser];
+        
+    }
 }
 
 @end

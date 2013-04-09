@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1604C2411714984F00E57761 /* barbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1604C2401714984F00E57761 /* barbg.png */; };
 		161255BB170CE1A1000FE590 /* bottone.png in Resources */ = {isa = PBXBuildFile; fileRef = 161255BA170CE1A1000FE590 /* bottone.png */; };
 		161A796D170E1704006DC5C5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 161A796C170E1704006DC5C5 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		161A796F170E1ADA006DC5C5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 161A796E170E1ADA006DC5C5 /* SystemConfiguration.framework */; };
@@ -60,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1604C2401714984F00E57761 /* barbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barbg.png; path = titto/barbg.png; sourceTree = "<group>"; };
 		161255BA170CE1A1000FE590 /* bottone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bottone.png; path = titto/bottone.png; sourceTree = "<group>"; };
 		161A796B170E1704006DC5C5 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		161A796C170E1704006DC5C5 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		161255B6170CD683000FE590 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1604C2401714984F00E57761 /* barbg.png */,
 				162A746217137ABD00600F04 /* ribbon.aperto.png */,
 				166BDFA7171378D100FA53C9 /* star-vuota.png */,
 				166BDFA8171378D100FA53C9 /* star.png */,
@@ -381,6 +384,7 @@
 				166BDFA9171378D100FA53C9 /* star-vuota.png in Resources */,
 				166BDFAA171378D100FA53C9 /* star.png in Resources */,
 				162A746317137ABD00600F04 /* ribbon.aperto.png in Resources */,
+				1604C2411714984F00E57761 /* barbg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

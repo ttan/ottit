@@ -265,11 +265,32 @@
 
 -(IBAction)predefinedButtonAction:(id)sender;
 {
+    
+    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Negozio Preferito" message:@"Vuoi impostare questo negozio come preferito?" delegate:self cancelButtonTitle:@"Annulla" otherButtonTitles:@"Si", nil];
+    
+    [alertView show];
 
-    [[NSUserDefaults standardUserDefaults] setObject:_infoDict forKey:FAVORITE_SHOP];
-
-    [self updateStarStatus];
 }
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+{
+
+    if (buttonIndex==1) {
+        [self confirmFavoriteShop];
+    }
+
+}
+
+-(void)confirmFavoriteShop{
+    
+    [[NSUserDefaults standardUserDefaults] setObject:_infoDict forKey:FAVORITE_SHOP];
+    
+    [self updateStarStatus];
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {

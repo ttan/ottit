@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "GAI.h"
 
 @interface AppDelegate : UIResponder < UIApplicationDelegate, UITabBarControllerDelegate >
 
 @property (strong, nonatomic) UIWindow *window;
+@property(nonatomic, retain) id<GAITracker> tracker;
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
 

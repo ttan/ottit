@@ -28,6 +28,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+
     }
 
     return self;
@@ -38,64 +40,71 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self performSelectorInBackground:@selector(getFourSquareData)
+                           withObject:nil];
 
-    [lunediLabel setAlpha:0];
-    [martediLabel setAlpha:0];
-    [mercolediLabel setAlpha:0];
-    [giovediLabel setAlpha:0];
-    [venerdiLabel setAlpha:0];
-    [sabatoLabel setAlpha:0];
-    [domenicaLabel setAlpha:0];
+//    [[contentView layer] setShadowColor:[UIColor blackColor].CGColor];
+//    [[contentView layer] setShadowOffset:CGSizeMake(0, -1)];
+//    [[contentView layer] setShadowOpacity:0.5];
+//    [[contentView layer] setMasksToBounds:NO];
 
-    [scrollView setDelegate:self];
-    [scrollView setBackgroundColor:[UIColor clearColor]];
-
-    [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
-    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
-    [[TTFoursquareManager sharedInstance]setDelegate:self];
-    [[TTFoursquareManager sharedInstance] requestHoursInfoForIDVenue:[_infoDict objectForKey:@"foursquare"]];
-
-    [[contentView layer] setShadowColor:[UIColor blackColor].CGColor];
-    [[contentView layer] setShadowOffset:CGSizeMake(0, -1)];
-    [[contentView layer] setShadowOpacity:0.5];
-    [[contentView layer] setMasksToBounds:NO];
-
-    [self setTitle:[_infoDict objectForKey:@"citta"]];
-
-    UIImage *img;
-
-    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable) {
-
-        NSString * stringURL;
-
-        if ([[_infoDict objectForKey:@"img"] length]>0){
-
-            stringURL = [[NSString alloc]initWithString:[_infoDict objectForKey:@"img"]];
-
-            NSData * dataImage = [NSData dataWithContentsOfURL:[NSURL URLWithString:stringURL]];
-            img = [[UIImage alloc]initWithData:dataImage];
-
-        }else{
-
-            img = [UIImage imageNamed:@"header.png"];
-
-        }
-
-    }else{
-        img = [UIImage imageNamed:@"header.png"];
-    }
-
-    [headerImageView setImage:img];
-    [indirizzoLabel setText:[NSString stringWithFormat:@"%@",[_infoDict objectForKey:@"indirizzo"]]];
-    [indirizzoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:25]];
-    [cittaLabel setText:[_infoDict objectForKey:@"citta"]];
-    [cittaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
     [orarioAperturaLabel setText:@"ORARI DI \nAPERTURA"];
     [orarioAperturaLabel setNumberOfLines:2];
     [orarioAperturaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
     [emailLabel setText:@"EMAIL"];
     [emailLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+
+    [scrollView setDelegate:self];
+    [scrollView setBackgroundColor:[UIColor clearColor]];
+    
+    [indirizzoLabel setText:[NSString stringWithFormat:@"%@",[_infoDict objectForKey:@"indirizzo"]]];
+    [indirizzoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:25]];
+    [cittaLabel setText:[_infoDict objectForKey:@"citta"]];
+    [cittaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+
+    [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+    
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [self setTitle:[_infoDict objectForKey:@"citta"]];
+    
+    UIImage *img;
+    
+    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable) {
+        
+        NSString * stringURL;
+        
+        if ([[_infoDict objectForKey:@"img"] length]>0){
+            
+            stringURL = [[NSString alloc]initWithString:[_infoDict objectForKey:@"img"]];
+            
+            NSData * dataImage = [NSData dataWithContentsOfURL:[NSURL URLWithString:stringURL]];
+            img = [[UIImage alloc]initWithData:dataImage];
+            
+        }else{
+            
+            img = [UIImage imageNamed:@"header.png"];
+            
+        }
+        
+    }else{
+        img = [UIImage imageNamed:@"header.png"];
+    }
+    
+    [headerImageView setImage:img];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [scrollView setContentOffset:CGPointMake(0, 0)];
 
     [emailContentLabel setTitle:[_infoDict objectForKey:@"mail"] forState:UIControlStateNormal];
     [[emailContentLabel titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:18]];
@@ -106,27 +115,25 @@
     [predefinedButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [predefinedButton setTitle:@"Preferito" forState:UIControlStateNormal];
 
-}
-
--(void)viewWillAppear:(BOOL)animated{
-
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    [scrollView setContentOffset:CGPointMake(0, 0)];
-
     [self updateStarStatus];
-
+    
     if ([[TTFoursquareManager sharedInstance]isShopOpenWithIdVenue:[_infoDict objectForKey:@"foursquare"]]) {
-
+        
         [nastrinoImageView setAlpha:1];
         [nastrinoImageView setImage:[UIImage imageNamed:@"ribbon.aperto.png"]];
-
+        
     }else{
-
+        
         [nastrinoImageView setAlpha:0];
-
+        
     }
 
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
+}
+
+-(void)getFourSquareData{
+
+    [[TTFoursquareManager sharedInstance]setDelegate:self];
+    [[TTFoursquareManager sharedInstance] requestHoursInfoForIDVenue:[_infoDict objectForKey:@"foursquare"]];
 
 }
 
@@ -157,6 +164,8 @@
 }
 
 -(void)foursquareManagerDidGetHour:(NSArray *)hours{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
 
     [noConnectionLabel setAlpha:0];
     [orarioAperturaLabel setAlpha:1];
@@ -227,26 +236,31 @@
     [sabatoLabel setAlpha:1];
     [domenicaLabel setAlpha:1];
 
+    });
 
 }
 
 
 -(void)foursquareManagerGetHourDidFail{
-
-    [orarioAperturaLabel setAlpha:0];
-
-    [lunediLabel setAlpha:0];
-    [martediLabel setAlpha:0];
-    [mercolediLabel setAlpha:0];
-    [giovediLabel setAlpha:0];
-    [venerdiLabel setAlpha:0];
-    [sabatoLabel setAlpha:0];
-    [domenicaLabel setAlpha:0];
-    [noConnectionLabel setAlpha:1];
-
-    [noConnectionLabel setText:@"Hai bisogno di una connessione ad internet per visualizzare gli orari"];
-    [noConnectionLabel setNumberOfLines:3];
-    [noConnectionLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [orarioAperturaLabel setAlpha:0];
+        
+        [lunediLabel setAlpha:0];
+        [martediLabel setAlpha:0];
+        [mercolediLabel setAlpha:0];
+        [giovediLabel setAlpha:0];
+        [venerdiLabel setAlpha:0];
+        [sabatoLabel setAlpha:0];
+        [domenicaLabel setAlpha:0];
+        [noConnectionLabel setAlpha:1];
+        
+        [noConnectionLabel setText:@"Hai bisogno di una connessione ad internet per visualizzare gli orari"];
+        [noConnectionLabel setNumberOfLines:3];
+        [noConnectionLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+        
+    });
 
 }
 

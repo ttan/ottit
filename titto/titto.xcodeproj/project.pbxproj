@@ -14,6 +14,10 @@
 		162A746317137ABD00600F04 /* ribbon.aperto.png in Resources */ = {isa = PBXBuildFile; fileRef = 162A746217137ABD00600F04 /* ribbon.aperto.png */; };
 		1640CC03170B719D00CC4570 /* TTHeaderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1640CC02170B719D00CC4570 /* TTHeaderImageView.m */; };
 		1640CC05170B754500CC4570 /* Archer-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1640CC04170B754500CC4570 /* Archer-Semibold.otf */; };
+		164F3018171DE75200B7B613 /* TTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164F3016171DE75200B7B613 /* TTSettingsViewController.m */; };
+		164F3019171DE75200B7B613 /* TTSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164F3017171DE75200B7B613 /* TTSettingsViewController.xib */; };
+		164F3024171DFD0300B7B613 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 164F3022171DFD0300B7B613 /* libGoogleAnalytics.a */; };
+		164F3027171DFD5900B7B613 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 164F3026171DFD5900B7B613 /* CoreData.framework */; };
 		1672BFBC1714AC6400C570AE /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFBB1714AC6400C570AE /* backBtn.png */; };
 		1672BFC71714B77500C570AE /* barbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFC41714B77500C570AE /* barbg.png */; };
 		1672BFC91714B7EF00C570AE /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFC81714B7EF00C570AE /* texture.png */; };
@@ -25,11 +29,8 @@
 		1672BFD71714BB1F00C570AE /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFD51714BB1F00C570AE /* star@2x.png */; };
 		1672BFDA1714C3A800C570AE /* UIBarButtonItem+StyledButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672BFD91714C3A800C570AE /* UIBarButtonItem+StyledButton.m */; };
 		1672BFDD1714C3FC00C570AE /* UIButton+StyledButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1672BFDC1714C3FC00C570AE /* UIButton+StyledButton.m */; };
-		1672BFDF1714CCBD00C570AE /* backBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1672BFDE1714CCBC00C570AE /* backBtn@2x.png */; };
 		1687485D170B936D005F0049 /* logot.png in Resources */ = {isa = PBXBuildFile; fileRef = 1687485C170B936D005F0049 /* logot.png */; };
 		16874861170B95B4005F0049 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 16874860170B95B4005F0049 /* pin.png */; };
-		16E0973517102BC300F20FB5 /* TTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E0973317102BC300F20FB5 /* TTSettingsViewController.m */; };
-		16E0973617102BC300F20FB5 /* TTSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16E0973417102BC300F20FB5 /* TTSettingsViewController.xib */; };
 		5A1E7E281706004600B7C116 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614AEE6F1704DCD20039D0DF /* CoreGraphics.framework */; };
 		5A1E7E291706005400B7C116 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614AEE6D1704DCD20039D0DF /* Foundation.framework */; };
 		5A1E7E2A1706005C00B7C116 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614AEE6B1704DCD20039D0DF /* UIKit.framework */; };
@@ -77,6 +78,16 @@
 		1640CC01170B719D00CC4570 /* TTHeaderImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTHeaderImageView.h; sourceTree = "<group>"; };
 		1640CC02170B719D00CC4570 /* TTHeaderImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTHeaderImageView.m; sourceTree = "<group>"; };
 		1640CC04170B754500CC4570 /* Archer-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archer-Semibold.otf"; sourceTree = "<group>"; };
+		164F3015171DE75200B7B613 /* TTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSettingsViewController.h; sourceTree = "<group>"; };
+		164F3016171DE75200B7B613 /* TTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSettingsViewController.m; sourceTree = "<group>"; };
+		164F3017171DE75200B7B613 /* TTSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTSettingsViewController.xib; sourceTree = "<group>"; };
+		164F301D171DFD0300B7B613 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		164F301E171DFD0300B7B613 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		164F301F171DFD0300B7B613 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		164F3020171DFD0300B7B613 /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
+		164F3021171DFD0300B7B613 /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
+		164F3022171DFD0300B7B613 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		164F3026171DFD5900B7B613 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		165CBF7F170CC56C003B25AC /* TTConfigDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTConfigDefines.h; sourceTree = "<group>"; };
 		1672BFBB1714AC6400C570AE /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backBtn.png; path = titto/backBtn.png; sourceTree = "<group>"; };
 		1672BFC41714B77500C570AE /* barbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barbg.png; sourceTree = "<group>"; };
@@ -91,12 +102,8 @@
 		1672BFD91714C3A800C570AE /* UIBarButtonItem+StyledButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+StyledButton.m"; path = "titto/UIBarButtonItem+StyledButton.m"; sourceTree = SOURCE_ROOT; };
 		1672BFDB1714C3FC00C570AE /* UIButton+StyledButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+StyledButton.h"; sourceTree = "<group>"; };
 		1672BFDC1714C3FC00C570AE /* UIButton+StyledButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+StyledButton.m"; sourceTree = "<group>"; };
-		1672BFDE1714CCBC00C570AE /* backBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backBtn@2x.png"; path = "titto/backBtn@2x.png"; sourceTree = "<group>"; };
 		1687485C170B936D005F0049 /* logot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logot.png; path = titto/logot.png; sourceTree = "<group>"; };
 		16874860170B95B4005F0049 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin.png; path = titto/pin.png; sourceTree = "<group>"; };
-		16E0973217102BC300F20FB5 /* TTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSettingsViewController.h; sourceTree = "<group>"; };
-		16E0973317102BC300F20FB5 /* TTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSettingsViewController.m; sourceTree = "<group>"; };
-		16E0973417102BC300F20FB5 /* TTSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTSettingsViewController.xib; sourceTree = "<group>"; };
 		5ACD70ED170D5C06000F12E9 /* icona.fw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icona.fw.png; sourceTree = "<group>"; };
 		5ACD70EF170D5C15000F12E9 /* icona.small.fw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icona.small.fw.png; sourceTree = "<group>"; };
 		61347B8A1704DEF40080D842 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -152,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				164F3027171DFD5900B7B613 /* CoreData.framework in Frameworks */,
 				161A7971170E2719006DC5C5 /* MessageUI.framework in Frameworks */,
 				161A796F170E1ADA006DC5C5 /* SystemConfiguration.framework in Frameworks */,
 				5A1E7E2A1706005C00B7C116 /* UIKit.framework in Frameworks */,
@@ -163,6 +171,7 @@
 				61347B8D1704DEF90080D842 /* AdSupport.framework in Frameworks */,
 				61347B8B1704DEF40080D842 /* Accounts.framework in Frameworks */,
 				61347B981704DF830080D842 /* FacebookSDK.framework in Frameworks */,
+				164F3024171DFD0300B7B613 /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +181,6 @@
 		161255B6170CD683000FE590 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				1672BFDE1714CCBC00C570AE /* backBtn@2x.png */,
 				1672BFBB1714AC6400C570AE /* backBtn.png */,
 				162A746217137ABD00600F04 /* ribbon.aperto.png */,
 				161255BA170CE1A1000FE590 /* bottone.png */,
@@ -223,6 +231,29 @@
 			name = Feed;
 			sourceTree = "<group>";
 		};
+		164F301A171DE79000B7B613 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				164F3015171DE75200B7B613 /* TTSettingsViewController.h */,
+				164F3016171DE75200B7B613 /* TTSettingsViewController.m */,
+				164F3017171DE75200B7B613 /* TTSettingsViewController.xib */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		164F301C171DFD0300B7B613 /* Anal */ = {
+			isa = PBXGroup;
+			children = (
+				164F301D171DFD0300B7B613 /* GAI.h */,
+				164F301E171DFD0300B7B613 /* GAITrackedViewController.h */,
+				164F301F171DFD0300B7B613 /* GAITracker.h */,
+				164F3020171DFD0300B7B613 /* GAITransaction.h */,
+				164F3021171DFD0300B7B613 /* GAITransactionItem.h */,
+				164F3022171DFD0300B7B613 /* libGoogleAnalytics.a */,
+			);
+			path = Anal;
+			sourceTree = "<group>";
+		};
 		1672BFBF1714B77500C570AE /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,9 +288,6 @@
 		614AEE5F1704DCD20039D0DF = {
 			isa = PBXGroup;
 			children = (
-				16E0973217102BC300F20FB5 /* TTSettingsViewController.h */,
-				16E0973317102BC300F20FB5 /* TTSettingsViewController.m */,
-				16E0973417102BC300F20FB5 /* TTSettingsViewController.xib */,
 				5ACD70EF170D5C15000F12E9 /* icona.small.fw.png */,
 				5ACD70ED170D5C06000F12E9 /* icona.fw.png */,
 				614AEE711704DCD20039D0DF /* titto */,
@@ -279,6 +307,7 @@
 		614AEE6A1704DCD20039D0DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				164F3026171DFD5900B7B613 /* CoreData.framework */,
 				161A7970170E2719006DC5C5 /* MessageUI.framework */,
 				161A796E170E1ADA006DC5C5 /* SystemConfiguration.framework */,
 				61347B8A1704DEF40080D842 /* Accounts.framework */,
@@ -298,6 +327,8 @@
 		614AEE711704DCD20039D0DF /* titto */ = {
 			isa = PBXGroup;
 			children = (
+				164F301C171DFD0300B7B613 /* Anal */,
+				164F301A171DE79000B7B613 /* Settings */,
 				161A796B170E1704006DC5C5 /* Reachability.h */,
 				161A796C170E1704006DC5C5 /* Reachability.m */,
 				614AEE7A1704DCD20039D0DF /* AppDelegate.h */,
@@ -427,7 +458,6 @@
 				161255BB170CE1A1000FE590 /* bottone.png in Resources */,
 				5ACD70EE170D5C06000F12E9 /* icona.fw.png in Resources */,
 				5ACD70F0170D5C15000F12E9 /* icona.small.fw.png in Resources */,
-				16E0973617102BC300F20FB5 /* TTSettingsViewController.xib in Resources */,
 				162A746317137ABD00600F04 /* ribbon.aperto.png in Resources */,
 				1672BFBC1714AC6400C570AE /* backBtn.png in Resources */,
 				1672BFC71714B77500C570AE /* barbg.png in Resources */,
@@ -438,7 +468,7 @@
 				1672BFD31714BB1A00C570AE /* star.png in Resources */,
 				1672BFD61714BB1F00C570AE /* star-vuota@2x.png in Resources */,
 				1672BFD71714BB1F00C570AE /* star@2x.png in Resources */,
-				1672BFDF1714CCBD00C570AE /* backBtn@2x.png in Resources */,
+				164F3019171DE75200B7B613 /* TTSettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,9 +492,9 @@
 				61A8597B1705077E003CD439 /* TTShopDetailViewController.m in Sources */,
 				1640CC03170B719D00CC4570 /* TTHeaderImageView.m in Sources */,
 				161A796D170E1704006DC5C5 /* Reachability.m in Sources */,
-				16E0973517102BC300F20FB5 /* TTSettingsViewController.m in Sources */,
 				1672BFDA1714C3A800C570AE /* UIBarButtonItem+StyledButton.m in Sources */,
 				1672BFDD1714C3FC00C570AE /* UIButton+StyledButton.m in Sources */,
+				164F3018171DE75200B7B613 /* TTSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +581,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "titto/titto-Prefix.pch";
 				INFOPLIST_FILE = "titto/titto-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/titto/Anal\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lsqlite3.0",
@@ -575,6 +609,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "titto/titto-Prefix.pch";
 				INFOPLIST_FILE = "titto/titto-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/titto/Anal\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lsqlite3.0",

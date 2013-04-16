@@ -12,6 +12,7 @@
 #import "TTCardViewController.h"
 #import "TTFeedViewController.h"
 #import "TTSettingsViewController.h"
+#import "TTConfigDefines.h"
 
 @implementation AppDelegate
 
@@ -21,6 +22,11 @@
     // Override point for customization after application launch.
     TTMapViewController * mapVC = [[TTMapViewController alloc]init];
     [[mapVC view] setFrame:[self window].frame];
+    
+    [GAI sharedInstance].debug = NO;
+    [GAI sharedInstance].dispatchInterval = 5;
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    self.tracker = [[GAI sharedInstance] trackerWithTrackingId:ANAL_KEY];
     
     UINavigationController * navController = [[UINavigationController alloc]initWithRootViewController:mapVC];
     [navController setNavigationBarHidden:YES];
@@ -39,8 +45,15 @@
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
 
+    [GAI sharedInstance].defaultTracker.useHttps = ![GAI sharedInstance].defaultTracker.useHttps;
+    [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"1 TOM GAY"
+                                                    withAction:@"2 TOM GAY"
+                                                     withLabel:@"3 TOM GAY"
+                                                     withValue:nil];
+    
     return YES;
 }
+
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url

@@ -17,6 +17,7 @@
 @synthesize userID;
 @synthesize userLink;
 @synthesize userName;
+@synthesize school;
 
 @synthesize cardID;
 @synthesize shopID;
@@ -129,6 +130,11 @@
         [dict setObject:self.shopCity
                  forKey:FACEBOOK_DICTIONARY_SHOPCITY];
     }
+
+    if (self.school) {
+        [dict setObject:self.school
+                 forKey:FACEBOOK_DICTIONARY_SCHOOL];
+    }
     
     [[NSUserDefaults standardUserDefaults] setObject:dict
                                               forKey:FACEBOOK_DICTIONARY_KEY];
@@ -153,6 +159,7 @@
     self.shopID = [dict objectForKey:FACEBOOK_DICTIONARY_SHOPID];
     self.shopAddress = [dict objectForKey:FACEBOOK_DICTIONARY_SHOPADDRESS];
     self.shopCity = [dict objectForKey:FACEBOOK_DICTIONARY_SHOPCITY];
+    self.school = [dict objectForKey:FACEBOOK_DICTIONARY_SCHOOL];
     
 }
 

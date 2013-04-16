@@ -25,7 +25,7 @@
 
 - (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI {
         
-    return [FBSession openActiveSessionWithReadPermissions:@[@"email, user_birthday"]
+    return [FBSession openActiveSessionWithReadPermissions:@[@"email", @"user_birthday", @"user_education_history"]
                                               allowLoginUI:allowLoginUI
                                          completionHandler:^(FBSession *session,
                                                              FBSessionState state,
@@ -119,6 +119,7 @@
              if (!error) {
                  
                  NSLog(@"\n%@", [user allKeys]);
+                 NSLog(@"%@", user);
                  
                  [[TTFacebookUser currentUser] setBirthday:[user objectForKey:@"birthday"]];
                  [[TTFacebookUser currentUser] setEmail:[user objectForKey:@"email"]];
@@ -128,10 +129,36 @@
                  [[TTFacebookUser currentUser] setUserID:[user objectForKey:@"id"]];
                  [[TTFacebookUser currentUser] setUserLink:[user objectForKey:@"link"]];
                  [[TTFacebookUser currentUser] setUserName:[user objectForKey:@"username"]];
+                 
+                 if ([user objectForKey:@"education"]) {
+                     NSArray *educationArray = [user objectForKey:@"education"];
+                     
+                     if (educationArray.count>0) {
+                         
+                         for (NSDictionary *educationDict in educationArray) {
+                                                          
+                             if ([educationDict objectForKey:@"type"] &&
+                                 [[educationDict objectForKey:@"type"] isEqualToString:@"High School"]) {
+                                 
+                                 if ([educationDict objectForKey:@"school"]) {
+                                     NSDictionary *schoolDict = [educationDict objectForKey:@"school"];
+                                     
+                                     if ([schoolDict objectForKey:@"name"]) {
+                                         
+                                         [[TTFacebookUser currentUser] setSchool:[schoolDict objectForKey:@"name"]];
+                                         
+                                     }
+                                 }
+                             }
+                         }
+                     }
+                 }
+                 
                  [[TTFacebookUser currentUser] saveUser];
                  
                  [[NSNotificationCenter defaultCenter] postNotificationName:kTTFacebookManagerUserLoaded
                                                                      object:nil];
+                 
              } else {
                  NSLog(@"error: %@", error);
              }
@@ -140,6 +167,9 @@
     }else {
         
         [[TTFacebookUser currentUser] loadUser];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kTTFacebookManagerUserLoaded
+                                                            object:nil];
         
     }
 }

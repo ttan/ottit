@@ -22,6 +22,7 @@
     if (self) {
         // Custom initialization
         self.title = @"Card";
+        
         self.tabBarItem.image = [UIImage imageNamed:@"second.png"];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -70,7 +71,9 @@
         [self hideFacebookView];
         
         if (!facebookInfoLoaded) {
+            
             [[TTFacebookManager sharedInstance] loadUserInfos];
+            
         }
         
     }else {
@@ -124,29 +127,12 @@
     
     [self updateProfileInfo];
     
-//    [self esiteTessera];
-    
     if ([self canGenerateCard]) {
         
-        if ([self negoziopreferitoImpostato]) {
-            [actionButton setTitle:@"Genera tessera"
-                          forState:UIControlStateNormal];
-            
-        }else {
-            [actionButton setTitle:@"Scegli il tuo negozio"
-                          forState:UIControlStateNormal];
-
-        }
-        
-        // show loading card
-        [UIView animateWithDuration:0.4f
-                         animations:^{
-                             
-                             actionButton.alpha = 1.0f;
-                             
-                         }];
+        [self esiteTessera];
         
     }else {
+        
         // show can't use card
         [tessera setText:@"Nooooooo sei old!"];
         
@@ -166,6 +152,12 @@
     // See if we have a valid token for the current state.
     if ([[TTFacebookManager sharedInstance] isFacebookLoggedIn]) {
         [self hideFacebookView];
+        
+        if (!facebookInfoLoaded) {
+            
+            [[TTFacebookManager sharedInstance] loadUserInfos];
+            
+        }
         
     } else {
         [self showFacebookView];
@@ -202,7 +194,11 @@
 
 - (IBAction)actionPressed:(id)sender {
     
-    if ([[TTFacebookManager sharedInstance] isFacebookLoggedIn] && [self canGenerateCard]) {
+    if ([[TTFacebookUser currentUser] cardID]) {
+     
+        [self showCard];
+        
+    }else if ([[TTFacebookManager sharedInstance] isFacebookLoggedIn] && [self canGenerateCard]) {
         if (![self negoziopreferitoImpostato]) {
             [[self tabBarController] setSelectedIndex:0];
         }else {
@@ -214,53 +210,137 @@
 
 - (void)esiteTessera {
     
-    NSString *urlString = [NSString stringWithFormat:@"http://backend.titto.it/app2013/esisteTessera.php?user_id=%@", [[TTFacebookUser currentUser] userID]];
+    if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
     
-    NSLog(@"%@", urlString);
-    
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               
-                               NSLog(@"%@", response);
-                               
-                               NSError * jsonError;
-                               NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:NSJSONReadingAllowFragments
-                                                                                      error:&jsonError];
-                               
-                               NSLog(@"%@  %@", dict, [dict allKeys]);
-                               
-                               /*
-                            
-                                citta = Bologna;
-                                indirizzo = Via Goito;
-                                store = BOG;
-                                tessera = G1003;
-                                
-                                */
-                               
-                               if ([dict objectForKey:@"store"]) {
-                                   [[TTFacebookUser currentUser] setShopID:[dict objectForKey:@"store"]];
-                               }
-                               
-                               if ([dict objectForKey:@"tessera"]) {
-                                   [[TTFacebookUser currentUser] setCardID:[dict objectForKey:@"tessera"]];
-                               }
-                               
-                               [negozio setText:[NSString stringWithFormat:@"%@, %@", [self cittaNegozio], [self indirizzoNegozio]]];
-                               [tessera setText:[NSString stringWithFormat:@"%@", [[TTFacebookUser currentUser] cardID]]];
-                               
-                               [[TTFacebookUser currentUser] saveUser];
-                           }];
+        NSString *urlString = [NSString stringWithFormat:@"http://backend.titto.it/app2013/esisteTessera.php?user_id=%@", [[TTFacebookUser currentUser] userID]];
+        
+        urlString = [urlString
+                     stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        
+        NSLog(@"%@", urlString);
+        
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                   
+                                   if (!data) {
+                                       return;
+                                   }
+                                   
+                                   NSLog(@"%@", response);
+                                   
+                                   NSError * jsonError;
+                                   NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data
+                                                                                        options:NSJSONReadingAllowFragments
+                                                                                          error:&jsonError];
+                                   
+                                   BOOL esisteTessera = NO;
+                                   
+                                   if (dict && dict.count>0) {
+                                       
+                                       NSLog(@"%@  %@", dict, [dict allKeys]);
+                                       
+                                       /*
+                                        
+                                        citta = Bologna;
+                                        indirizzo = Via Goito;
+                                        store = BOG;
+                                        tessera = G1003;
+                                        
+                                        */
+                                       
+                                       if ([dict objectForKey:@"codice"] && [dict objectForKey:@"tessera"]) {
+                                           [[TTFacebookUser currentUser] setShopID:[dict objectForKey:@"store"]];
+                                           [[TTFacebookUser currentUser] setCardID:[dict objectForKey:@"tessera"]];
+                                           [[TTFacebookUser currentUser] setShopAddress:[dict objectForKey:@"indirizzo"]];
+                                           [[TTFacebookUser currentUser] setShopCity:[dict objectForKey:@"citta"]];
+                                           
+                                           [negozio setText:[NSString stringWithFormat:@"%@, %@", [self cittaNegozio], [self indirizzoNegozio]]];
+                                           [tessera setText:[NSString stringWithFormat:@"%@", [[TTFacebookUser currentUser] cardID]]];
+                                           
+                                           [[TTFacebookUser currentUser] saveUser];
+                                           
+                                           esisteTessera = YES;
+                                           
+                                           [actionButton setTitle:@"Utilizza tessera"
+                                                         forState:UIControlStateNormal];
+                                           
+                                           [self hideCard];
+                                       }
+                                   }
+
+                                   if (!esisteTessera) {
+                                       
+                                        if ([self negoziopreferitoImpostato]) {
+                                            
+                                            [actionButton setTitle:@"Genera tessera"
+                                                          forState:UIControlStateNormal];
+
+                                        }else {
+                                            [actionButton setTitle:@"Scegli il tuo negozio"
+                                                          forState:UIControlStateNormal];
+
+                                        }
+                                   }
+                                   
+                                   // show loading card
+                                   [UIView animateWithDuration:0.4f
+                                                    animations:^{
+                                                        
+                                                        actionButton.alpha = 1.0f;
+                                                        
+                                                    }];
+                                   
+                               }];
+            
+    }else {
+        
+        [[TTFacebookUser currentUser] loadUser];
+        
+        if ([[TTFacebookUser currentUser] cardID]) {
+            
+            [negozio setText:[NSString stringWithFormat:@"%@, %@", [self cittaNegozio], [self indirizzoNegozio]]];
+            [tessera setText:[NSString stringWithFormat:@"%@", [[TTFacebookUser currentUser] cardID]]];
+            
+            [actionButton setTitle:@"Utilizza tessera"
+                          forState:UIControlStateNormal];
+            
+            [self hideCard];
+            
+        }else {
+        
+            if ([self negoziopreferitoImpostato]) {
+                
+                [actionButton setTitle:@"Genera tessera"
+                              forState:UIControlStateNormal];
+                
+            }else {
+                [actionButton setTitle:@"Scegli il tuo negozio"
+                              forState:UIControlStateNormal];
+                
+            }
+        }
+        
+        // show loading card
+        [UIView animateWithDuration:0.4f
+                         animations:^{
+                             
+                             actionButton.alpha = 1.0f;
+                             
+                         }];
+        
+    }
     
 }
 
 - (void)generateCard {
     
-    NSString *urlString = [NSString stringWithFormat:@"http://backend.titto.it/app2013/tessera.php?pv=%@&user_id=%@&user_name=%@&user_surname=%@&user_email=%@&user_gender=%@&user_birthday=%@&user_link=%@&user_username=%@", [self idNegozio], [[TTFacebookUser currentUser] userID], [[TTFacebookUser currentUser]name], [[TTFacebookUser currentUser] surname], [[TTFacebookUser currentUser] email], [[TTFacebookUser currentUser] gender], [[TTFacebookUser currentUser]  birthday], [[TTFacebookUser currentUser] userLink], [[TTFacebookUser currentUser] userName]];
+    NSString *urlString = [NSString stringWithFormat:@"http://backend.titto.it/app2013/tessera.php?pv=%@&user_id=%@&user_name=%@&user_surname=%@&user_email=%@&user_gender=%@&user_birthday=%@&user_link=%@&user_username=%@&school=%@", [self idNegozio], [[TTFacebookUser currentUser] userID], [[TTFacebookUser currentUser]name], [[TTFacebookUser currentUser] surname], [[TTFacebookUser currentUser] email], [[TTFacebookUser currentUser] gender], [[TTFacebookUser currentUser]  birthday], [[TTFacebookUser currentUser] userLink], [[TTFacebookUser currentUser] userName], [[TTFacebookUser currentUser] school]];
+    
+    urlString = [urlString
+                 stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
     NSLog(@"%@", urlString);
     
@@ -269,6 +349,10 @@
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
+                               if (!data) {
+                                   return;
+                               }
                                
                                NSLog(@"%@", response);
 
@@ -301,10 +385,56 @@
                                    [[TTFacebookUser currentUser] setCardID:[dict objectForKey:@"tessera"]];
                                }
                                
+                               
+                               
                                [negozio setText:[NSString stringWithFormat:@"%@, %@", [self cittaNegozio], [self indirizzoNegozio]]];
                                [tessera setText:[NSString stringWithFormat:@"%@", [[TTFacebookUser currentUser] cardID]]];
                                
+                               [[TTFacebookUser currentUser] setShopAddress:[self indirizzoNegozio]];
+                               [[TTFacebookUser currentUser] setShopCity:[self cittaNegozio]];
+                               
                                [[TTFacebookUser currentUser] saveUser];
+                               
+                               [actionButton setTitle:@"Utilizza tessera"
+                                             forState:UIControlStateNormal];
+                               
+                               [self hideCard];
+                               
+                               // show loading card
+                               [UIView animateWithDuration:0.4f
+                                                animations:^{
+                                                    
+                                                    actionButton.alpha = 1.0f;
+                                                    
+                                                }];
+                               
+                           }];
+    
+}
+
+- (void)pingTessera {
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
+    NSString *dataOggi = [formatter stringFromDate:[NSDate date]];
+    
+    NSLog(@"%@", dataOggi);
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://backend.titto.it/app2013/pingTessera.php?tessera=%@&data=%@", [[TTFacebookUser currentUser] cardID], dataOggi];
+    
+    urlString = [urlString
+                 stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    
+    NSLog(@"%@", urlString);
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
+                               NSLog(@"%@ %@", response, data);
+                               
                            }];
     
 }
@@ -323,6 +453,10 @@
 
 - (NSString*)indirizzoNegozio {
     
+    if ([[TTFacebookUser currentUser] shopCity]) {
+        return [[TTFacebookUser currentUser] shopCity];
+    }
+    
     if ([[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP]) {
         NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP];
         return [dict objectForKey:FAVORITE_SHOP_INDIRIZZO];
@@ -335,6 +469,10 @@
 
 - (NSString*)cittaNegozio {
    
+    if ([[TTFacebookUser currentUser] shopAddress]) {
+        return [[TTFacebookUser currentUser] shopAddress];
+    }
+    
     if ([[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP]) {
         NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP];
         return [dict objectForKey:FAVORITE_SHOP_CITTA];
@@ -346,6 +484,10 @@
 }
 
 - (NSString*)idNegozio {
+    
+    if ([[TTFacebookUser currentUser] shopID]) {
+        return [[TTFacebookUser currentUser] shopID];
+    }
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP]) {
         NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP];
@@ -374,11 +516,37 @@
 
 #pragma mark - View State
 
-- (void)showNoFacebookLogged {
+- (void)hideCard {
+    
+    [UIView animateWithDuration:1.0f
+                     animations:^{
+                        
+                         tessera.alpha = 0.0f;
+                         
+                     }];
     
 }
 
-- (void)showUserInfoLoaded {
+- (void)showCard {
+    
+    if (tessera.alpha==0.0f) {
+        
+        [UIView animateWithDuration:0.4f
+                         animations:^{
+                             
+                             tessera.alpha = 1.0f;
+                             [self pingTessera];
+                             
+                         }
+                         completion:^(BOOL finished) {
+                             
+                             [self performSelector:@selector(hideCard)
+                                        withObject:nil
+                                        afterDelay:60.0f*10];
+                             
+                         }];
+        
+    }
     
 }
 

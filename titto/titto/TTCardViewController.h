@@ -17,13 +17,14 @@
     
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIImageView  *headerImage;
+    IBOutlet UIActivityIndicatorView *activity;
+    IBOutlet UIView *containerView;
     
     IBOutlet UIView *loginView;
     IBOutlet UIButton *loginButton;
     IBOutlet UILabel *facebookLoginMessage;
     
     IBOutlet UIView  *cardView;
-
     IBOutlet UILabel *titlename;
     IBOutlet UILabel *titletessera;
     IBOutlet UILabel *titlenegozio;

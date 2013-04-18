@@ -50,6 +50,8 @@
 		614AEE891704DCD20039D0DF /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 614AEE881704DCD20039D0DF /* first@2x.png */; };
 		614AEE8E1704DCD20039D0DF /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 614AEE8D1704DCD20039D0DF /* second.png */; };
 		614AEE901704DCD20039D0DF /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 614AEE8F1704DCD20039D0DF /* second@2x.png */; };
+		614D527D17209F7D0062AFE1 /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 614D527C17209F7D0062AFE1 /* login-button-small.png */; };
+		614D527F17209F840062AFE1 /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 614D527E17209F840062AFE1 /* login-button-small@2x.png */; };
 		61A859551704E281003CD439 /* TTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859531704E281003CD439 /* TTMapViewController.m */; };
 		61A859561704E281003CD439 /* TTMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61A859541704E281003CD439 /* TTMapViewController.xib */; };
 		61A8595A1704E2EC003CD439 /* TTCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859581704E2EC003CD439 /* TTCardViewController.m */; };
@@ -127,6 +129,8 @@
 		614AEE881704DCD20039D0DF /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "first@2x.png"; path = "titto/first@2x.png"; sourceTree = "<group>"; };
 		614AEE8D1704DCD20039D0DF /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = second.png; path = titto/second.png; sourceTree = "<group>"; };
 		614AEE8F1704DCD20039D0DF /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "second@2x.png"; path = "titto/second@2x.png"; sourceTree = "<group>"; };
+		614D527C17209F7D0062AFE1 /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
+		614D527E17209F840062AFE1 /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small@2x.png"; sourceTree = "<group>"; };
 		61A859521704E281003CD439 /* TTMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMapViewController.h; path = ../TTMapViewController.h; sourceTree = "<group>"; };
 		61A859531704E281003CD439 /* TTMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTMapViewController.m; path = ../TTMapViewController.m; sourceTree = "<group>"; };
 		61A859541704E281003CD439 /* TTMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTMapViewController.xib; path = ../TTMapViewController.xib; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 		1672BFCA1714B99900C570AE /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				614D527C17209F7D0062AFE1 /* login-button-small.png */,
 				1672BFD01714BB1A00C570AE /* star-vuota.png */,
 				1672BFD11714BB1A00C570AE /* star.png */,
 				1672BFCB1714B99900C570AE /* header.png */,
@@ -278,6 +283,7 @@
 		1672BFCC1714B99900C570AE /* @2x */ = {
 			isa = PBXGroup;
 			children = (
+				614D527E17209F840062AFE1 /* login-button-small@2x.png */,
 				1672BFD41714BB1F00C570AE /* star-vuota@2x.png */,
 				1672BFD51714BB1F00C570AE /* star@2x.png */,
 				1672BFCD1714B99900C570AE /* header@2x.png */,
@@ -469,6 +475,8 @@
 				1672BFD61714BB1F00C570AE /* star-vuota@2x.png in Resources */,
 				1672BFD71714BB1F00C570AE /* star@2x.png in Resources */,
 				164F3019171DE75200B7B613 /* TTSettingsViewController.xib in Resources */,
+				614D527D17209F7D0062AFE1 /* login-button-small.png in Resources */,
+				614D527F17209F840062AFE1 /* login-button-small@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

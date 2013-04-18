@@ -58,7 +58,6 @@
             // logged in
             [[NSNotificationCenter defaultCenter] postNotificationName:kTTFacebookManagerSessionChange
                                                                 object:nil];
-//            [self loadUserInfos];
             
             break;
         case FBSessionStateClosed:

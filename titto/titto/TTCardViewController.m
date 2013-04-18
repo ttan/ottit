@@ -48,16 +48,28 @@
     
     [loginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
     [cardView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+    [containerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
     [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
     
     name.font = negozio.font = tessera.font = [UIFont fontWithName:@"Archer-Semibold" size:20];
     titlename.font = titlenegozio.font = titletessera.font = [UIFont fontWithName:@"Archer-Semibold" size:16];
     
-    imageView.layer.shadowColor = [UIColor blackColor].CGColor;
-    imageView.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
-    imageView.layer.shadowOpacity = 0.3f;
-    imageView.layer.shadowRadius = 5.0f;
-    imageView.layer.cornerRadius = 2.0f;
+    imageView.layer.shadowColor = [UIColor colorWithWhite:0.0f
+                                                    alpha:0.7f].CGColor;
+    imageView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    imageView.layer.shadowOpacity = 1.0f;
+    imageView.layer.shadowRadius = 4.0f;
+    [imageView setClipsToBounds:NO];
+    
+    [actionButton setBackgroundImage:[UIImage imageNamed:@"bottone"] forState:UIControlStateNormal];
+    [[actionButton titleLabel]setFont:[UIFont fontWithName:@"Archer-Semibold" size:16]];
+    
+    [loginButton setBackgroundImage:[[UIImage imageNamed:@"login-button-small.png"] stretchableImageWithLeftCapWidth:143.0f
+                                                                                                        topCapHeight:0.0f]
+                           forState:UIControlStateNormal];
+    [facebookLoginMessage setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+    
+    loginView.alpha = cardView.alpha = 0.0f;
     
 }
 
@@ -72,12 +84,24 @@
         
         if (!facebookInfoLoaded) {
             
+            activity.alpha = 1.0f;
+            [activity startAnimating];
+            
             [[TTFacebookManager sharedInstance] loadUserInfos];
+            
+        }else {
+            
+//            if ([[TTFacebookUser currentUser] cardID]) {
+//                [self showCardView];
+//            }else {
+                [self esiteTessera];
+//            }
             
         }
         
     }else {
         
+        facebookInfoLoaded = NO;
         [self showFacebookView];
         
     }
@@ -127,11 +151,17 @@
     
     [self updateProfileInfo];
     
+    if ([[TTFacebookUser currentUser] userID]) {
+        facebookInfoLoaded = YES;
+    }
+    
     if ([self canGenerateCard]) {
         
         [self esiteTessera];
         
     }else {
+        
+        [self showCardView];
         
         // show can't use card
         [tessera setText:@"Nooooooo sei old!"];
@@ -157,12 +187,18 @@
             
             [[TTFacebookManager sharedInstance] loadUserInfos];
             
+        }else {
+            
+            [self showCardView];
+            
         }
         
     } else {
+        
         [self showFacebookView];
         [[TTFacebookUser currentUser] clearAll];
         [self updateProfileInfo];
+        facebookInfoLoaded = NO;
         
     }
 }
@@ -174,22 +210,13 @@
         [[TTFacebookManager sharedInstance] logout];
     } else {
         [[TTFacebookManager sharedInstance] login];
+        
+        [activity startAnimating];
+        activity.alpha = 1.0f;
+        
+        [self hideFacebookView];
     }
     
-}
-
-- (void)showFacebookView {
-    [UIView animateWithDuration:0.4f
-                     animations:^{
-                         loginView.alpha = 1.0f;
-                     }];
-}
-
-- (void)hideFacebookView {
-    [UIView animateWithDuration:0.4f
-                     animations:^{
-                         loginView.alpha = 0.0f;
-                     }];
 }
 
 - (IBAction)actionPressed:(id)sender {
@@ -257,17 +284,17 @@
                                            [[TTFacebookUser currentUser] setShopAddress:[dict objectForKey:@"indirizzo"]];
                                            [[TTFacebookUser currentUser] setShopCity:[dict objectForKey:@"citta"]];
                                            
-                                           [negozio setText:[NSString stringWithFormat:@"%@, %@", [self cittaNegozio], [self indirizzoNegozio]]];
-                                           [tessera setText:[NSString stringWithFormat:@"%@", [[TTFacebookUser currentUser] cardID]]];
-                                           
                                            [[TTFacebookUser currentUser] saveUser];
                                            
-                                           esisteTessera = YES;
+                                           tessera.alpha = 0.0f;
                                            
+                                           [negozio setText:[NSString stringWithFormat:@"%@, %@", [self cittaNegozio], [self indirizzoNegozio]]];
+                                           [tessera setText:[NSString stringWithFormat:@"%@", [[TTFacebookUser currentUser] cardID]]];
                                            [actionButton setTitle:@"Utilizza tessera"
                                                          forState:UIControlStateNormal];
                                            
-                                           [self hideCard];
+                                           esisteTessera = YES;
+                                           
                                        }
                                    }
 
@@ -279,11 +306,15 @@
                                                           forState:UIControlStateNormal];
 
                                         }else {
+                                            
                                             [actionButton setTitle:@"Scegli il tuo negozio"
                                                           forState:UIControlStateNormal];
 
                                         }
+                                       
                                    }
+                                       
+                                   [self showCardView];
                                    
                                    // show loading card
                                    [UIView animateWithDuration:0.4f
@@ -516,6 +547,23 @@
 
 #pragma mark - View State
 
+- (void)showFacebookView {
+    
+    [activity stopAnimating];
+    
+    [UIView animateWithDuration:0.4f
+                     animations:^{
+                         loginView.alpha = 1.0f;
+                     }];
+}
+
+- (void)hideFacebookView {
+    [UIView animateWithDuration:0.4f
+                     animations:^{
+                         loginView.alpha = 0.0f;
+                     }];
+}
+
 - (void)hideCard {
     
     [UIView animateWithDuration:1.0f
@@ -548,6 +596,25 @@
         
     }
     
+}
+
+- (void)hideCardView {
+    [UIView animateWithDuration:0.4f
+                     animations:^{
+                         cardView.alpha = 0.0f;
+                     }];
+}
+
+- (void)showCardView {
+
+    [self updateProfileInfo];
+    [activity stopAnimating];
+    
+    [UIView animateWithDuration:0.4f
+                     animations:^{
+                         cardView.alpha = 1.0f;
+                         actionButton.alpha = 1.0f;
+                     }];
 }
 
 @end

@@ -10,7 +10,11 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "GAI.h"
 
-@interface AppDelegate : UIResponder < UIApplicationDelegate, UITabBarControllerDelegate >
+#import "UAirship.h"
+#import "UAPush.h"
+
+
+@interface AppDelegate : UIResponder < UIApplicationDelegate, UITabBarControllerDelegate ,UAPushNotificationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property(nonatomic, retain) id<GAITracker> tracker;

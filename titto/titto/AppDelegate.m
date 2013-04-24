@@ -112,6 +112,8 @@
     [[TTFacebookManager sharedInstance] performSelector:@selector(extendFacebook)
                                              withObject:nil
                                              afterDelay:1.0f];
+    
+    NSLog(@"%@", [[NSBundle mainBundle] bundleIdentifier]);
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

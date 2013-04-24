@@ -61,6 +61,8 @@
 		614AEE901704DCD20039D0DF /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 614AEE8F1704DCD20039D0DF /* second@2x.png */; };
 		614D527D17209F7D0062AFE1 /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 614D527C17209F7D0062AFE1 /* login-button-small.png */; };
 		614D527F17209F840062AFE1 /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 614D527E17209F840062AFE1 /* login-button-small@2x.png */; };
+		6170D1A217273EDB00EDBEB3 /* TourTesseraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6170D1A017273EDB00EDBEB3 /* TourTesseraViewController.m */; };
+		6170D1A317273EDB00EDBEB3 /* TourTesseraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6170D1A117273EDB00EDBEB3 /* TourTesseraViewController.xib */; };
 		61A859551704E281003CD439 /* TTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859531704E281003CD439 /* TTMapViewController.m */; };
 		61A859561704E281003CD439 /* TTMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61A859541704E281003CD439 /* TTMapViewController.xib */; };
 		61A8595A1704E2EC003CD439 /* TTCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859581704E2EC003CD439 /* TTCardViewController.m */; };
@@ -244,6 +246,9 @@
 		614AEE8F1704DCD20039D0DF /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "second@2x.png"; path = "titto/second@2x.png"; sourceTree = "<group>"; };
 		614D527C17209F7D0062AFE1 /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
 		614D527E17209F840062AFE1 /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small@2x.png"; sourceTree = "<group>"; };
+		6170D19F17273EDB00EDBEB3 /* TourTesseraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TourTesseraViewController.h; sourceTree = "<group>"; };
+		6170D1A017273EDB00EDBEB3 /* TourTesseraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TourTesseraViewController.m; sourceTree = "<group>"; };
+		6170D1A117273EDB00EDBEB3 /* TourTesseraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TourTesseraViewController.xib; sourceTree = "<group>"; };
 		61A859521704E281003CD439 /* TTMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMapViewController.h; path = ../TTMapViewController.h; sourceTree = "<group>"; };
 		61A859531704E281003CD439 /* TTMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTMapViewController.m; path = ../TTMapViewController.m; sourceTree = "<group>"; };
 		61A859541704E281003CD439 /* TTMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTMapViewController.xib; path = ../TTMapViewController.xib; sourceTree = "<group>"; };
@@ -341,6 +346,9 @@
 				61A859571704E2EC003CD439 /* TTCardViewController.h */,
 				61A859581704E2EC003CD439 /* TTCardViewController.m */,
 				61A859591704E2EC003CD439 /* TTCardViewController.xib */,
+				6170D19F17273EDB00EDBEB3 /* TourTesseraViewController.h */,
+				6170D1A017273EDB00EDBEB3 /* TourTesseraViewController.m */,
+				6170D1A117273EDB00EDBEB3 /* TourTesseraViewController.xib */,
 			);
 			name = Card;
 			sourceTree = "<group>";
@@ -802,6 +810,7 @@
 				614D527D17209F7D0062AFE1 /* login-button-small.png in Resources */,
 				614D527F17209F840062AFE1 /* login-button-small@2x.png in Resources */,
 				52B73DE2172720FF0066869C /* AirshipConfig.plist in Resources */,
+				6170D1A317273EDB00EDBEB3 /* TourTesseraViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,6 +837,7 @@
 				1672BFDA1714C3A800C570AE /* UIBarButtonItem+StyledButton.m in Sources */,
 				1672BFDD1714C3FC00C570AE /* UIButton+StyledButton.m in Sources */,
 				164F3018171DE75200B7B613 /* TTSettingsViewController.m in Sources */,
+				6170D1A217273EDB00EDBEB3 /* TourTesseraViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -874,6 +884,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

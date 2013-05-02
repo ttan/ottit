@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "TTFacebookManager.h"
 #import "TTConfigDefines.h"
+#import "TTFacebookManager.h"
+#import "TourTesseraViewController.h"
 
 #define CARD_MIN_AGE 26
 

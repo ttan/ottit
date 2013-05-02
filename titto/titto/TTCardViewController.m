@@ -90,13 +90,9 @@
             [[TTFacebookManager sharedInstance] loadUserInfos];
             
         }else {
-            
-//            if ([[TTFacebookUser currentUser] cardID]) {
-//                [self showCardView];
-//            }else {
-                [self esiteTessera];
-//            }
-            
+
+            [self esiteTessera];
+
         }
         
     }else {
@@ -221,8 +217,9 @@
 
 - (IBAction)actionPressed:(id)sender {
     
-    if ([[TTFacebookUser currentUser] cardID]) {
-     
+    if ([[TTFacebookUser currentUser] cardID] && [[[TTFacebookUser currentUser] cardID] length]>0) {
+        
+        NSLog(@"%@", [[TTFacebookUser currentUser] cardID]);
         [self showCard];
         
     }else if ([[TTFacebookManager sharedInstance] isFacebookLoggedIn] && [self canGenerateCard]) {
@@ -416,8 +413,24 @@
                                    [[TTFacebookUser currentUser] setCardID:[dict objectForKey:@"tessera"]];
                                }
                                
-                               
-                               
+                               if (needShowTour) {
+                                   
+                                   TourTesseraViewController *tourViewController =
+                                   [[TourTesseraViewController alloc] initWithNibName:@"TourTesseraViewController" bundle:nil];
+                                   
+                                   UINavigationController *navController =
+                                   [[UINavigationController alloc] initWithRootViewController:tourViewController];
+                                   
+                                   [navController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+                                   
+                                   [self presentViewController:navController
+                                                      animated:YES
+                                                    completion:^{
+                                                        
+                                                    }];
+                                   
+                               }
+                                                              
                                [negozio setText:[NSString stringWithFormat:@"%@, %@", [self cittaNegozio], [self indirizzoNegozio]]];
                                [tessera setText:[NSString stringWithFormat:@"%@", [[TTFacebookUser currentUser] cardID]]];
                                

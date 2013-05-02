@@ -59,7 +59,8 @@
     shopName = nil;
     shopAddress = nil;
     shopCity = nil;
-    [self saveUser];
+    school = nil;
+    [self deleteUser];
 }
 
 - (void)saveUser {
@@ -70,27 +71,27 @@
         [dict setObject:self.birthday
                  forKey:FACEBOOK_DICTIONARY_BIRTHDAY];
     }
-    
+
     if (self.email) {
         [dict setObject:self.email
                  forKey:FACEBOOK_DICTIONARY_EMAIL];
     }
-    
+
     if (self.gender) {
         [dict setObject:self.gender
                  forKey:FACEBOOK_DICTIONARY_GENDER];
     }
-    
+
     if (self.name) {
         [dict setObject:self.name
                  forKey:FACEBOOK_DICTIONARY_NAME];
     }
-    
+
     if (self.surname) {
         [dict setObject:self.surname
                  forKey:FACEBOOK_DICTIONARY_SURNAME];
     }
-    
+
     if (self.userID) {
         [dict setObject:self.userID
                  forKey:FACEBOOK_DICTIONARY_USERID];
@@ -160,6 +161,26 @@
     self.shopAddress = [dict objectForKey:FACEBOOK_DICTIONARY_SHOPADDRESS];
     self.shopCity = [dict objectForKey:FACEBOOK_DICTIONARY_SHOPCITY];
     self.school = [dict objectForKey:FACEBOOK_DICTIONARY_SCHOOL];
+
+}
+
+- (void)deleteUser {
+    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_BIRTHDAY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_EMAIL];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_GENDER];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_NAME];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_SURNAME];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_USERID];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_USERLINK];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_USERNAME];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_CARDID];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_SHOPNAME];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_SHOPID];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_SHOPADDRESS];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_SHOPCITY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FACEBOOK_DICTIONARY_SCHOOL];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
 

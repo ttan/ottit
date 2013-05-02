@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TourTesseraViewController : UIViewController
+@interface TourTesseraViewController : UIViewController {
+    IBOutlet UIButton *actionButton;
+}
+
+- (IBAction)actionButtonPressed:(id)sender;
 
 @end

@@ -13,6 +13,7 @@
 #import "TourTesseraViewController.h"
 
 #define CARD_MIN_AGE 26
+#define FORCE_TOUR NO
 
 @interface TTCardViewController : UIViewController < UIScrollViewDelegate > {
     

@@ -71,6 +71,23 @@
     
     loginView.alpha = cardView.alpha = 0.0f;
     
+    UIImageView *nuvole = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nuvole.png"]];
+    [nuvole setFrame:CGRectMake(0, 0, 640, 250)];
+    [headerImage addSubview:nuvole];
+    
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    
+    [animation setRepeatCount:HUGE_VALF];
+    [animation setFromValue:[NSValue valueWithCGPoint:CGPointMake(0.0f, 120.0f)]];
+    [animation setToValue:[NSValue valueWithCGPoint:CGPointMake(headerImage.frame.size.width+10.0f, 120.0f)]];
+    [animation setDuration:15.0f];
+    
+    [animation setValue:@"primary_on"
+                 forKey:@"animation_key"];
+    
+    [nuvole.layer addAnimation:animation
+                     forKey:@"primary_on"];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -310,6 +327,24 @@
                                         }
                                        
                                    }
+                                   
+                                   if (FORCE_TOUR) {
+                                       
+                                       TourTesseraViewController *tourViewController =
+                                       [[TourTesseraViewController alloc] initWithNibName:@"TourTesseraViewController" bundle:nil];
+                                       
+                                       UINavigationController *navController =
+                                       [[UINavigationController alloc] initWithRootViewController:tourViewController];
+                                       
+                                       [navController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+                                       
+                                       [self presentViewController:navController
+                                                          animated:YES
+                                                        completion:^{
+                                                            
+                                                        }];
+                                       
+                                   }
                                        
                                    [self showCardView];
                                    
@@ -413,7 +448,7 @@
                                    [[TTFacebookUser currentUser] setCardID:[dict objectForKey:@"tessera"]];
                                }
                                
-                               if (needShowTour) {
+                               if (needShowTour || FORCE_TOUR) {
                                    
                                    TourTesseraViewController *tourViewController =
                                    [[TourTesseraViewController alloc] initWithNibName:@"TourTesseraViewController" bundle:nil];

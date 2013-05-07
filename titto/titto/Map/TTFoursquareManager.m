@@ -29,11 +29,9 @@
 }
 
 
-
 -(void)requestHoursInfoForIDVenue:(NSString *)idVenue{
     
     if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
-        
         
         NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"YYYYMMdd"];

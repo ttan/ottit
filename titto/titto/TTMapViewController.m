@@ -44,9 +44,7 @@
 
     [[TTMapManager sharedInstance]loadShopsInformations];
     
-    [self performSelector:@selector(updateMapPosition) withObject:nil afterDelay:2];
-    
-//    
+    [self performSelector:@selector(updateMapPosition) withObject:nil afterDelay:4];
     
 }
 

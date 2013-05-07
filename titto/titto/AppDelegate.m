@@ -19,37 +19,28 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    
     NSMutableDictionary *takeOffOptions = [NSMutableDictionary dictionary];
     [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
-    
-    // Call takeOff (which creates the UAirship singleton), passing in the launch options so the
-    // library can properly record when the app is launched from a push notification. This call is
-    // required.
-    //
-    // Populate AirshipConfig.plist with your app's info from https://go.urbanairship.com
+
     [UAirship takeOff:takeOffOptions];
-        
     [[UAPush shared] resetBadge];
-    
     [[UAPush shared] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                                          UIRemoteNotificationTypeSound |
                                                          UIRemoteNotificationTypeAlert)];
-    
+
     [[UAPush shared] handleNotification:[launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey]
                        applicationState:application.applicationState];
-    
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     TTMapViewController * mapVC = [[TTMapViewController alloc]init];
     [[mapVC view] setFrame:[self window].frame];
-    
+
     [GAI sharedInstance].debug = NO;
     [GAI sharedInstance].dispatchInterval = 5;
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     self.tracker = [[GAI sharedInstance] trackerWithTrackingId:ANAL_KEY];
-    
+
     UINavigationController * navController = [[UINavigationController alloc]initWithRootViewController:mapVC];
     [navController setNavigationBarHidden:YES];
     [[navController navigationBar] setBackgroundImage:[UIImage imageNamed:@"barbg.png"] forBarMetrics:UIBarMetricsDefault];
@@ -68,14 +59,13 @@
     [self.window makeKeyAndVisible];
 
     [GAI sharedInstance].defaultTracker.useHttps = ![GAI sharedInstance].defaultTracker.useHttps;
-    [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"1 TOM GAY"
-                                                    withAction:@"2 TOM GAY"
-                                                     withLabel:@"3 TOM GAY"
+    [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"TOM GAY"
+                                                    withAction:@"TOM GAY"
+                                                     withLabel:@"TOM GAY"
                                                      withValue:nil];
-    
+
     return YES;
 }
-
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url

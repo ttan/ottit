@@ -307,7 +307,11 @@
 }
 
 -(void)confirmFavoriteShop{
-    
+
+    NSArray *niftyTags = @[ [_infoDict objectForKey:@"cod_fb"]];
+    [[UAPush shared] setTags:niftyTags];
+    [[UAPush shared] updateRegistration];
+
     [[NSUserDefaults standardUserDefaults] setObject:_infoDict forKey:FAVORITE_SHOP];
     [self updateStarStatus];
     

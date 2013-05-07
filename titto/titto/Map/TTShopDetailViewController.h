@@ -11,6 +11,8 @@
 #import "TTHeaderImageView.h"
 #import <MessageUI/MessageUI.h>
 
+#import "UAPush.h"
+
 
 @interface TTShopDetailViewController : UIViewController<TTFoursquareManagerDelegate,MFMailComposeViewControllerDelegate,UIScrollViewDelegate,UIAlertViewDelegate>
 {

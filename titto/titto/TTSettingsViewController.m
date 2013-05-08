@@ -61,9 +61,11 @@
     NSString * indirizzo = [[[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP] objectForKey:@"indirizzo"];
 
     if (indirizzo){
+        [[cambiaNegozioButton titleLabel] setText:@"Cambia"];
         [cambiaNegozioButton setFrame:CGRectMake(cambiaNegozioButton.frame.origin.x, 105, cambiaNegozioButton.frame.size.width, cambiaNegozioButton.frame.size.height)];
         [negozioPreferitoLabel setText:indirizzo];
     }else{
+        [[cambiaNegozioButton titleLabel] setText:@"Scegli"];
         [cambiaNegozioButton setFrame:CGRectMake(cambiaNegozioButton.frame.origin.x, 85, cambiaNegozioButton.frame.size.width, cambiaNegozioButton.frame.size.height)];
     }
 

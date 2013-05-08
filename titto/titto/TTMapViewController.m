@@ -20,7 +20,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title=@"Mappa";
-        self.tabBarItem.image = [UIImage imageNamed:@"first.png"];
     }
     return self;
 }

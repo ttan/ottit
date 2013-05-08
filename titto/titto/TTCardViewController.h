@@ -14,11 +14,13 @@
 
 #define CARD_MIN_AGE 26
 #define FORCE_TOUR NO
+#define TEMPO_SCADENZA_TESSERA_IN_SECONDI 300
 
 @interface TTCardViewController : UIViewController < UIScrollViewDelegate > {
     
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIImageView  *headerImage;
+    IBOutlet UIImageView  *headerLogo;
     IBOutlet UIActivityIndicatorView *activity;
     IBOutlet UIView *containerView;
     
@@ -38,6 +40,9 @@
     
     IBOutlet FBProfilePictureView *imageView;
     NSDateFormatter *dateFormatter;
+    
+    UIImageView *nuvole;
+    NSDate *scadenzaTessera;
     
     BOOL facebookInfoLoaded;
     BOOL needShowTour;

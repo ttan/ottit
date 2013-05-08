@@ -25,7 +25,6 @@
         // Custom initialization
 
         self.title = @"Settings";
-        self.tabBarItem.image = [UIImage imageNamed:@"second.png"];
 
     }
 

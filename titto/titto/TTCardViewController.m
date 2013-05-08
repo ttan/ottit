@@ -22,9 +22,7 @@
     if (self) {
         // Custom initialization
         self.title = @"Card";
-        
-        self.tabBarItem.image = [UIImage imageNamed:@"second.png"];
-        
+                
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(facebookChanged)
                                                      name:kTTFacebookManagerSessionChange
@@ -34,7 +32,7 @@
                                                  selector:@selector(facebookUserLoaded)
                                                      name:kTTFacebookManagerUserLoaded
                                                    object:nil];
-        
+
     }
     return self;
 }
@@ -42,6 +40,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if ([[UIScreen mainScreen] applicationFrame].size.height>480.0f) {
+        
+        scrollView.contentInset = UIEdgeInsetsMake(88.0f,
+                                                   0.0f,
+                                                   0.0f,
+                                                   0.0f);
+    }
+
     
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy"];
@@ -55,10 +62,10 @@
     titlename.font = titlenegozio.font = titletessera.font = [UIFont fontWithName:@"Archer-Semibold" size:16];
     
     imageView.layer.shadowColor = [UIColor colorWithWhite:0.0f
-                                                    alpha:0.7f].CGColor;
-    imageView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+                                                    alpha:0.5f].CGColor;
+    imageView.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
     imageView.layer.shadowOpacity = 1.0f;
-    imageView.layer.shadowRadius = 4.0f;
+    imageView.layer.shadowRadius = 6.0f;
     [imageView setClipsToBounds:NO];
     
     [actionButton setBackgroundImage:[UIImage imageNamed:@"bottone"] forState:UIControlStateNormal];
@@ -71,26 +78,15 @@
     
     loginView.alpha = cardView.alpha = 0.0f;
     
-    UIImageView *nuvole = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nuvole.png"]];
+    nuvole = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nuvole.png"]];
     [nuvole setFrame:CGRectMake(0, 0, 640, 250)];
     [headerImage addSubview:nuvole];
-    
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
-    
-    [animation setRepeatCount:HUGE_VALF];
-    [animation setFromValue:[NSValue valueWithCGPoint:CGPointMake(0.0f, 120.0f)]];
-    [animation setToValue:[NSValue valueWithCGPoint:CGPointMake(headerImage.frame.size.width+10.0f, 120.0f)]];
-    [animation setDuration:15.0f];
-    
-    [animation setValue:@"primary_on"
-                 forKey:@"animation_key"];
-    
-    [nuvole.layer addAnimation:animation
-                     forKey:@"primary_on"];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
+    [self startAnimation];
     
     [scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.view.frame),
                                           CGRectGetHeight(scrollView.frame)+1)];
@@ -236,7 +232,7 @@
     
     if ([[TTFacebookUser currentUser] cardID] && [[[TTFacebookUser currentUser] cardID] length]>0) {
         
-        NSLog(@"%@", [[TTFacebookUser currentUser] cardID]);
+//        NSLog(@"%@", [[TTFacebookUser currentUser] cardID]);
         [self showCard];
         
     }else if ([[TTFacebookManager sharedInstance] isFacebookLoggedIn] && [self canGenerateCard]) {
@@ -251,7 +247,7 @@
 
 - (void)esiteTessera {
     
-    if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
+    if([self isNetworkConnected]){
     
         NSString *urlString = [NSString stringWithFormat:@"http://backend.titto.it/app2013/esisteTessera.php?user_id=%@", [[TTFacebookUser currentUser] userID]];
         
@@ -316,7 +312,7 @@
                                        
                                         if ([self negoziopreferitoImpostato]) {
                                             
-                                            [actionButton setTitle:@"Genera tessera"
+                                            [actionButton setTitle:@"Utilizza tessera"
                                                           forState:UIControlStateNormal];
 
                                         }else {
@@ -369,17 +365,20 @@
             
             [actionButton setTitle:@"Utilizza tessera"
                           forState:UIControlStateNormal];
-            
-            [self hideCard];
+
+            [self showCardView];
+
+//            [self hideCard];
             
         }else {
         
             if ([self negoziopreferitoImpostato]) {
                 
-                [actionButton setTitle:@"Genera tessera"
+                [actionButton setTitle:@"Utilizza tessera"
                               forState:UIControlStateNormal];
                 
             }else {
+                
                 [actionButton setTitle:@"Scegli il tuo negozio"
                               forState:UIControlStateNormal];
                 
@@ -477,7 +476,7 @@
                                [actionButton setTitle:@"Utilizza tessera"
                                              forState:UIControlStateNormal];
                                
-                               [self hideCard];
+//                               [self hideCard];
                                
                                // show loading card
                                [UIView animateWithDuration:0.4f
@@ -522,9 +521,16 @@
     
     NSInteger yOffest = aScrollView.contentOffset.y;
     
-    if (yOffest<0) {
+    if (yOffest<0&&yOffest>-150) {
+        
         yOffest=yOffest*(-1);
+        
         [headerImage setFrame:CGRectMake(0, (-75)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        [headerLogo setFrame:CGRectMake(0, (-70)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+
+    }else if (yOffest>=0) {
+        [headerImage setFrame:CGRectMake(0, -75, self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        [headerLogo setFrame:CGRectMake(0, -70, self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
     }
 }
 
@@ -636,9 +642,11 @@
                          }
                          completion:^(BOOL finished) {
                              
-                             [self performSelector:@selector(hideCard)
-                                        withObject:nil
-                                        afterDelay:60.0f*10];
+                             [NSTimer scheduledTimerWithTimeInterval:TEMPO_SCADENZA_TESSERA_IN_SECONDI
+                                                              target:self
+                                                            selector:@selector(hideCard)
+                                                            userInfo:nil
+                                                             repeats:NO];
                              
                          }];
         
@@ -663,6 +671,40 @@
                          cardView.alpha = 1.0f;
                          actionButton.alpha = 1.0f;
                      }];
+}
+
+#pragma mark - Util
+
+- (BOOL)isNetworkConnected {
+    return ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable);
+}
+
+#pragma mark - Animation 
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    [self startAnimation];
+}
+
+- (void)startAnimation {
+    
+    if (!nuvole.layer.animationKeys || nuvole.layer.animationKeys.count==0) {
+        
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+        
+        [animation setDelegate:self];
+        [animation setRepeatCount:HUGE_VALF];
+        [animation setFromValue:[NSValue valueWithCGPoint:CGPointMake(0.0f, 125.0f)]];
+        [animation setToValue:[NSValue valueWithCGPoint:CGPointMake(headerImage.frame.size.width+10.0f, 125.0f)]];
+        [animation setDuration:15.0f];
+        
+        [animation setValue:@"primary_on"
+                     forKey:@"animation_key"];
+        
+        [nuvole.layer addAnimation:animation
+                            forKey:@"primary_on"];
+        
+    }
+    
 }
 
 @end

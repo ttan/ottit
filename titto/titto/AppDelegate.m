@@ -58,6 +58,42 @@
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
 
+    
+    // For iOS 5 only - custom tabs
+    if ([self.tabBarController.tabBar respondsToSelector:@selector(selectedImageTintColor)])
+    {
+        
+        // Set the background images
+        [[UITabBar appearance] setBackgroundImage: [[UIImage imageNamed:@"bg.png"] stretchableImageWithLeftCapWidth:1.0f
+                                                                                                       topCapHeight:49.0f]];
+        
+        [[UITabBar appearance] setSelectionIndicatorImage:[[UIImage alloc] init]];
+        [[UITabBar appearance] setTintColor:[UIColor clearColor]];
+        
+        [navController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"mappaON.png"]
+                               withFinishedUnselectedImage:[UIImage imageNamed:@"mappa.png"]];
+        [viewController2.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"cardON.png"]
+                                 withFinishedUnselectedImage:[UIImage imageNamed:@"card.png"]];
+        [viewController3.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"newsON.png"]
+                                 withFinishedUnselectedImage:[UIImage imageNamed:@"news.png"]];
+        [viewController4.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"opzioniON.png"]
+                                 withFinishedUnselectedImage:[UIImage imageNamed:@"opzioni.png"]];
+     
+        [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIFont fontWithName:@"HelveticaNeue-Bold"
+                                                                           size:9.0f], UITextAttributeFont,
+                                                           [UIColor whiteColor], UITextAttributeTextColor,
+//                                                           [UIColor blackColor], UITextAttributeTextShadowColor,
+//                                                           [NSValue valueWithCGSize:CGSizeMake(0.0f,
+//                                                                                               1.0f)], UITextAttributeTextShadowOffset,
+                                                            nil]
+                                                 forState:UIControlStateSelected];
+        
+        [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor colorWithWhite:1.0f alpha:0.6f], UITextAttributeTextColor, nil]
+                                                 forState:UIControlStateNormal];
+    }
+    
     [GAI sharedInstance].defaultTracker.useHttps = ![GAI sharedInstance].defaultTracker.useHttps;
     [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"TOM GAY"
                                                     withAction:@"TOM GAY"
@@ -102,8 +138,6 @@
     [[TTFacebookManager sharedInstance] performSelector:@selector(extendFacebook)
                                              withObject:nil
                                              afterDelay:1.0f];
-    
-    NSLog(@"%@", [[NSBundle mainBundle] bundleIdentifier]);
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

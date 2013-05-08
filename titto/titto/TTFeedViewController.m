@@ -23,7 +23,6 @@
     if (self) {
         // Custom initialization
         self.title = @"Feed";
-        self.tabBarItem.image = [UIImage imageNamed:@"first.png"];
     }
     return self;
 }

@@ -34,32 +34,61 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
+    
     [[TTMapManager sharedInstance] setDelegate:self];
+
+    userLocalized=NO;
 
     mapView = [[MKMapView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
     [mapView setDelegate:self];
     [[self view] addSubview:mapView];
-
     [mapView setShowsUserLocation:YES];
-
+    
     [[TTMapManager sharedInstance]loadShopsInformations];
+    
+}
+
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    if (opaqueView){
+        
+        if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
+            [opaqueView removeFromSuperview];
+            opaqueView=nil;
+            
+            NSLog(@"RIAGGIORNO I DATI");
+            
+            [[TTMapManager sharedInstance]loadShopsInformations];
+        
+        }
+    }
 }
 
 -(void)mapView:(MKMapView *)myMapView didUpdateUserLocation:(MKUserLocation *)userLocation{
+    
+    if (!userLocation) {
+        return;
+    }
 
-    if (userLocation.coordinate.latitude==0 && userLocation.coordinate.longitude==0 ) {
+    if (userLocalized) {
+        return;
+    }
+
+    if (userLocation.coordinate.latitude==0 && userLocation.coordinate.longitude==0) {
         MKCoordinateRegion region;
-        region.center = CLLocationCoordinate2DMake(44.493567,11.344757);
-        region.span = MKCoordinateSpanMake(0.2, 0.2);
+        region.center = CLLocationCoordinate2DMake(44.754535,10.513916);
+        region.span = MKCoordinateSpanMake(4, 4);
         region = [mapView regionThatFits:region];
         [mapView setRegion:region animated:YES];
     }else{
-        MKCoordinateRegion mapRegion;
-        mapRegion.center = userLocation.coordinate;
-        mapRegion.span.latitudeDelta = 0.2;
-        mapRegion.span.longitudeDelta = 0.2;
-        [mapView setRegion:mapRegion animated: YES];
+        MKCoordinateRegion region;
+        region.center = userLocation.coordinate;
+        region.span = MKCoordinateSpanMake(0.2, 0.2);
+        region = [mapView regionThatFits:region];
+        [mapView setRegion:region animated:YES];
+        
+        userLocalized=YES;
     }
 }
 
@@ -78,7 +107,7 @@
 
 -(void)mapManagerDidFailLoadData{
 
-    UIView * opaqueView = [[UIView alloc]initWithFrame:self.view.frame];
+    opaqueView = [[UIView alloc]initWithFrame:self.view.frame];
     [opaqueView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75]];
     
     UILabel * messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 180, 280, 80)];

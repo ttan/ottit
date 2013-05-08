@@ -63,11 +63,17 @@
                                    }
                                }
                            }];
-
-    
 }
 
 -(void)requestHoursInfoForIDVenue:(NSString *)idVenue{
+    
+    NSArray * array = [[NSUserDefaults standardUserDefaults]objectForKey:[NSString stringWithFormat:@"%@%@",FS_PREFIX_INFO,idVenue]];
+    
+    if (array){
+        if ([[self delegate] respondsToSelector:@selector(foursquareManagerDidGetHour:)]) {
+            [[self delegate] foursquareManagerDidGetHour:array];
+        }
+    }
     
     if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
         

@@ -21,6 +21,9 @@
     NSMutableArray * shopArray;
     TTShopDetailViewController * shopViewController;
 
+    BOOL userLocalized;
+    
+    UIView * opaqueView;
 }
 
 @end

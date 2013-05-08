@@ -24,7 +24,7 @@
     if (self) {
         // Custom initialization
 
-        self.title = @"Settings";
+        self.title = @"Altro";
 
     }
 

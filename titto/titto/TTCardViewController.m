@@ -21,7 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"Card";
+        self.title = @"Tessera";
                 
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(facebookChanged)

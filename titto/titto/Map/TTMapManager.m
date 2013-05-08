@@ -52,14 +52,12 @@
         if ([[NSUserDefaults standardUserDefaults]objectForKey:MAP_PINS_CACHE]) {
             [self convertJSONInformation:[[NSUserDefaults standardUserDefaults]objectForKey:MAP_PINS_CACHE]];
         }else{
-
             if ([[self delegate] respondsToSelector:@selector(mapManagerDidFailLoadData)]) {
                 [[self delegate] mapManagerDidFailLoadData];
             }
         }
     }
 }
-
 
 -(void)convertJSONInformation:(NSData *)jsonData
 {

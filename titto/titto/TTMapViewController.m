@@ -7,6 +7,7 @@
 //
 
 #import "TTMapViewController.h"
+#import "Reachability.h"
 
 @interface TTMapViewController ()
 
@@ -34,49 +35,77 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+
     [[TTMapManager sharedInstance] setDelegate:self];
 
     mapView = [[MKMapView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
     [mapView setDelegate:self];
-    [mapView setShowsUserLocation:YES];
     [[self view] addSubview:mapView];
 
+    [mapView setShowsUserLocation:YES];
+
     [[TTMapManager sharedInstance]loadShopsInformations];
-    
-    [self performSelector:@selector(updateMapPosition) withObject:nil afterDelay:4];
-    
 }
 
+-(void)mapView:(MKMapView *)myMapView didUpdateUserLocation:(MKUserLocation *)userLocation{
 
--(void)updateMapPosition{
-
-    MKCoordinateRegion mapRegion;
-    mapRegion.center = mapView.userLocation.coordinate;
-    mapRegion.span.latitudeDelta = 0.2;
-    mapRegion.span.longitudeDelta = 0.2;
-    [mapView setRegion:mapRegion animated: YES];
-
+    if (userLocation.coordinate.latitude==0 && userLocation.coordinate.longitude==0 ) {
+        MKCoordinateRegion region;
+        region.center = CLLocationCoordinate2DMake(44.493567,11.344757);
+        region.span = MKCoordinateSpanMake(0.2, 0.2);
+        region = [mapView regionThatFits:region];
+        [mapView setRegion:region animated:YES];
+    }else{
+        MKCoordinateRegion mapRegion;
+        mapRegion.center = userLocation.coordinate;
+        mapRegion.span.latitudeDelta = 0.2;
+        mapRegion.span.longitudeDelta = 0.2;
+        [mapView setRegion:mapRegion animated: YES];
+    }
 }
 
 -(void)mapManagerDidLoadData:(NSArray *)infoList{
 
+    if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
+        [self performSelectorInBackground:@selector(cacheShopInformations:) withObject:infoList];
+    }
     if (shopArray) {
         shopArray=nil;
     }
-
     shopArray = [[NSMutableArray alloc] initWithArray:infoList];
     [self updatePinList];
-
 }
 
 
 -(void)mapManagerDidFailLoadData{
 
+    UIView * opaqueView = [[UIView alloc]initWithFrame:self.view.frame];
+    [opaqueView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75]];
     
+    UILabel * messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 180, 280, 80)];
+    [messageLabel setText:@"Hai bisogno di una connessione ad internet per visualizzare gli aggiornamenti"];
+    [messageLabel setBackgroundColor:[UIColor clearColor]];
+    [messageLabel setNumberOfLines:4];
+    [messageLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [messageLabel setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1.0]];
+    [messageLabel setTextAlignment:NSTextAlignmentCenter];
+    [opaqueView addSubview:messageLabel];
+
+    [[self view] addSubview:opaqueView];
 
 }
 
+
+-(void)cacheShopInformations:(id)shops{
+
+    for (NSDictionary * dict in shops){
+        NSData * imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[dict objectForKey:@"img"]]];
+        [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:[dict objectForKey:@"img"]];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+
+        [[TTFoursquareManager sharedInstance]saveHoursInfoForIDVenue:[dict objectForKey:@"foursquare"]];
+    }
+}
 
 -(void)updatePinList{
 

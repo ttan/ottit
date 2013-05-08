@@ -44,11 +44,6 @@
     [self performSelectorInBackground:@selector(getFourSquareData)
                            withObject:nil];
 
-//    [[contentView layer] setShadowColor:[UIColor blackColor].CGColor];
-//    [[contentView layer] setShadowOffset:CGSizeMake(0, -1)];
-//    [[contentView layer] setShadowOpacity:0.5];
-//    [[contentView layer] setMasksToBounds:NO];
-
     [orarioAperturaLabel setText:@"ORARI DI \nAPERTURA"];
     [orarioAperturaLabel setNumberOfLines:2];
     [orarioAperturaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
@@ -66,36 +61,25 @@
 
     [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
     [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
-    
+
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
 
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    
     [self setTitle:[_infoDict objectForKey:@"citta"]];
-    
-    UIImage *img;
-    
-    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable) {
-        
-        NSString * stringURL;
-        
-        if ([[_infoDict objectForKey:@"img"] length]>0){
-            
-            stringURL = [[NSString alloc]initWithString:[_infoDict objectForKey:@"img"]];
-            
-            NSData * dataImage = [NSData dataWithContentsOfURL:[NSURL URLWithString:stringURL]];
-            img = [[UIImage alloc]initWithData:dataImage];
-            
-        }else{
-            
-            img = [UIImage imageNamed:@"header.png"];
-            
-        }
-        
-    }else{
+    UIImage * img = [[UIImage alloc]initWithData:[[NSUserDefaults standardUserDefaults]objectForKey:[_infoDict objectForKey:@"img"]]];
+    if (!img){
         img = [UIImage imageNamed:@"header.png"];
+        if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable) {
+            if ([[_infoDict objectForKey:@"img"] length]>0){
+                NSString * stringURL = [[NSString alloc]initWithString:[_infoDict objectForKey:@"img"]];
+                NSData * dataImage = [NSData dataWithContentsOfURL:[NSURL URLWithString:stringURL]];
+                img = [[UIImage alloc]initWithData:dataImage];
+                [[NSUserDefaults standardUserDefaults] setObject:dataImage forKey:[_infoDict objectForKey:@"img"]];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+            }
+        }
     }
     
     [headerImageView setImage:img];
@@ -121,13 +105,9 @@
         
         [nastrinoImageView setAlpha:1];
         [nastrinoImageView setImage:[UIImage imageNamed:@"ribbon.aperto.png"]];
-        
     }else{
-        
         [nastrinoImageView setAlpha:0];
-        
     }
-
 }
 
 -(void)getFourSquareData{
@@ -138,33 +118,23 @@
 }
 
 -(void)backToMap{
-    
     [[self navigationController] popViewControllerAnimated:YES];
-    
 }
 
-
 -(void)viewWillDisappear:(BOOL)animated{
-
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
-
 }
 
 -(void)updateStarStatus{
-
     if ([[_infoDict objectForKey:@"cod_fb"] isEqualToString:[[[NSUserDefaults standardUserDefaults]objectForKey:FAVORITE_SHOP] objectForKey:@"cod_fb"]]) {
-
         [starImageView setImage:[UIImage imageNamed:@"star.png"]];
-
     }else{
-
         [starImageView setImage:[UIImage imageNamed:@"star-vuota.png"]];
-
     }
 }
 
 -(void)foursquareManagerDidGetHour:(NSArray *)hours{
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
 
     [noConnectionLabel setAlpha:0];
@@ -314,7 +284,7 @@
 
     [[NSUserDefaults standardUserDefaults] setObject:_infoDict forKey:FAVORITE_SHOP];
     [self updateStarStatus];
-    
+
 }
 
 

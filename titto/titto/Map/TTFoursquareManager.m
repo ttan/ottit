@@ -29,6 +29,44 @@
 }
 
 
+-(void)saveHoursInfoForIDVenue:(NSString *)idVenue;
+{
+
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"YYYYMMdd"];
+
+    NSString * stringURL = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/4d5006e0253d6a310c6b5e29/hours?client_id=%@&client_secret=%@&v=%@",CLIENT_ID,CLIENT_SECRET,[dateFormatter stringFromDate:[NSDate date]]];
+
+    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:stringURL]];
+
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+
+                               if (!error) {
+                                   NSDictionary * dataDict = [NSJSONSerialization JSONObjectWithData:data
+                                                                                             options:NSJSONReadingAllowFragments
+                                                                                               error:nil];
+
+                                   if ([[[dataDict objectForKey:@"meta"] objectForKey:@"code"] integerValue]==200){
+                                       NSArray * array = [[[dataDict objectForKey:@"response"] objectForKey:@"hours"] objectForKey:@"timeframes"];
+
+                                       [[NSUserDefaults standardUserDefaults]setObject:array forKey:[NSString stringWithFormat:@"%@%@",FS_PREFIX_INFO,idVenue]];
+                                       [[NSUserDefaults standardUserDefaults]synchronize];
+
+//                                       dispatch_async(dispatch_get_main_queue(),^{
+//                                           
+//                                           if ([[self delegate] respondsToSelector:@selector(foursquareManagerDidGetHour:)]) {
+//                                               [[self delegate] foursquareManagerDidGetHour:array];
+//                                           }
+//                                       });
+                                   }
+                               }
+                           }];
+
+    
+}
+
 -(void)requestHoursInfoForIDVenue:(NSString *)idVenue{
     
     if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
@@ -48,13 +86,13 @@
                                        NSDictionary * dataDict = [NSJSONSerialization JSONObjectWithData:data
                                                                                                  options:NSJSONReadingAllowFragments
                                                                                                    error:nil];
-                                       
+
                                        if ([[[dataDict objectForKey:@"meta"] objectForKey:@"code"] integerValue]==200){
-                                           
                                            NSArray * array = [[[dataDict objectForKey:@"response"] objectForKey:@"hours"] objectForKey:@"timeframes"];
                                            
                                            [[NSUserDefaults standardUserDefaults]setObject:array forKey:[NSString stringWithFormat:@"%@%@",FS_PREFIX_INFO,idVenue]];
-                                           
+                                           [[NSUserDefaults standardUserDefaults]synchronize];
+
                                            dispatch_async(dispatch_get_main_queue(), ^{
                                                
                                                if ([[self delegate] respondsToSelector:@selector(foursquareManagerDidGetHour:)]) {
@@ -77,10 +115,8 @@
             if ([[self delegate] respondsToSelector:@selector(foursquareManagerGetHourDidFail)]) {
                 [[self delegate] foursquareManagerGetHourDidFail];
             }
-            
         }
     }
-
 }
 
 

@@ -25,6 +25,8 @@
 
 + (TTFoursquareManager *)sharedInstance;
 
+-(void)saveHoursInfoForIDVenue:(NSString *)idVenue;
+
 -(void)requestHoursInfoForIDVenue:(NSString *)idVenue;
 -(BOOL)isShopOpenWithIdVenue:(NSString *)idVenue;
 @end

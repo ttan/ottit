@@ -13,7 +13,7 @@
 
 #import "UIBarButtonItem+StyledButton.h"
 
-#define HEADER_IMAGE_HEIGHT 300
+#define HEADER_IMAGE_HEIGHT 310
 
 @interface TTShopDetailViewController ()
 
@@ -64,14 +64,13 @@
     [[self view] setBackgroundColor:[UIColor colorWithRed:((float)241/255) green:((float)241/255) blue:((float)241/255) alpha:1]];
 
     [[contentView layer] setCornerRadius:5];
-    [contentView.layer setShadowPath:[UIBezierPath bezierPathWithRect:CGRectMake(0, -2, contentView.frame.size.width, contentView.frame.size.height)].CGPath];
+    [contentView.layer setShadowPath:[UIBezierPath bezierPathWithRect:CGRectMake(0, -2, contentView.frame.size.width, contentView.frame.size.height/2)].CGPath];
     [[contentView layer]setShadowColor:[UIColor blackColor].CGColor];
     [[contentView layer] setShadowOpacity:0.3];
     [[contentView layer] setShadowRadius:5];
-    
-    
+
     [self setTitle:[_infoDict objectForKey:@"citta"]];
-    
+
 //    self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
 
     backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -79,7 +78,7 @@
     [backButton setImage:[UIImage imageNamed:@"backBtn.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:backButton];
-    
+
     NSLog(@"%@",[_infoDict objectForKey:@"img"]);
 
     UIImage * img = [[UIImage alloc]initWithData:[[NSUserDefaults standardUserDefaults]objectForKey:[_infoDict objectForKey:@"img"]]];
@@ -95,10 +94,8 @@
             }
         }
     }
-    
-    [headerImageView setImage:img];
 
-    
+    [headerImageView setImage:img];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -108,7 +105,6 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-
 
     [emailContentLabel setTitle:[_infoDict objectForKey:@"mail"] forState:UIControlStateNormal];
     [[emailContentLabel titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:18]];
@@ -120,7 +116,7 @@
     [predefinedButton setTitle:@"Preferito" forState:UIControlStateNormal];
 
     [self updateStarStatus];
-    
+
     if ([[TTFoursquareManager sharedInstance]isShopOpenWithIdVenue:[_infoDict objectForKey:@"foursquare"]]) {
         
         [nastrinoImageView setAlpha:1];
@@ -323,13 +319,13 @@
     if (yOffest<0) {
         yOffest=yOffest*(-1);
         [headerImageView setFrame:CGRectMake(0, (-95)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
-        
+
     }else{
 
-        CGFloat alpha = 1-(((CGFloat)(yOffest-65)/100)*2);
+        CGFloat alpha = 1-(((CGFloat)(yOffest-60)/100)*2);
         [backButton setAlpha:alpha];
         
-        if (alpha<0.4) {
+        if (alpha<0.25) {
             [backButton setEnabled:NO];
         }else{
             [backButton setEnabled:YES];

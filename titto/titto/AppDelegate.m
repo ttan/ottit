@@ -67,7 +67,8 @@
         [[UITabBar appearance] setBackgroundImage: [[UIImage imageNamed:@"bg.png"] stretchableImageWithLeftCapWidth:1.0f
                                                                                                        topCapHeight:49.0f]];
         
-        [[UITabBar appearance] setSelectionIndicatorImage:[[UIImage alloc] init]];
+        [[UITabBar appearance] setSelectionIndicatorImage:[[UIImage imageNamed:@"bg-hover.png"] stretchableImageWithLeftCapWidth:2.0f
+                                                                                                              topCapHeight:49.0f]];
         [[UITabBar appearance] setTintColor:[UIColor clearColor]];
         
         [navController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"mappaON.png"]
@@ -82,7 +83,10 @@
         [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                            [UIFont fontWithName:@"HelveticaNeue-Bold"
                                                                            size:9.0f], UITextAttributeFont,
-                                                           [UIColor whiteColor], UITextAttributeTextColor,
+                                                           [UIColor colorWithRed:(99.0f/255.0f)
+                                                                           green:(58.0f/255.0f)
+                                                                            blue:0.0f
+                                                                           alpha:1.0f], UITextAttributeTextColor,
 //                                                           [UIColor blackColor], UITextAttributeTextShadowColor,
 //                                                           [NSValue valueWithCGSize:CGSizeMake(0.0f,
 //                                                                                               1.0f)], UITextAttributeTextShadowOffset,
@@ -90,7 +94,7 @@
                                                  forState:UIControlStateSelected];
         
         [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                           [UIColor colorWithWhite:1.0f alpha:0.6f], UITextAttributeTextColor, nil]
+                                                           [UIColor colorWithWhite:1.0f alpha:1.0f], UITextAttributeTextColor, nil]
                                                  forState:UIControlStateNormal];
     }
     

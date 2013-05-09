@@ -49,6 +49,14 @@
                                                    0.0f);
     }
 
+    CGRect rect = CGRectMake(0.0f,
+                             -2.0f,
+                             containerView.frame.size.width,
+                             10.0f);
+    
+    [containerView.layer setShadowPath:[UIBezierPath bezierPathWithRect:rect].CGPath];
+    [containerView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [containerView.layer setShadowOpacity:0.2f];
     
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy"];
@@ -63,9 +71,9 @@
     
     imageView.layer.shadowColor = [UIColor colorWithWhite:0.0f
                                                     alpha:0.5f].CGColor;
-    imageView.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
-    imageView.layer.shadowOpacity = 1.0f;
-    imageView.layer.shadowRadius = 6.0f;
+    imageView.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
+    imageView.layer.shadowOpacity = 0.5f;
+    imageView.layer.shadowRadius = 2.0f;
     [imageView setClipsToBounds:NO];
     
     [actionButton setBackgroundImage:[UIImage imageNamed:@"bottone"] forState:UIControlStateNormal];
@@ -105,7 +113,8 @@
         }else {
 
             [self esiteTessera];
-
+            [self checkTesseraStatus];
+            
         }
         
     }else {
@@ -296,7 +305,8 @@
                                            
                                            [[TTFacebookUser currentUser] saveUser];
                                            
-                                           tessera.alpha = 0.0f;
+//                                           tessera.alpha = 0.0f;
+                                           [self checkTesseraStatus];
                                            
                                            [negozio setText:[NSString stringWithFormat:@"%@, %@", [self cittaNegozio], [self indirizzoNegozio]]];
                                            [tessera setText:[NSString stringWithFormat:@"%@", [[TTFacebookUser currentUser] cardID]]];
@@ -642,16 +652,52 @@
                          }
                          completion:^(BOOL finished) {
                              
-                             [NSTimer scheduledTimerWithTimeInterval:TEMPO_SCADENZA_TESSERA_IN_SECONDI
-                                                              target:self
-                                                            selector:@selector(hideCard)
-                                                            userInfo:nil
-                                                             repeats:NO];
+                             [[NSUserDefaults standardUserDefaults] setObject:[NSDate date]
+                                                                       forKey:TITTO_CARD_LAST_DATE_USED];
+                             [[NSUserDefaults standardUserDefaults] synchronize];
+                             
+//                             [NSTimer scheduledTimerWithTimeInterval:TEMPO_SCADENZA_TESSERA_IN_SECONDI
+//                                                              target:self
+//                                                            selector:@selector(hideCard)
+//                                                            userInfo:nil
+//                                                             repeats:NO];
                              
                          }];
         
     }
     
+}
+
+- (void)checkTesseraStatus {
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:TITTO_CARD_LAST_DATE_USED]) {
+        
+        NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:TITTO_CARD_LAST_DATE_USED];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"dd"];
+    
+        NSLog(@"%i   %i", [[formatter stringFromDate:date] intValue], [[formatter stringFromDate:[NSDate date]] intValue]);
+        
+        if ([[formatter stringFromDate:date] intValue]!=[[formatter stringFromDate:[NSDate date]] intValue]) {
+            
+            // sblocca
+            tessera.alpha = 0.0f;
+
+            
+        }else {
+            
+            if ([date timeIntervalSinceNow]>(60*60*24)) {
+                
+                // sblocca
+                tessera.alpha = 0.0f;
+   
+            }else {
+                
+                tessera.alpha = 1.0f;
+
+            }
+        }
+    }
 }
 
 - (void)hideCardView {

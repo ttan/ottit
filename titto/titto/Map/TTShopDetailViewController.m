@@ -13,7 +13,7 @@
 
 #import "UIBarButtonItem+StyledButton.h"
 
-#define HEADER_IMAGE_HEIGHT 278
+#define HEADER_IMAGE_HEIGHT 300
 
 @interface TTShopDetailViewController ()
 
@@ -62,12 +62,19 @@
     [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
     [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
 
+    [self setTitle:[_infoDict objectForKey:@"citta"]];
+
+    
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
 
-}
+    backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setFrame:CGRectMake(0, 0, 30, 40)];
+    [backButton setImage:[UIImage imageNamed:@"backArrow.png"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    [[self view] addSubview:backButton];
+    
+    NSLog(@"%@",[_infoDict objectForKey:@"img"]);
 
--(void)viewWillAppear:(BOOL)animated{
-    [self setTitle:[_infoDict objectForKey:@"citta"]];
     UIImage * img = [[UIImage alloc]initWithData:[[NSUserDefaults standardUserDefaults]objectForKey:[_infoDict objectForKey:@"img"]]];
     if (!img){
         img = [UIImage imageNamed:@"header.png"];
@@ -83,11 +90,17 @@
     }
     
     [headerImageView setImage:img];
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+//    [[self navigationController] setNavigationBarHidden:NO animated:YES];
 
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+
     [scrollView setContentOffset:CGPointMake(0, 0)];
 
     [emailContentLabel setTitle:[_infoDict objectForKey:@"mail"] forState:UIControlStateNormal];
@@ -108,6 +121,12 @@
     }else{
         [nastrinoImageView setAlpha:0];
     }
+}
+
+-(void)backAction{
+    
+    [[self navigationController] popViewControllerAnimated:YES];
+    
 }
 
 -(void)getFourSquareData{
@@ -298,10 +317,10 @@
 -(void)scrollViewDidScroll:(UIScrollView *)aScrollView{
 
     NSInteger yOffest = aScrollView.contentOffset.y;
-
+    
     if (yOffest<0) {
         yOffest=yOffest*(-1);
-        [headerImageView setFrame:CGRectMake(0, (-75)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        [headerImageView setFrame:CGRectMake(0, (-95)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
     }
 }
 

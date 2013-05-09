@@ -57,6 +57,8 @@
 
     MFMailComposeViewController *mailer ;
 
+    UIButton * backButton;
+    
 }
 
 @property (nonatomic,strong)NSDictionary * infoDict;

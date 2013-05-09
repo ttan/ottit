@@ -53,23 +53,30 @@
 
     [scrollView setDelegate:self];
     [scrollView setBackgroundColor:[UIColor clearColor]];
+    [scrollView setShowsVerticalScrollIndicator:NO];
     
     [indirizzoLabel setText:[NSString stringWithFormat:@"%@",[_infoDict objectForKey:@"indirizzo"]]];
     [indirizzoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:25]];
     [cittaLabel setText:[_infoDict objectForKey:@"citta"]];
     [cittaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-
-    [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
-    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
-
-    [self setTitle:[_infoDict objectForKey:@"citta"]];
-
     
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
+    [contentView setBackgroundColor:[UIColor colorWithRed:((float)241/255) green:((float)241/255) blue:((float)241/255) alpha:1]];
+    [[self view] setBackgroundColor:[UIColor colorWithRed:((float)241/255) green:((float)241/255) blue:((float)241/255) alpha:1]];
+
+    [[contentView layer] setCornerRadius:5];
+    [contentView.layer setShadowPath:[UIBezierPath bezierPathWithRect:CGRectMake(0, -2, contentView.frame.size.width, contentView.frame.size.height)].CGPath];
+    [[contentView layer]setShadowColor:[UIColor blackColor].CGColor];
+    [[contentView layer] setShadowOpacity:0.3];
+    [[contentView layer] setShadowRadius:5];
+    
+    
+    [self setTitle:[_infoDict objectForKey:@"citta"]];
+    
+//    self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
 
     backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setFrame:CGRectMake(0, 0, 30, 40)];
-    [backButton setImage:[UIImage imageNamed:@"backArrow.png"] forState:UIControlStateNormal];
+    [backButton setFrame:CGRectMake(8, 8, 19, 30)];
+    [backButton setImage:[UIImage imageNamed:@"backBtn.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:backButton];
     
@@ -95,13 +102,13 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-//    [[self navigationController] setNavigationBarHidden:NO animated:YES];
-
+    
+    [scrollView setContentOffset:CGPointMake(0, 0)];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
 
-    [scrollView setContentOffset:CGPointMake(0, 0)];
 
     [emailContentLabel setTitle:[_infoDict objectForKey:@"mail"] forState:UIControlStateNormal];
     [[emailContentLabel titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:18]];
@@ -140,9 +147,6 @@
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
-}
 
 -(void)updateStarStatus{
     if ([[_infoDict objectForKey:@"cod_fb"] isEqualToString:[[[NSUserDefaults standardUserDefaults]objectForKey:FAVORITE_SHOP] objectForKey:@"cod_fb"]]) {
@@ -315,12 +319,23 @@
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)aScrollView{
-
     NSInteger yOffest = aScrollView.contentOffset.y;
-    
     if (yOffest<0) {
         yOffest=yOffest*(-1);
         [headerImageView setFrame:CGRectMake(0, (-95)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        
+    }else{
+
+        CGFloat alpha = 1-(((CGFloat)(yOffest-65)/100)*2);
+        [backButton setAlpha:alpha];
+        
+        if (alpha<0.4) {
+            [backButton setEnabled:NO];
+        }else{
+            [backButton setEnabled:YES];
+
+        }
+
     }
 }
 

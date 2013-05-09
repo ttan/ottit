@@ -36,7 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+    [[self view] setBackgroundColor:[UIColor colorWithRed:((float)241/255) green:((float)241/255) blue:((float)241/255) alpha:1]];
     
     [impostazioniLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:24]];
     [negozioLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];

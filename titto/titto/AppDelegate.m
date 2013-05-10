@@ -83,9 +83,9 @@
         [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                            [UIFont fontWithName:@"HelveticaNeue-Bold"
                                                                            size:9.0f], UITextAttributeFont,
-                                                           [UIColor colorWithRed:(99.0f/255.0f)
-                                                                           green:(58.0f/255.0f)
-                                                                            blue:0.0f
+                                                           [UIColor colorWithRed:(138.0f/255.0f)
+                                                                           green:(202.0f/255.0f)
+                                                                            blue:(253.0f/255.0f)
                                                                            alpha:1.0f], UITextAttributeTextColor,
 //                                                           [UIColor blackColor], UITextAttributeTextShadowColor,
 //                                                           [NSValue valueWithCGSize:CGSizeMake(0.0f,
@@ -94,7 +94,10 @@
                                                  forState:UIControlStateSelected];
         
         [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                           [UIColor colorWithWhite:1.0f alpha:1.0f], UITextAttributeTextColor, nil]
+                                                           [UIColor colorWithRed:(119.0f/255.0f)
+                                                                           green:(119.0f/255.0f)
+                                                                            blue:(119.0f/255.0f)
+                                                                           alpha:1.0f], UITextAttributeTextColor, nil]
                                                  forState:UIControlStateNormal];
     }
     

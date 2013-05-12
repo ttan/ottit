@@ -66,11 +66,11 @@
     [[contentView layer]setShadowColor:[UIColor blackColor].CGColor];
     [[contentView layer] setShadowOpacity:0.3];
     [[contentView layer] setShadowRadius:5];
-    
+
     [self setTitle:[_infoDict objectForKey:@"citta"]];
-    
+
 //    self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
-    
+
     backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setFrame:CGRectMake(8, 8, 19, 30)];
     [backButton setImage:[UIImage imageNamed:@"backBtn.png"] forState:UIControlStateNormal];
@@ -143,11 +143,20 @@
 
 
 -(void)updateStarStatus{
+
     if ([[_infoDict objectForKey:@"cod_fb"] isEqualToString:[[[NSUserDefaults standardUserDefaults]objectForKey:FAVORITE_SHOP] objectForKey:@"cod_fb"]]) {
-        [starImageView setImage:[UIImage imageNamed:@"star.png"]];
+        [starButton setImage:[UIImage imageNamed:@"star.png"] forState:UIControlStateNormal];
     }else{
-        [starImageView setImage:[UIImage imageNamed:@"star-vuota.png"]];
+        [starButton setImage:[UIImage imageNamed:@"star-vuota.png"]forState:UIControlStateNormal];
     }
+
+}
+
+-(IBAction)changeButtonStatus:(id)sender;
+{
+    
+    [self predefinedButtonAction:sender];
+    
 }
 
 -(void)foursquareManagerDidGetHour:(NSArray *)hours{

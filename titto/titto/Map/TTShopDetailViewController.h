@@ -51,7 +51,7 @@
     
     IBOutlet UILabel * noConnectionLabel;
     
-    IBOutlet UIImageView * starImageView;
+    IBOutlet UIButton * starButton;
     IBOutlet UIImageView * nastrinoImageView;
 
     MFMailComposeViewController *mailer ;
@@ -64,4 +64,7 @@
 
 -(IBAction)predefinedButtonAction:(id)sender;
 -(IBAction)openMail:(id)sender;
+
+-(IBAction)changeButtonStatus:(id)sender;
+
 @end

@@ -115,10 +115,7 @@
 						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{140, 498}, {40, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-<<<<<<< HEAD
-=======
 						<reference key="NSWindow"/>
->>>>>>> over 21
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="951559913"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

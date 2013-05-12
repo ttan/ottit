@@ -723,7 +723,12 @@
 - (void)showOver21View {
     
     [over21Title setText:OVER21_MESSAGE];
-    [over21WebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:OVER21_WEB_URL]]];
+    
+    [over21WebView loadRequest:
+     [NSURLRequest requestWithURL:
+      [NSURL URLWithString:
+       [NSString stringWithFormat:@"http://backend.titto.it/app2013/over21.php?negozio=%@", [self idNegozio]]]]];
+    
     [over21WebView setScalesPageToFit:YES];
     
     [UIView animateWithDuration:0.4f

@@ -122,7 +122,7 @@
 
     }
     
-    NSLog(@"%f  %i", (_scrollView.contentOffset.x/_scrollView.frame.size.width), currentIndex  );
+//    NSLog(@"%f  %i", (_scrollView.contentOffset.x/_scrollView.frame.size.width), currentIndex  );
 }
 
 @end

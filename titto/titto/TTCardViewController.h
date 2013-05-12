@@ -18,6 +18,8 @@
 #define OVER21_MESSAGE @"Non hai i giusti requisiti ottenre la tessera!"
 #define OVER21_WEB_URL @"http://titto.it"
 
+//
+
 @interface TTCardViewController : UIViewController < UIScrollViewDelegate > {
     
     // Corpo

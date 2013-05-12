@@ -7,10 +7,10 @@
 	<key>DEVELOPMENT_APP_SECRET</key>
 	<string>8lQylCh5QWmd9i5dtxhMaw</string>
 	<key>PRODUCTION_APP_KEY</key>
-	<string></string>
+	<string>oRtDhuqXRW2CKDXg9f2TbA</string>
 	<key>PRODUCTION_APP_SECRET</key>
-	<string></string>
+	<string>vENpKJPGR_Cxh_udcVIXEQ</string>
 	<key>APP_STORE_OR_AD_HOC_BUILD</key>
-	<string>NO</string>
+	<string>YES</string>
 </dict>
 </plist>

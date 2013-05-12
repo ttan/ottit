@@ -41,14 +41,14 @@
     
     [self performSelectorInBackground:@selector(getFourSquareData)
                            withObject:nil];
-
+    
 //    [orarioAperturaLabel setText:@"ORARI DI \nAPERTURA"];
 //    [orarioAperturaLabel setNumberOfLines:2];
 //    [orarioAperturaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-
+    
     [emailLabel setText:@"EMAIL"];
     [emailLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-
+    
     [scrollView setDelegate:self];
     [scrollView setBackgroundColor:[UIColor clearColor]];
     [scrollView setShowsVerticalScrollIndicator:NO];
@@ -60,17 +60,17 @@
     
     [contentView setBackgroundColor:[UIColor whiteColor]];
     [[self view] setBackgroundColor:[UIColor whiteColor]];
-
-    [[contentView layer] setCornerRadius:5];
+    
+    [[contentView layer] setCornerRadius:4];
     [contentView.layer setShadowPath:[UIBezierPath bezierPathWithRect:CGRectMake(0, -2, contentView.frame.size.width, contentView.frame.size.height/2)].CGPath];
     [[contentView layer]setShadowColor:[UIColor blackColor].CGColor];
     [[contentView layer] setShadowOpacity:0.3];
     [[contentView layer] setShadowRadius:5];
-
+    
     [self setTitle:[_infoDict objectForKey:@"citta"]];
-
+    
 //    self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
-
+    
     backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setFrame:CGRectMake(8, 8, 19, 30)];
     [backButton setImage:[UIImage imageNamed:@"backBtn.png"] forState:UIControlStateNormal];

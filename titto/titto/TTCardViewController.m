@@ -58,13 +58,14 @@
     [containerView.layer setShadowColor:[UIColor blackColor].CGColor];
     [containerView.layer setShadowOpacity:0.2f];
     
+    
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy"];
     
-    [loginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
-    [cardView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
-    [containerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
-    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+    [loginView setBackgroundColor:[UIColor whiteColor]];
+    [cardView setBackgroundColor:[UIColor whiteColor]];
+    [containerView setBackgroundColor:[UIColor whiteColor]];
+    [[self view] setBackgroundColor:[UIColor whiteColor]];
     
     name.font = negozio.font = tessera.font = [UIFont fontWithName:@"Archer-Semibold" size:20];
     titlename.font = titlenegozio.font = titletessera.font = [UIFont fontWithName:@"Archer-Semibold" size:16];

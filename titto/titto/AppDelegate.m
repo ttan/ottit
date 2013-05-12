@@ -64,7 +64,7 @@
     {
         
         // Set the background images
-        [[UITabBar appearance] setBackgroundImage: [UIImage imageNamed:@"bg.png"]];
+        [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"bg.png"]];
 
         [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"bg-hover.png"]];
 

@@ -16,7 +16,7 @@
 #import "TourTesseraViewController.h"
 
 #define FIRST_EVER_LAUNCH @"FIRST_EVER_LAUNCH"
-#define FORCE_TOUR NO
+#define FORCE_TOUR YES
 
 @interface AppDelegate : UIResponder < UIApplicationDelegate, UITabBarControllerDelegate ,UAPushNotificationDelegate>
 

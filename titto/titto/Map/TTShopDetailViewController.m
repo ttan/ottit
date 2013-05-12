@@ -41,18 +41,14 @@
     
     [self performSelectorInBackground:@selector(getFourSquareData)
                            withObject:nil];
-    
-//    [orarioAperturaLabel setText:@"ORARI DI \nAPERTURA"];
-//    [orarioAperturaLabel setNumberOfLines:2];
-//    [orarioAperturaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
     [emailLabel setText:@"EMAIL"];
     [emailLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-    
+
     [scrollView setDelegate:self];
     [scrollView setBackgroundColor:[UIColor clearColor]];
     [scrollView setShowsVerticalScrollIndicator:NO];
-    
+
     [indirizzoLabel setText:[NSString stringWithFormat:@"%@",[_infoDict objectForKey:@"indirizzo"]]];
     [indirizzoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:25]];
     [cittaLabel setText:[_infoDict objectForKey:@"citta"]];
@@ -76,8 +72,6 @@
     [backButton setImage:[UIImage imageNamed:@"backBtn.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:backButton];
-
-    NSLog(@"%@",[_infoDict objectForKey:@"img"]);
 
     UIImage * img = [[UIImage alloc]initWithData:[[NSUserDefaults standardUserDefaults]objectForKey:[_infoDict objectForKey:@"img"]]];
     if (!img){
@@ -106,8 +100,8 @@
 
     [emailContentLabel setTitle:[_infoDict objectForKey:@"mail"] forState:UIControlStateNormal];
     [[emailContentLabel titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:18]];
-    [emailContentLabel setTitleColor:[UIColor colorWithRed:.41 green:.41 blue:.41 alpha:1] forState:UIControlStateNormal];
-
+    [emailContentLabel setTitleColor:[UIColor colorWithRed:((float)100/255) green:((float)100/255) blue:((float)100/255) alpha:1] forState:UIControlStateNormal];
+    [emailContentLabel setTitleColor:[UIColor colorWithRed:((float)50/255) green:((float)50/255) blue:((float)50/255) alpha:1] forState:UIControlStateHighlighted];
     [predefinedButton setBackgroundImage:[UIImage imageNamed:@"bottone.png"] forState:UIControlStateNormal];
     [[predefinedButton titleLabel]setFont:[UIFont fontWithName:@"Archer-Semibold" size:16]];
     [predefinedButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -116,7 +110,7 @@
     [self updateStarStatus];
 
     if ([[TTFoursquareManager sharedInstance]isShopOpenWithIdVenue:[_infoDict objectForKey:@"foursquare"]]) {
-        
+
         [nastrinoImageView setAlpha:1];
         [nastrinoImageView setImage:[UIImage imageNamed:@"ribbon.aperto.png"]];
     }else{

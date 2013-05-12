@@ -202,7 +202,7 @@
 												<int key="IBUIContentMode">7</int>
 												<bool key="IBUIUserInteractionEnabled">NO</bool>
 												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-												<string key="IBUIText">*Vale solo per la coppetta original</string>
+												<string key="IBUIText">Vale solo per la coppetta original</string>
 												<object class="NSColor" key="IBUITextColor" id="66776054">
 													<int key="NSColorSpace">3</int>
 													<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>

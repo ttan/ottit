@@ -34,10 +34,11 @@
     [super viewDidLoad];
     
     scrollView.delegate = self;
-    [pageControl setPattern:@"aaa"];
-    [pageControl setImage:[UIImage imageNamed:@"dot-not.png"]
-         highlightedImage:[UIImage imageNamed:@"dot-sel.png"]
-                   forKey:@"a"];
+//    [pageControl setPattern:@"aaa"];
+//    [pageControl setImage:[UIImage imageNamed:@"dot-not.png"]
+//         highlightedImage:[UIImage imageNamed:@"dot-sel.png"]
+//                   forKey:@"a"];
+//    [pageControl setDelegate:self];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                           target:self
@@ -91,14 +92,14 @@
 
 #pragma mark - PageControl
 
-- (IBAction)pgValueChange:(id)sender {
+- (IBAction)pageControlValueChange:(id)sender {
     
-    [scrollView scrollRectToVisible:CGRectMake(pageControl.page*scrollView.frame.size.width,
+    [scrollView scrollRectToVisible:CGRectMake(pageControl.currentPage*scrollView.frame.size.width,
                                                0.0f,
                                                scrollView.frame.size.width,
                                                scrollView.frame.size.height)
                            animated:YES];
-    
+
 }
 
 #pragma mark - UIScrolView Delegate
@@ -108,7 +109,7 @@
     if ( _scrollView.contentOffset.x/NUMBER_OF_PAGE != currentIndex ) {
         
         currentIndex = ((_scrollView.contentOffset.x+_scrollView.frame.size.width/2)/_scrollView.frame.size.width);
-        [pageControl setPage:currentIndex];
+        [pageControl setCurrentPage:currentIndex];
         
         [UIView animateWithDuration:0.4f
                          animations:^{

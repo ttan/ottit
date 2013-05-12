@@ -73,7 +73,7 @@
     over21Title.font = name.font = negozio.font = tessera.font = [UIFont fontWithName:@"Archer-Semibold" size:20];
     titlename.font = titlenegozio.font = titletessera.font = [UIFont fontWithName:@"Archer-Semibold" size:16];
     
-    coppettaOriginal.font = [UIFont fontWithName:@"Archer-Semibold" size:10];
+    coppettaOriginal.font = [UIFont fontWithName:@"Archer-Semibold" size:12];
     
     imageView.layer.shadowColor = [UIColor colorWithWhite:0.0f
                                                     alpha:0.5f].CGColor;

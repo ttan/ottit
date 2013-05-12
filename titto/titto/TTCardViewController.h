@@ -11,7 +11,7 @@
 #import "TTConfigDefines.h"
 #import "TTFacebookManager.h"
 
-#define CARD_MIN_AGE 26
+#define CARD_MIN_AGE 21
 //#define FORCE_TOUR NO
 #define TEMPO_SCADENZA_TESSERA_IN_SECONDI 300
 

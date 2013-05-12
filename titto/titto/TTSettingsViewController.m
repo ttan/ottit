@@ -38,7 +38,10 @@
 
 //    [[self view] setBackgroundColor:[UIColor colorWithRed:((float)241/255) green:((float)241/255) blue:((float)241/255) alpha:1]];
     
-    [[self view]setBackgroundColor:[UIColor whiteColor]];
+    [[self view]setBackgroundColor:[UIColor colorWithRed:((float)248/255) green:((float)248/255) blue:((float)248/255) alpha:1]];
+    
+    [[cambiaNegozioButton titleLabel] setTextAlignment:NSTextAlignmentCenter];
+    [[logoutButton titleLabel] setTextAlignment:NSTextAlignmentCenter];
     
     [impostazioniLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:24]];
     [negozioLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
@@ -64,11 +67,11 @@
 
     if (indirizzo){
         [[cambiaNegozioButton titleLabel] setText:@"Cambia"];
-        [cambiaNegozioButton setFrame:CGRectMake(cambiaNegozioButton.frame.origin.x, 105, cambiaNegozioButton.frame.size.width, cambiaNegozioButton.frame.size.height)];
+        [cambiaNegozioButton setFrame:CGRectMake(cambiaNegozioButton.frame.origin.x, 115, cambiaNegozioButton.frame.size.width, cambiaNegozioButton.frame.size.height)];
         [negozioPreferitoLabel setText:indirizzo];
     }else{
         [[cambiaNegozioButton titleLabel] setText:@"Scegli"];
-        [cambiaNegozioButton setFrame:CGRectMake(cambiaNegozioButton.frame.origin.x, 85, cambiaNegozioButton.frame.size.width, cambiaNegozioButton.frame.size.height)];
+        [cambiaNegozioButton setFrame:CGRectMake(cambiaNegozioButton.frame.origin.x, 90, cambiaNegozioButton.frame.size.width, cambiaNegozioButton.frame.size.height)];
     }
 
     if ([[TTFacebookManager sharedInstance]isFacebookLoggedIn]){

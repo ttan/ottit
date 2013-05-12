@@ -45,7 +45,7 @@
 //    [orarioAperturaLabel setText:@"ORARI DI \nAPERTURA"];
 //    [orarioAperturaLabel setNumberOfLines:2];
 //    [orarioAperturaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-    
+
     [emailLabel setText:@"EMAIL"];
     [emailLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
     
@@ -57,10 +57,10 @@
     [indirizzoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:25]];
     [cittaLabel setText:[_infoDict objectForKey:@"citta"]];
     [cittaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-    
-    [contentView setBackgroundColor:[UIColor whiteColor]];
-    [[self view] setBackgroundColor:[UIColor whiteColor]];
-    
+
+    [contentView setBackgroundColor:[UIColor colorWithRed:((float)248/255) green:((float)248/255) blue:((float)248/255) alpha:1]];
+    [[self view] setBackgroundColor:[UIColor colorWithRed:((float)248/255) green:((float)248/255) blue:((float)248/255) alpha:1]];
+
     [[contentView layer] setCornerRadius:4];
     [contentView.layer setShadowPath:[UIBezierPath bezierPathWithRect:CGRectMake(0, -2, contentView.frame.size.width, contentView.frame.size.height/2)].CGPath];
     [[contentView layer]setShadowColor:[UIColor blackColor].CGColor];

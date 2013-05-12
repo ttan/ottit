@@ -20,7 +20,7 @@
 
 //
 
-@interface TTCardViewController : UIViewController < UIScrollViewDelegate > {
+@interface TTCardViewController : UIViewController < UIScrollViewDelegate, UIWebViewDelegate > {
     
     // Corpo
     IBOutlet UIScrollView *scrollView;

@@ -72,7 +72,7 @@
     
     over21Title.font = name.font = negozio.font = tessera.font = [UIFont fontWithName:@"Archer-Semibold" size:20];
     titlename.font = titlenegozio.font = titletessera.font = [UIFont fontWithName:@"Archer-Semibold" size:16];
-    
+
     coppettaOriginal.font = [UIFont fontWithName:@"Archer-Semibold" size:12];
     
     imageView.layer.shadowColor = [UIColor colorWithWhite:0.0f
@@ -95,7 +95,8 @@
     nuvole = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nuvole.png"]];
     [nuvole setFrame:CGRectMake(0, 0, 640, 250)];
     [headerImage addSubview:nuvole];
-    
+ 
+    [over21WebView setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -769,6 +770,41 @@
         
     }
     
+}
+
+#pragma mark - WebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+
+        if ([request.URL.relativePath isEqualToString:@"/twitter-tittogelato"]) {
+            
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitter://tittogelato"]]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"twitter://tittogelato"]];
+            }else {
+                NSString *stringURL = @"http://twitter.com/tittogelato";
+                NSURL *url = [NSURL URLWithString:stringURL];
+                [[UIApplication sharedApplication] openURL:url];
+            }
+        }
+        
+    }
+    
+    
+    return YES;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [activity startAnimating];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [activity stopAnimating];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [activity stopAnimating];
 }
 
 @end

@@ -57,6 +57,9 @@
     [containerView.layer setShadowPath:[UIBezierPath bezierPathWithRect:rect].CGPath];
     [containerView.layer setShadowColor:[UIColor blackColor].CGColor];
     [containerView.layer setShadowOpacity:0.2f];
+    [[containerView layer] setCornerRadius:4];
+    [[cardView layer] setCornerRadius:4];
+    [[loginView layer] setCornerRadius:4];
     
     
     dateFormatter = [[NSDateFormatter alloc] init];

@@ -32,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+//    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
 
 }
 
@@ -129,7 +129,7 @@
 
     if (!noFavoriteShopView){
         noFavoriteShopView = [[UIView alloc]initWithFrame:self.view.frame];
-        [noFavoriteShopView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+        [noFavoriteShopView setBackgroundColor:[UIColor whiteColor]];
         [[self view] addSubview:noFavoriteShopView];
 
         if (!shopButton) {

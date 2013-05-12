@@ -70,7 +70,7 @@
     [containerView setBackgroundColor:[UIColor whiteColor]];
     [[self view] setBackgroundColor:[UIColor whiteColor]];
     
-    name.font = negozio.font = tessera.font = [UIFont fontWithName:@"Archer-Semibold" size:20];
+    over21Title.font = name.font = negozio.font = tessera.font = [UIFont fontWithName:@"Archer-Semibold" size:20];
     titlename.font = titlenegozio.font = titletessera.font = [UIFont fontWithName:@"Archer-Semibold" size:16];
     
     coppettaOriginal.font = [UIFont fontWithName:@"Archer-Semibold" size:10];
@@ -118,9 +118,18 @@
             
         }else {
 
-            [self esiteTessera];
-            [self checkTesseraStatus];
-            
+            if ([self canGenerateCard]) {
+                
+                [self esiteTessera];
+                [self checkTesseraStatus];
+
+            }else {
+                
+                [self hideCardView];
+                [self showOver21View];
+                
+            }
+                        
         }
         
     }else {
@@ -185,18 +194,9 @@
         
     }else {
         
-        [self showCardView];
+        [self hideCardView];
+        [self showOver21View];
         
-        // show can't use card
-        [tessera setText:@"Nooooooo sei old!"];
-        
-        // show webview
-        [UIView animateWithDuration:0.4f
-                         animations:^{
-                             
-                             titletessera.alpha = titlenegozio.alpha = 0.0f;
-                             
-                         }];
     }
 
 }
@@ -710,6 +710,25 @@
                          cardView.alpha = 1.0f;
                          actionButton.alpha = 1.0f;
                          coppettaOriginal.alpha = 1.0f;
+                     }];
+}
+
+- (void)hideOver21View {
+    [UIView animateWithDuration:0.4f
+                     animations:^{
+                         over21View.alpha = 0.0f;
+                     }];
+}
+
+- (void)showOver21View {
+    
+    [over21Title setText:OVER21_MESSAGE];
+    [over21WebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:OVER21_WEB_URL]]];
+    [over21WebView setScalesPageToFit:YES];
+    
+    [UIView animateWithDuration:0.4f
+                     animations:^{
+                         over21View.alpha = 1.0f;
                      }];
 }
 

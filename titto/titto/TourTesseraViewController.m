@@ -34,6 +34,10 @@
     [super viewDidLoad];
     
     scrollView.delegate = self;
+    [pageControl setPattern:@"aaa"];
+    [pageControl setImage:[UIImage imageNamed:@"dot-not.png"]
+         highlightedImage:[UIImage imageNamed:@"dot-sel.png"]
+                   forKey:@"a"];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                           target:self
@@ -51,30 +55,18 @@
     
     for (int i = 0; i<NUMBER_OF_PAGE; i++) {
         
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10.0f + (scrollView.frame.size.width)*i,
-                                                                10.0f,
-                                                                scrollView.frame.size.width - 20.0f,
-                                                                scrollView.frame.size.height - 20.0f)];
-        [view setBackgroundColor:[UIColor colorWithRed:0.0*i
-                                                 green:0.0*i
-                                                  blue:(0.2)+0.2*i
-                                                 alpha:1.0f]];
+        UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f + (scrollView.frame.size.width)*i,
+                                                                          0.0f,
+                                                                          scrollView.frame.size.width - 20.0f,
+                                                                          scrollView.frame.size.height - 40.0f)];
         
-        [view.layer setCornerRadius:8.0f];
+        [view setImage:[UIImage imageNamed:[NSString stringWithFormat:@"testo%i.png",i+1]]];
+        
+        [view setContentMode:UIViewContentModeCenter];
+        [view setBackgroundColor:[UIColor clearColor]];
         
         [scrollView addSubview:view];
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/2-150.0f/2,
-                                                                   30.0f,
-                                                                   150.0f,
-                                                                   50.0f)];
-        [label setBackgroundColor:[UIColor clearColor]];
-        [label setTextAlignment:NSTextAlignmentCenter];
-        [label setTextColor:[UIColor whiteColor]];
-        [label setFont:[UIFont systemFontOfSize:30.0f]];
-        [label setText:[NSString stringWithFormat:@"Pagina %i", i]];
-        
-        [view addSubview:label];
+
     }
     
     currentIndex = 0;
@@ -101,7 +93,7 @@
 
 - (IBAction)pgValueChange:(id)sender {
     
-    [scrollView scrollRectToVisible:CGRectMake(pageControl.currentPage*scrollView.frame.size.width,
+    [scrollView scrollRectToVisible:CGRectMake(pageControl.page*scrollView.frame.size.width,
                                                0.0f,
                                                scrollView.frame.size.width,
                                                scrollView.frame.size.height)
@@ -116,8 +108,17 @@
     if ( _scrollView.contentOffset.x/NUMBER_OF_PAGE != currentIndex ) {
         
         currentIndex = ((_scrollView.contentOffset.x+_scrollView.frame.size.width/2)/_scrollView.frame.size.width);
-        [pageControl setCurrentPage:currentIndex];
+        [pageControl setPage:currentIndex];
         
+        [UIView animateWithDuration:0.4f
+                         animations:^{
+                                 if (currentIndex==2) {
+                                     actionButton.alpha = 1.0f;
+                                 }else {
+                                     actionButton.alpha = 0.0f;
+                                 }
+                         }];
+
     }
     
     NSLog(@"%f  %i", (_scrollView.contentOffset.x/_scrollView.frame.size.width), currentIndex  );

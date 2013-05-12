@@ -87,6 +87,15 @@
 		614D527F17209F840062AFE1 /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 614D527E17209F840062AFE1 /* login-button-small@2x.png */; };
 		6170D1A217273EDB00EDBEB3 /* TourTesseraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6170D1A017273EDB00EDBEB3 /* TourTesseraViewController.m */; };
 		6170D1A317273EDB00EDBEB3 /* TourTesseraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6170D1A117273EDB00EDBEB3 /* TourTesseraViewController.xib */; };
+		61A04577173FF0960009A383 /* dot-not@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A04570173FF0960009A383 /* dot-not@2x.png */; };
+		61A04578173FF0960009A383 /* dot-sel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A04571173FF0960009A383 /* dot-sel@2x.png */; };
+		61A04579173FF0960009A383 /* fondo-tour@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A04572173FF0960009A383 /* fondo-tour@2x.png */; };
+		61A0457A173FF0960009A383 /* frecciaemondo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A04573173FF0960009A383 /* frecciaemondo@2x.png */; };
+		61A0457B173FF0960009A383 /* testo1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A04574173FF0960009A383 /* testo1@2x.png */; };
+		61A0457C173FF0960009A383 /* testo2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A04575173FF0960009A383 /* testo2@2x.png */; };
+		61A0457D173FF0960009A383 /* testo3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A04576173FF0960009A383 /* testo3@2x.png */; };
+		61A04581173FF0A70009A383 /* MCPagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A04580173FF0A70009A383 /* MCPagerView.m */; };
+		61A04583173FF1ED0009A383 /* frecciaemondo.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A04582173FF1ED0009A383 /* frecciaemondo.png */; };
 		61A859551704E281003CD439 /* TTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859531704E281003CD439 /* TTMapViewController.m */; };
 		61A859561704E281003CD439 /* TTMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61A859541704E281003CD439 /* TTMapViewController.xib */; };
 		61A8595A1704E2EC003CD439 /* TTCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A859581704E2EC003CD439 /* TTCardViewController.m */; };
@@ -297,6 +306,16 @@
 		6170D19F17273EDB00EDBEB3 /* TourTesseraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TourTesseraViewController.h; sourceTree = "<group>"; };
 		6170D1A017273EDB00EDBEB3 /* TourTesseraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TourTesseraViewController.m; sourceTree = "<group>"; };
 		6170D1A117273EDB00EDBEB3 /* TourTesseraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TourTesseraViewController.xib; sourceTree = "<group>"; };
+		61A04570173FF0960009A383 /* dot-not@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dot-not@2x.png"; path = "titto/dot-not@2x.png"; sourceTree = SOURCE_ROOT; };
+		61A04571173FF0960009A383 /* dot-sel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dot-sel@2x.png"; path = "titto/dot-sel@2x.png"; sourceTree = SOURCE_ROOT; };
+		61A04572173FF0960009A383 /* fondo-tour@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fondo-tour@2x.png"; path = "titto/fondo-tour@2x.png"; sourceTree = SOURCE_ROOT; };
+		61A04573173FF0960009A383 /* frecciaemondo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "frecciaemondo@2x.png"; path = "titto/frecciaemondo@2x.png"; sourceTree = SOURCE_ROOT; };
+		61A04574173FF0960009A383 /* testo1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "testo1@2x.png"; path = "titto/testo1@2x.png"; sourceTree = SOURCE_ROOT; };
+		61A04575173FF0960009A383 /* testo2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "testo2@2x.png"; path = "titto/testo2@2x.png"; sourceTree = SOURCE_ROOT; };
+		61A04576173FF0960009A383 /* testo3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "testo3@2x.png"; path = "titto/testo3@2x.png"; sourceTree = SOURCE_ROOT; };
+		61A0457F173FF0A70009A383 /* MCPagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPagerView.h; sourceTree = "<group>"; };
+		61A04580173FF0A70009A383 /* MCPagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPagerView.m; sourceTree = "<group>"; };
+		61A04582173FF1ED0009A383 /* frecciaemondo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = frecciaemondo.png; path = titto/frecciaemondo.png; sourceTree = SOURCE_ROOT; };
 		61A859521704E281003CD439 /* TTMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMapViewController.h; path = ../TTMapViewController.h; sourceTree = "<group>"; };
 		61A859531704E281003CD439 /* TTMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTMapViewController.m; path = ../TTMapViewController.m; sourceTree = "<group>"; };
 		61A859541704E281003CD439 /* TTMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TTMapViewController.xib; path = ../TTMapViewController.xib; sourceTree = "<group>"; };
@@ -454,6 +473,7 @@
 		1672BFCA1714B99900C570AE /* @1x */ = {
 			isa = PBXGroup;
 			children = (
+				61A04582173FF1ED0009A383 /* frecciaemondo.png */,
 				52C40275173FAF2000FDCE77 /* bg-hover.png */,
 				52C4025B173FAC9C00FDCE77 /* mappa.png */,
 				52C4025C173FAC9C00FDCE77 /* mappaON.png */,
@@ -475,6 +495,13 @@
 		1672BFCC1714B99900C570AE /* @2x */ = {
 			isa = PBXGroup;
 			children = (
+				61A04570173FF0960009A383 /* dot-not@2x.png */,
+				61A04571173FF0960009A383 /* dot-sel@2x.png */,
+				61A04572173FF0960009A383 /* fondo-tour@2x.png */,
+				61A04573173FF0960009A383 /* frecciaemondo@2x.png */,
+				61A04574173FF0960009A383 /* testo1@2x.png */,
+				61A04575173FF0960009A383 /* testo2@2x.png */,
+				61A04576173FF0960009A383 /* testo3@2x.png */,
 				52C40273173FAF1A00FDCE77 /* bg-hover@2x.png */,
 				52C40267173FACA500FDCE77 /* mappa@2x.png */,
 				52C40268173FACA500FDCE77 /* mappaON@2x.png */,
@@ -738,6 +765,7 @@
 		614AEE711704DCD20039D0DF /* titto */ = {
 			isa = PBXGroup;
 			children = (
+				61A0457E173FF0A70009A383 /* MCPagerView */,
 				52B73DD017271F0E0066869C /* titto.entitlements */,
 				164F301C171DFD0300B7B613 /* Anal */,
 				164F301A171DE79000B7B613 /* Settings */,
@@ -770,6 +798,15 @@
 				614AEE811704DCD20039D0DF /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		61A0457E173FF0A70009A383 /* MCPagerView */ = {
+			isa = PBXGroup;
+			children = (
+				61A0457F173FF0A70009A383 /* MCPagerView.h */,
+				61A04580173FF0A70009A383 /* MCPagerView.m */,
+			);
+			path = MCPagerView;
 			sourceTree = "<group>";
 		};
 		61A859631704E528003CD439 /* Services */ = {
@@ -913,6 +950,14 @@
 				52C40272173FACA500FDCE77 /* opzioniON@2x.png in Resources */,
 				52C40274173FAF1A00FDCE77 /* bg-hover@2x.png in Resources */,
 				52C40276173FAF2000FDCE77 /* bg-hover.png in Resources */,
+				61A04577173FF0960009A383 /* dot-not@2x.png in Resources */,
+				61A04578173FF0960009A383 /* dot-sel@2x.png in Resources */,
+				61A04579173FF0960009A383 /* fondo-tour@2x.png in Resources */,
+				61A0457A173FF0960009A383 /* frecciaemondo@2x.png in Resources */,
+				61A0457B173FF0960009A383 /* testo1@2x.png in Resources */,
+				61A0457C173FF0960009A383 /* testo2@2x.png in Resources */,
+				61A0457D173FF0960009A383 /* testo3@2x.png in Resources */,
+				61A04583173FF1ED0009A383 /* frecciaemondo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -938,6 +983,7 @@
 				161A796D170E1704006DC5C5 /* Reachability.m in Sources */,
 				164F3018171DE75200B7B613 /* TTSettingsViewController.m in Sources */,
 				6170D1A217273EDB00EDBEB3 /* TourTesseraViewController.m in Sources */,
+				61A04581173FF0A70009A383 /* MCPagerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

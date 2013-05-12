@@ -10,10 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TTConfigDefines.h"
 #import "TTFacebookManager.h"
-#import "TourTesseraViewController.h"
 
 #define CARD_MIN_AGE 26
-#define FORCE_TOUR NO
+//#define FORCE_TOUR NO
 #define TEMPO_SCADENZA_TESSERA_IN_SECONDI 300
 
 @interface TTCardViewController : UIViewController < UIScrollViewDelegate > {
@@ -36,6 +35,7 @@
     IBOutlet UILabel *name;
     IBOutlet UILabel *tessera;
     IBOutlet UILabel *negozio;
+    IBOutlet UILabel *coppettaOriginal;
     IBOutlet UIButton *actionButton;
     
     IBOutlet FBProfilePictureView *imageView;

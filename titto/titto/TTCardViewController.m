@@ -70,6 +70,8 @@
     name.font = negozio.font = tessera.font = [UIFont fontWithName:@"Archer-Semibold" size:20];
     titlename.font = titlenegozio.font = titletessera.font = [UIFont fontWithName:@"Archer-Semibold" size:16];
     
+    coppettaOriginal.font = [UIFont fontWithName:@"Archer-Semibold" size:10];
+    
     imageView.layer.shadowColor = [UIColor colorWithWhite:0.0f
                                                     alpha:0.5f].CGColor;
     imageView.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
@@ -335,24 +337,24 @@
                                        
                                    }
                                    
-                                   if (FORCE_TOUR) {
-                                       
-                                       TourTesseraViewController *tourViewController =
-                                       [[TourTesseraViewController alloc] initWithNibName:@"TourTesseraViewController" bundle:nil];
-                                       
-                                       UINavigationController *navController =
-                                       [[UINavigationController alloc] initWithRootViewController:tourViewController];
-                                       
-                                       [navController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-                                       
-                                       [self presentViewController:navController
-                                                          animated:YES
-                                                        completion:^{
-                                                            
-                                                        }];
-                                       
-                                   }
-                                       
+//                                   if (FORCE_TOUR) {
+//                                       
+//                                       TourTesseraViewController *tourViewController =
+//                                       [[TourTesseraViewController alloc] initWithNibName:@"TourTesseraViewController" bundle:nil];
+//                                       
+//                                       UINavigationController *navController =
+//                                       [[UINavigationController alloc] initWithRootViewController:tourViewController];
+//                                       
+//                                       [navController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+//                                       
+//                                       [self presentViewController:navController
+//                                                          animated:YES
+//                                                        completion:^{
+//                                                            
+//                                                        }];
+//                                       
+//                                   }
+                                   
                                    [self showCardView];
                                    
                                    // show loading card
@@ -458,24 +460,8 @@
                                    [[TTFacebookUser currentUser] setCardID:[dict objectForKey:@"tessera"]];
                                }
                                
-                               if (needShowTour || FORCE_TOUR) {
-                                   
-                                   TourTesseraViewController *tourViewController =
-                                   [[TourTesseraViewController alloc] initWithNibName:@"TourTesseraViewController" bundle:nil];
-                                   
-                                   UINavigationController *navController =
-                                   [[UINavigationController alloc] initWithRootViewController:tourViewController];
-                                   
-                                   [navController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-                                   
-                                   [self presentViewController:navController
-                                                      animated:YES
-                                                    completion:^{
-                                                        
-                                                    }];
-                                   
-                               }
-                                                              
+                               // tour
+                               
                                [negozio setText:[NSString stringWithFormat:@"%@, %@", [self cittaNegozio], [self indirizzoNegozio]]];
                                [tessera setText:[NSString stringWithFormat:@"%@", [[TTFacebookUser currentUser] cardID]]];
                                
@@ -698,6 +684,8 @@
 
             }
         }
+    }else {
+        tessera.alpha = 0.0f;
     }
 }
 
@@ -705,6 +693,7 @@
     [UIView animateWithDuration:0.4f
                      animations:^{
                          cardView.alpha = 0.0f;
+                         coppettaOriginal.alpha = 0.0f;
                      }];
 }
 
@@ -717,6 +706,7 @@
                      animations:^{
                          cardView.alpha = 1.0f;
                          actionButton.alpha = 1.0f;
+                         coppettaOriginal.alpha = 1.0f;
                      }];
 }
 

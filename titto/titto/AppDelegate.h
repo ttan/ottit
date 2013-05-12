@@ -13,6 +13,10 @@
 #import "UAirship.h"
 #import "UAPush.h"
 
+#import "TourTesseraViewController.h"
+
+#define FIRST_EVER_LAUNCH @"FIRST_EVER_LAUNCH"
+#define FORCE_TOUR NO
 
 @interface AppDelegate : UIResponder < UIApplicationDelegate, UITabBarControllerDelegate ,UAPushNotificationDelegate>
 

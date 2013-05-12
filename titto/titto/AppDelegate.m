@@ -100,6 +100,23 @@
                                                  forState:UIControlStateNormal];
 
     }
+
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:FIRST_EVER_LAUNCH] || FORCE_TOUR) {
+        
+        TourTesseraViewController *tourViewController =
+        [[TourTesseraViewController alloc] initWithNibName:@"TourTesseraViewController" bundle:nil];
+        
+        [tourViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+        
+        [self.tabBarController presentViewController:tourViewController
+                                            animated:NO
+                                          completion:^{
+                                              [[NSUserDefaults standardUserDefaults] setBool:YES
+                                                                                      forKey:FIRST_EVER_LAUNCH];
+                                              [[NSUserDefaults standardUserDefaults] synchronize];
+                                          }];
+        
+    }
     
     [GAI sharedInstance].defaultTracker.useHttps = ![GAI sharedInstance].defaultTracker.useHttps;
     [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"TOM GAY"

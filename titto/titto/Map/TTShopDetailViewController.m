@@ -68,7 +68,7 @@
 //    self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
 
     backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setFrame:CGRectMake(8, 8, 19, 30)];
+    [backButton setFrame:CGRectMake(5, 2, 37, 40)];
     [backButton setImage:[UIImage imageNamed:@"backBtn.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:backButton];
@@ -88,6 +88,23 @@
     }
 
     [headerImageView setImage:img];
+    
+    UIColor *pinkDarkOp = [UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0];
+    UIColor *pinkLightOp = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = [[headerImageView layer] bounds];
+    gradient.colors = [NSArray arrayWithObjects:
+                       (id)pinkDarkOp.CGColor,
+                       (id)pinkLightOp.CGColor,
+                       nil];
+    gradient.locations = [NSArray arrayWithObjects:
+                          [NSNumber numberWithFloat:0.0f],
+                          [NSNumber numberWithFloat:0.5],
+                          nil];
+    
+    [[headerImageView layer] insertSublayer:gradient atIndex:0];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{

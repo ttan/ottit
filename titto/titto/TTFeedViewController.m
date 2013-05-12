@@ -129,7 +129,7 @@
 
     if (!noFavoriteShopView){
         noFavoriteShopView = [[UIView alloc]initWithFrame:self.view.frame];
-        [noFavoriteShopView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.png"]]];
+        [noFavoriteShopView setBackgroundColor:[UIColor colorWithRed:((float)248/255) green:((float)248/255) blue:((float)248/255) alpha:1]];
         [[self view] addSubview:noFavoriteShopView];
 
         if (!shopButton) {
@@ -156,9 +156,7 @@
 }
 
 -(void)setShopAction{
-    
     [[self tabBarController] setSelectedIndex:0];
-    
 }
 
 - (void)didReceiveMemoryWarning

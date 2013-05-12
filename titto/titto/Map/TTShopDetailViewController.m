@@ -11,8 +11,6 @@
 #import "Reachability.h"
 #import "TTConfigDefines.h"
 
-#import "UIBarButtonItem+StyledButton.h"
-
 #define HEADER_IMAGE_HEIGHT 310
 
 @interface TTShopDetailViewController ()
@@ -60,8 +58,8 @@
     [cittaLabel setText:[_infoDict objectForKey:@"citta"]];
     [cittaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
     
-    [contentView setBackgroundColor:[UIColor colorWithRed:((float)241/255) green:((float)241/255) blue:((float)241/255) alpha:1]];
-    [[self view] setBackgroundColor:[UIColor colorWithRed:((float)241/255) green:((float)241/255) blue:((float)241/255) alpha:1]];
+    [contentView setBackgroundColor:[UIColor whiteColor]];
+    [[self view] setBackgroundColor:[UIColor whiteColor]];
 
     [[contentView layer] setCornerRadius:5];
     [contentView.layer setShadowPath:[UIBezierPath bezierPathWithRect:CGRectMake(0, -2, contentView.frame.size.width, contentView.frame.size.height/2)].CGPath];
@@ -174,41 +172,41 @@
             switch ([days intValue]){
                 case 1:
                     [orarioLunediLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
-                    [orarioLunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+                    [orarioLunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [lunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     break;
                 case 2:
                     [orarioMartediLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
-                    [orarioMartediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+                    [orarioMartediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [martediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     break;
                 case 3:
                     [orarioMercolediLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
-                    [orarioMercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+                    [orarioMercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [mercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;
                 case 4:
                     [orarioGiovediLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
-                    [orarioGiovediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+                    [orarioGiovediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [giovediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;
                 case 5:
                     [orarioVenerdiLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
-                    [orarioVenerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+                    [orarioVenerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [venerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;
                 case 6:
                     [orarioSabatoLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
-                    [orarioSabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+                    [orarioSabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [sabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;
                 case 7:
                     [orarioDomenicaLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
-                    [orarioDomenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+                    [orarioDomenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [domenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;

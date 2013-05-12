@@ -64,13 +64,12 @@
     {
         
         // Set the background images
-        [[UITabBar appearance] setBackgroundImage: [[UIImage imageNamed:@"bg.png"] stretchableImageWithLeftCapWidth:1.0f
-                                                                                                       topCapHeight:49.0f]];
-        
-        [[UITabBar appearance] setSelectionIndicatorImage:[[UIImage imageNamed:@"bg-hover.png"] stretchableImageWithLeftCapWidth:2.0f
-                                                                                                              topCapHeight:49.0f]];
+        [[UITabBar appearance] setBackgroundImage: [UIImage imageNamed:@"bg.png"]];
+
+        [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"bg-hover.png"]];
+
         [[UITabBar appearance] setTintColor:[UIColor clearColor]];
-        
+
         [navController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"mappaON.png"]
                                withFinishedUnselectedImage:[UIImage imageNamed:@"mappa.png"]];
         [viewController2.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"cardON.png"]
@@ -83,19 +82,23 @@
         [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                            [UIFont fontWithName:@"HelveticaNeue-Bold"
                                                                            size:9.0f], UITextAttributeFont,
-                                                           [UIColor colorWithRed:(99.0f/255.0f)
-                                                                           green:(58.0f/255.0f)
-                                                                            blue:0.0f
+                                                           [UIColor colorWithRed:(138.0f/255.0f)
+                                                                           green:(202.0f/255.0f)
+                                                                            blue:(253.0f/255.0f)
                                                                            alpha:1.0f], UITextAttributeTextColor,
-//                                                           [UIColor blackColor], UITextAttributeTextShadowColor,
-//                                                           [NSValue valueWithCGSize:CGSizeMake(0.0f,
-//                                                                                               1.0f)], UITextAttributeTextShadowOffset,
-                                                            nil]
+                                                           //                                                           [UIColor blackColor], UITextAttributeTextShadowColor,
+                                                           //                                                           [NSValue valueWithCGSize:CGSizeMake(0.0f,
+                                                           //                                                                                               1.0f)], UITextAttributeTextShadowOffset,
+                                                           nil]
                                                  forState:UIControlStateSelected];
         
         [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                           [UIColor colorWithWhite:1.0f alpha:1.0f], UITextAttributeTextColor, nil]
+                                                           [UIColor colorWithRed:(119.0f/255.0f)
+                                                                           green:(119.0f/255.0f)
+                                                                            blue:(119.0f/255.0f)
+                                                                           alpha:1.0f], UITextAttributeTextColor, nil]
                                                  forState:UIControlStateNormal];
+
     }
     
     [GAI sharedInstance].defaultTracker.useHttps = ![GAI sharedInstance].defaultTracker.useHttps;

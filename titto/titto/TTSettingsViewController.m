@@ -83,9 +83,9 @@
             [accessoUserLabel setText:name];
             [accessoUserLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
             [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
-            [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 203, logoutButton.frame.size.width, logoutButton.frame.size.height)];
+            [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 199, logoutButton.frame.size.width, logoutButton.frame.size.height)];
         }else{
-            [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 183, logoutButton.frame.size.width, logoutButton.frame.size.height)];
+            [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 178, logoutButton.frame.size.width, logoutButton.frame.size.height)];
         }
 
     }else{
@@ -93,7 +93,7 @@
         [accessoUserLabel setAlpha:0];
         [logoutButton setTitle:@"Login" forState:UIControlStateNormal];
 
-        [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 183, logoutButton.frame.size.width, logoutButton.frame.size.height)];
+        [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 178, logoutButton.frame.size.width, logoutButton.frame.size.height)];
 
     }
 }
@@ -114,7 +114,7 @@
         [accessoUserLabel setAlpha:0];
         [logoutButton setTitle:@"Login" forState:UIControlStateNormal];
         
-        [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 183, logoutButton.frame.size.width, logoutButton.frame.size.height)];
+        [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 178, logoutButton.frame.size.width, logoutButton.frame.size.height)];
 
     }
 }

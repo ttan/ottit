@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "MCPagerView.h"
+//#import "MCPagerView.h"
 
 #define NUMBER_OF_PAGE 3
 
@@ -16,12 +16,12 @@
     
     IBOutlet UIButton       *actionButton;
     IBOutlet UIScrollView   *scrollView;
-    IBOutlet MCPagerView    *pageControl;
+    IBOutlet UIPageControl    *pageControl;
     
     NSUInteger currentIndex;
 }
 
 - (IBAction)actionButtonPressed:(id)sender;
-- (IBAction)pgValueChange:(id)sender;
+- (IBAction)pageControlValueChange:(id)sender;
 
 @end

@@ -60,7 +60,7 @@
     [[containerView layer] setCornerRadius:4];
     [[cardView layer] setCornerRadius:4];
     [[loginView layer] setCornerRadius:4];
-    
+    [[over21View layer] setCornerRadius:4];
     
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy"];

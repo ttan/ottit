@@ -11,14 +11,11 @@
 #import "TTConfigDefines.h"
 #import "TTFacebookManager.h"
 
-#define CARD_MIN_AGE 21
-//#define FORCE_TOUR NO
+#define CARD_MIN_AGE 26
 #define TEMPO_SCADENZA_TESSERA_IN_SECONDI 300
 
 #define OVER21_MESSAGE @"Non hai i giusti requisiti ottenre la tessera!"
 #define OVER21_WEB_URL @"http://titto.it"
-
-//
 
 @interface TTCardViewController : UIViewController < UIScrollViewDelegate, UIWebViewDelegate > {
     

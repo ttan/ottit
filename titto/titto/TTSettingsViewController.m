@@ -74,17 +74,18 @@
         [cambiaNegozioButton setFrame:CGRectMake(cambiaNegozioButton.frame.origin.x, 90, cambiaNegozioButton.frame.size.width, cambiaNegozioButton.frame.size.height)];
     }
 
-    if ([[TTFacebookManager sharedInstance]isFacebookLoggedIn]){
+    if ([[TTFacebookManager sharedInstance] isFacebookLoggedIn]){
 
         [accessoUserLabel setAlpha:1];
-        NSString * name = [NSString stringWithFormat:@"%@ %@",[TTFacebookUser currentUser].name,[TTFacebookUser currentUser].surname];
         
-        if ([name length]>0) {
+        if ([TTFacebookUser currentUser].name && [[TTFacebookUser currentUser].name length]>0) {
+             NSString * name = [NSString stringWithFormat:@"%@ %@",[TTFacebookUser currentUser].name,[TTFacebookUser currentUser].surname];
             [accessoUserLabel setText:name];
             [accessoUserLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
             [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
             [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 199, logoutButton.frame.size.width, logoutButton.frame.size.height)];
         }else{
+            [accessoUserLabel setText:@""];
             [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 178, logoutButton.frame.size.width, logoutButton.frame.size.height)];
         }
 

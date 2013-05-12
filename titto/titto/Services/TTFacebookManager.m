@@ -107,6 +107,7 @@
 
 - (void)logout {
     [FBSession.activeSession closeAndClearTokenInformation];
+    [[TTFacebookUser currentUser] clearAll];
 }
 
 - (void)loadUserInfos {

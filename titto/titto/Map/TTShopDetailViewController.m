@@ -44,9 +44,9 @@
     [self performSelectorInBackground:@selector(getFourSquareData)
                            withObject:nil];
 
-    [orarioAperturaLabel setText:@"ORARI DI \nAPERTURA"];
-    [orarioAperturaLabel setNumberOfLines:2];
-    [orarioAperturaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+//    [orarioAperturaLabel setText:@"ORARI DI \nAPERTURA"];
+//    [orarioAperturaLabel setNumberOfLines:2];
+//    [orarioAperturaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
     [emailLabel setText:@"EMAIL"];
     [emailLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
@@ -157,7 +157,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
 
     [noConnectionLabel setAlpha:0];
-    [orarioAperturaLabel setAlpha:1];
+//    [orarioAperturaLabel setAlpha:1];
 
     for (NSDictionary * info in hours) {
 
@@ -169,6 +169,7 @@
 
             startHour = [NSString stringWithFormat:@"%@:%@",[startHour substringToIndex:2],[startHour substringFromIndex:2]];
             endHour = [NSString stringWithFormat:@"%@:%@",[endHour substringToIndex:2],[endHour substringFromIndex:2]];
+            
     
             switch ([days intValue]){
                 case 1:
@@ -234,7 +235,7 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        [orarioAperturaLabel setAlpha:0];
+//        [orarioAperturaLabel setAlpha:0];
         
         [lunediLabel setAlpha:0];
         [martediLabel setAlpha:0];

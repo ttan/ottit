@@ -27,7 +27,6 @@
 
     IBOutlet UILabel * indirizzoLabel;
     IBOutlet UILabel * cittaLabel;
-    IBOutlet UILabel * orarioAperturaLabel;
 
     IBOutlet UILabel * lunediLabel;
     IBOutlet UILabel * martediLabel;

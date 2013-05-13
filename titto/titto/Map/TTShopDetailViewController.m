@@ -68,7 +68,7 @@
 //    self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
 
     backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setFrame:CGRectMake(5, 2, 37, 40)];
+    [backButton setFrame:CGRectMake(10, 8, 30, 32)];
     [backButton setImage:[UIImage imageNamed:@"frecciabig"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:backButton];

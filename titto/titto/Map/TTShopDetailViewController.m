@@ -69,13 +69,13 @@
 
     backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setFrame:CGRectMake(5, 2, 37, 40)];
-    [backButton setImage:[UIImage imageNamed:@"backBtn.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"frecciabig"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:backButton];
 
     UIImage * img = [[UIImage alloc]initWithData:[[NSUserDefaults standardUserDefaults]objectForKey:[_infoDict objectForKey:@"img"]]];
     if (!img){
-        img = [UIImage imageNamed:@"header.png"];
+        img = [UIImage imageNamed:@"header"];
         if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable) {
             if ([[_infoDict objectForKey:@"img"] length]>0){
                 NSString * stringURL = [[NSString alloc]initWithString:[_infoDict objectForKey:@"img"]];
@@ -321,6 +321,7 @@
     [[UAPush shared] updateRegistration];
 
     [[NSUserDefaults standardUserDefaults] setObject:_infoDict forKey:FAVORITE_SHOP];
+    [[NSUserDefaults standardUserDefaults]synchronize];
     [self updateStarStatus];
 
 }

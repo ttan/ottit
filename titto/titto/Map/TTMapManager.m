@@ -42,6 +42,7 @@
                                        dispatch_async(dispatch_get_main_queue(), ^{
 
                                            [[NSUserDefaults standardUserDefaults]setObject:data forKey:MAP_PINS_CACHE];
+                                           [[NSUserDefaults standardUserDefaults]synchronize];
                                            [self convertJSONInformation:data];
 
                                        });

@@ -7,6 +7,7 @@
 //
 
 #import "TTCardViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define HEADER_IMAGE_HEIGHT headerImage.frame.size.height
 
@@ -54,14 +55,17 @@
                              containerView.frame.size.width,
                              10.0f);
     
-    [containerView.layer setShadowPath:[UIBezierPath bezierPathWithRect:rect].CGPath];
-    [containerView.layer setShadowColor:[UIColor blackColor].CGColor];
-    [containerView.layer setShadowOpacity:0.2f];
+    [[containerView layer] setMasksToBounds:YES];
+    
     [[containerView layer] setCornerRadius:4];
     [[cardView layer] setCornerRadius:4];
     [[loginView layer] setCornerRadius:4];
     [[over21View layer] setCornerRadius:4];
     [[over21WebView layer] setCornerRadius:4];
+
+    [containerView.layer setShadowPath:[UIBezierPath bezierPathWithRect:rect].CGPath];
+    [containerView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [containerView.layer setShadowOpacity:0.2f];
     
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy"];

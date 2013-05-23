@@ -8,6 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TTShopHoursManager : NSObject
+@protocol TTShopHoursManagerDelegate <NSObject>
+
+-(void)shopHoursManagerDidGetHourWithDict:(NSDictionary *)hours;
+
+-(void)shopHoursManagerGetHourDidFail;
+
+@end
+
+@interface TTShopHoursManager : NSObject{
+    id __unsafe_unretained delegate;
+}
+
+@property (unsafe_unretained) id delegate;
+
++ (TTShopHoursManager *)sharedInstance;
+
+-(void)saveHoursInfoForIDVenue:(NSString *)idVenue;
+
+-(void)requestHoursInfoForIDVenue:(NSString *)idVenue;
+-(BOOL)isShopOpenWithIdVenue:(NSString *)idVenue;
 
 @end

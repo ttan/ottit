@@ -43,7 +43,7 @@
     [mapView setDelegate:self];
     [[self view] addSubview:mapView];
     [mapView setShowsUserLocation:YES];
-    
+
     [[TTMapManager sharedInstance]loadShopsInformations];
     
 }
@@ -109,7 +109,7 @@
 
     opaqueView = [[UIView alloc]initWithFrame:self.view.frame];
     [opaqueView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75]];
-    
+
     UILabel * messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 180, 280, 80)];
     [messageLabel setText:@"Hai bisogno di una connessione ad internet per visualizzare gli aggiornamenti"];
     [messageLabel setBackgroundColor:[UIColor clearColor]];
@@ -125,13 +125,13 @@
 
 
 -(void)cacheShopInformations:(id)shops{
-
+    
     for (NSDictionary * dict in shops){
         NSData * imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[dict objectForKey:@"img"]]];
         [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:[dict objectForKey:@"img"]];
         [[NSUserDefaults standardUserDefaults]synchronize];
 
-        [[TTFoursquareManager sharedInstance]saveHoursInfoForIDVenue:[dict objectForKey:@"foursquare"]];
+        [[TTShopHoursManager sharedInstance]saveHoursInfoForIDVenue:[dict objectForKey:@"cod_fb"]];
     }
 }
 
@@ -170,8 +170,6 @@
                                                          reuseIdentifier:kAnnotationReuseIdentifier];
 
         [annotationView setImage:[UIImage imageNamed:@"pin.png"]];
-
-        
         annotationView.enabled = YES;
         annotationView.canShowCallout = YES;
         annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];

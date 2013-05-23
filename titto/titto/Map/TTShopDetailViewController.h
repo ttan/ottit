@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TTFoursquareManager.h"
 #import "TTHeaderImageView.h"
 #import <MessageUI/MessageUI.h>
-
+#import "TTShopHoursManager.h"
 #import "UAPush.h"
 
 
-@interface TTShopDetailViewController : UIViewController<TTFoursquareManagerDelegate,MFMailComposeViewControllerDelegate,UIScrollViewDelegate,UIAlertViewDelegate>
+@interface TTShopDetailViewController : UIViewController<TTShopHoursManagerDelegate,MFMailComposeViewControllerDelegate,UIScrollViewDelegate,UIAlertViewDelegate>
 {
     NSDictionary * _infoDict;
 
@@ -36,6 +35,8 @@
     IBOutlet UILabel * sabatoLabel;
     IBOutlet UILabel * domenicaLabel;
 
+    IBOutlet UIView * containerView;
+    
     IBOutlet UILabel * orarioLunediLabel;
     IBOutlet UILabel * orarioMartediLabel;
     IBOutlet UILabel * orarioMercolediLabel;

@@ -11,7 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "TTMapManager.h"
 #import "PinAnnotation.h"
-#import "TTFoursquareManager.h"
+#import "TTShopHoursManager.h"
 
 #import "TTShopDetailViewController.h"
 

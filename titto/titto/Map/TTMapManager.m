@@ -29,6 +29,13 @@
 
 -(void)loadShopsInformations;
 {
+    
+    NSData * data = [[NSUserDefaults standardUserDefaults]objectForKey:MAP_PINS_CACHE];
+    
+    if (data) {
+        [self convertJSONInformation:data];
+    }
+    
     if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
 
         NSURL * url = [NSURL URLWithString:URL_REQUEST];
@@ -46,6 +53,15 @@
                                            [self convertJSONInformation:data];
 
                                        });
+                                   }else{
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+
+                                       if ([[self delegate] respondsToSelector:@selector(mapManagerDidFailLoadData)]) {
+                                           [[self delegate] mapManagerDidFailLoadData];
+                                       }
+                                       });
+
+                                       
                                    }
                                }];
     }else{

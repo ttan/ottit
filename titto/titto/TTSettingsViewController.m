@@ -50,6 +50,8 @@
     [accessoFacebookLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
     [[logoutButton titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:16]];
 
+    [[termsButton titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
+
     [copyLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
     [srlLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
     [viaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:13]];
@@ -147,6 +149,15 @@
     [mailer dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+
+-(IBAction)openTerms:(id)sender;
+{
+    
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.titto.it/app"]];
+
+    
 }
 
 

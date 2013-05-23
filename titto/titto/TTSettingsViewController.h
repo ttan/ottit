@@ -21,6 +21,8 @@
     IBOutlet UILabel * accessoUserLabel;
     IBOutlet UIButton * logoutButton;
 
+    IBOutlet UIButton * termsButton;
+
     IBOutlet UILabel * copyLabel;
     IBOutlet UILabel * srlLabel;
 
@@ -41,4 +43,7 @@
 
 -(IBAction)openSite:(id)sender;
 -(IBAction)openMail:(id)sender;
+
+-(IBAction)openTerms:(id)sender;
+
 @end

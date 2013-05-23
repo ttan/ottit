@@ -39,7 +39,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self performSelectorInBackground:@selector(getFourSquareData)
+    [self performSelectorInBackground:@selector(getShopHoursData)
                            withObject:nil];
 
     [emailLabel setText:@"EMAIL"];
@@ -68,7 +68,7 @@
 //    self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
 
     backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setFrame:CGRectMake(10, 8, 30, 32)];
+    [backButton setFrame:CGRectMake(9, 5, 30, 32)];
     [backButton setImage:[UIImage imageNamed:@"frecciabig"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:backButton];
@@ -126,7 +126,7 @@
 
     [self updateStarStatus];
 
-    if ([[TTFoursquareManager sharedInstance]isShopOpenWithIdVenue:[_infoDict objectForKey:@"foursquare"]]) {
+    if ([[TTShopHoursManager sharedInstance]isShopOpenWithIdVenue:[_infoDict objectForKey:@"cod_fb"]]) {
 
         [nastrinoImageView setAlpha:1];
         [nastrinoImageView setImage:[UIImage imageNamed:@"ribbon.aperto.png"]];
@@ -141,11 +141,10 @@
     
 }
 
--(void)getFourSquareData{
+-(void)getShopHoursData{
 
-    [[TTFoursquareManager sharedInstance]setDelegate:self];
-    [[TTFoursquareManager sharedInstance] requestHoursInfoForIDVenue:[_infoDict objectForKey:@"foursquare"]];
-
+    [[TTShopHoursManager sharedInstance]setDelegate:self];
+    [[TTShopHoursManager sharedInstance] requestHoursInfoForIDVenue:[_infoDict objectForKey:@"cod_fb"]];
 }
 
 -(void)backToMap{
@@ -165,106 +164,102 @@
 
 -(IBAction)changeButtonStatus:(id)sender;
 {
-    
     [self predefinedButtonAction:sender];
-    
 }
 
--(void)foursquareManagerDidGetHour:(NSArray *)hours{
 
-    dispatch_async(dispatch_get_main_queue(), ^{
+-(void)shopHoursManagerDidGetHourWithDict:(NSDictionary *)hours{
 
-    [noConnectionLabel setAlpha:0];
-//    [orarioAperturaLabel setAlpha:1];
-
-    for (NSDictionary * info in hours) {
-
-        NSDictionary * hours = [[info objectForKey:@"open"] objectAtIndex:0];
-        for (id days in [info objectForKey:@"days"]) {
-
-            NSString * startHour = [hours objectForKey:@"start"];
-            NSString * endHour = [hours objectForKey:@"end"];
-
-            startHour = [NSString stringWithFormat:@"%@:%@",[startHour substringToIndex:2],[startHour substringFromIndex:2]];
-            endHour = [NSString stringWithFormat:@"%@:%@",[endHour substringToIndex:2],[endHour substringFromIndex:2]];
-            
+        [noConnectionLabel setAlpha:0];
+        NSInteger index=1;
     
-            switch ([days intValue]){
+    if ([hours count]==0) {
+        [self shopHoursAreNotAvailable];
+        return;
+    }
+    
+        for (index=1; index<8; index++){
+            NSString * startHour = [[hours objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"start"];
+            NSString * endHour = [[hours objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"end"];
+
+            NSMutableString * mutableStart = [NSMutableString stringWithString:startHour];
+            [mutableStart insertString:@":" atIndex:2];
+            NSMutableString * mutableEnd = [NSMutableString stringWithString:endHour];
+            [mutableEnd insertString:@":" atIndex:2];
+
+            switch (index){
                 case 1:
-                    [orarioLunediLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioLunediLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioLunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [lunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     break;
                 case 2:
-                    [orarioMartediLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioMartediLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioMartediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [martediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     break;
                 case 3:
-                    [orarioMercolediLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioMercolediLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioMercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [mercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;
                 case 4:
-                    [orarioGiovediLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioGiovediLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioGiovediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [giovediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;
                 case 5:
-                    [orarioVenerdiLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioVenerdiLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioVenerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [venerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;
                 case 6:
-                    [orarioSabatoLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioSabatoLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioSabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [sabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
                     break;
                 case 7:
-                    [orarioDomenicaLabel setText:[NSString stringWithFormat:@"%@-%@",startHour,endHour]];
+                    [orarioDomenicaLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioDomenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     [domenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-
+                    
                     break;
                 default:
                     break;
             }
         }
-    }
 
-    [lunediLabel setAlpha:1];
-    [martediLabel setAlpha:1];
-    [mercolediLabel setAlpha:1];
-    [giovediLabel setAlpha:1];
-    [venerdiLabel setAlpha:1];
-    [sabatoLabel setAlpha:1];
-    [domenicaLabel setAlpha:1];
-
-    });
-
+        [containerView setAlpha:1];
+    
 }
 
 
--(void)foursquareManagerGetHourDidFail{
+-(void)shopHoursAreNotAvailable{
+    
+    [containerView setAlpha:0];
+    
+    [noConnectionLabel setAlpha:1];
+    
+    [noConnectionLabel setText:@"Non sono ancora disponibili gli orari di questo negozio."];
+    [noConnectionLabel setNumberOfLines:3];
+    [noConnectionLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+
+    
+}
+
+-(void)shopHoursManagerGetHourDidFail{
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-//        [orarioAperturaLabel setAlpha:0];
+        [containerView setAlpha:0];
         
-        [lunediLabel setAlpha:0];
-        [martediLabel setAlpha:0];
-        [mercolediLabel setAlpha:0];
-        [giovediLabel setAlpha:0];
-        [venerdiLabel setAlpha:0];
-        [sabatoLabel setAlpha:0];
-        [domenicaLabel setAlpha:0];
         [noConnectionLabel setAlpha:1];
         
-        [noConnectionLabel setText:@"Hai bisogno di una connessione ad internet per visualizzare gli orari"];
+        [noConnectionLabel setText:@"Hai bisogno di una connessione ad internet per visualizzare gli orari."];
         [noConnectionLabel setNumberOfLines:3];
         [noConnectionLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
         
@@ -283,24 +278,19 @@
             NSArray *toRecipients = [NSArray arrayWithObjects:[[emailContentLabel titleLabel] text], nil];
             [mailer setToRecipients:toRecipients];
             [self presentViewController:mailer animated:YES completion:^{
-
             }];
         }
 }
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
-
         [mailer dismissViewControllerAnimated:YES completion:^{
-
     }];
 }
 
 
 -(IBAction)predefinedButtonAction:(id)sender;
 {
-    
     UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Negozio Preferito" message:@"Vuoi impostare questo negozio come preferito?" delegate:self cancelButtonTitle:@"Annulla" otherButtonTitles:@"Si", nil];
-    
     [alertView show];
 
 }

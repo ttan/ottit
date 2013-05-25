@@ -9,7 +9,7 @@
 #import "TTCardViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define HEADER_IMAGE_HEIGHT headerImage.frame.size.height
+#define HEADER_IMAGE_HEIGHT 310
 
 @interface TTCardViewController ()
 
@@ -70,10 +70,10 @@
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy"];
     
-    [loginView setBackgroundColor:[UIColor whiteColor]];
-    [cardView setBackgroundColor:[UIColor whiteColor]];
-    [containerView setBackgroundColor:[UIColor whiteColor]];
-    [[self view] setBackgroundColor:[UIColor whiteColor]];
+    [loginView setBackgroundColor:[UIColor colorWithRed:((float)248/255) green:((float)248/255) blue:((float)248/255) alpha:1]];
+    [cardView setBackgroundColor:[UIColor colorWithRed:((float)248/255) green:((float)248/255) blue:((float)248/255) alpha:1]];
+    [containerView setBackgroundColor:[UIColor colorWithRed:((float)248/255) green:((float)248/255) blue:((float)248/255) alpha:1]];
+    [[self view] setBackgroundColor:[UIColor colorWithRed:((float)248/255) green:((float)248/255) blue:((float)248/255) alpha:1]];
     
     over21Title.font = name.font = negozio.font = tessera.font = [UIFont fontWithName:@"Archer-Semibold" size:20];
     titlename.font = titlenegozio.font = titletessera.font = [UIFont fontWithName:@"Archer-Semibold" size:16];
@@ -98,7 +98,7 @@
     loginView.alpha = cardView.alpha = 0.0f;
     
     nuvole = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nuvole.png"]];
-    [nuvole setFrame:CGRectMake(0, 0, 640, 250)];
+    [nuvole setFrame:CGRectMake(0, 0, 640, 310)];
     [headerImage addSubview:nuvole];
  
     [over21WebView setDelegate:self];
@@ -540,12 +540,12 @@
         
         yOffest=yOffest*(-1);
         
-        [headerImage setFrame:CGRectMake(0, (-75)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
-        [headerLogo setFrame:CGRectMake(0, (-70)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        [headerImage setFrame:CGRectMake(0, (-95)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        [headerLogo setFrame:CGRectMake(0, (-95)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
 
     }else if (yOffest>=0) {
-        [headerImage setFrame:CGRectMake(0, -75, self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
-        [headerLogo setFrame:CGRectMake(0, -70, self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        [headerImage setFrame:CGRectMake(0, -95, self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        [headerLogo setFrame:CGRectMake(0, -95, self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
     }
 }
 

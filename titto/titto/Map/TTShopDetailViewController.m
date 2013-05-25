@@ -72,10 +72,14 @@
     [backButton setImage:[UIImage imageNamed:@"frecciabig"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:backButton];
+    
+    UIColor *startColor = [UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:0.85];
+    UIColor *endColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
 
     UIImage * img = [[UIImage alloc]initWithData:[[NSUserDefaults standardUserDefaults]objectForKey:[_infoDict objectForKey:@"img"]]];
     if (!img){
         img = [UIImage imageNamed:@"header"];
+        startColor = [UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:0.65];
         if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable) {
             if ([[_infoDict objectForKey:@"img"] length]>0){
                 NSString * stringURL = [[NSString alloc]initWithString:[_infoDict objectForKey:@"img"]];
@@ -88,15 +92,12 @@
     }
 
     [headerImageView setImage:img];
-    
-    UIColor *pinkDarkOp = [UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0];
-    UIColor *pinkLightOp = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    
+
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = [[headerImageView layer] bounds];
     gradient.colors = [NSArray arrayWithObjects:
-                       (id)pinkDarkOp.CGColor,
-                       (id)pinkLightOp.CGColor,
+                       (id)startColor.CGColor,
+                       (id)endColor.CGColor,
                        nil];
     gradient.locations = [NSArray arrayWithObjects:
                           [NSNumber numberWithFloat:0.0f],
@@ -136,13 +137,10 @@
 }
 
 -(void)backAction{
-    
     [[self navigationController] popViewControllerAnimated:YES];
-    
 }
 
 -(void)getShopHoursData{
-
     [[TTShopHoursManager sharedInstance]setDelegate:self];
     [[TTShopHoursManager sharedInstance] requestHoursInfoForIDVenue:[_infoDict objectForKey:@"cod_fb"]];
 }
@@ -153,13 +151,11 @@
 
 
 -(void)updateStarStatus{
-
     if ([[_infoDict objectForKey:@"cod_fb"] isEqualToString:[[[NSUserDefaults standardUserDefaults]objectForKey:FAVORITE_SHOP] objectForKey:@"cod_fb"]]) {
         [starButton setImage:[UIImage imageNamed:@"star.png"] forState:UIControlStateNormal];
     }else{
         [starButton setImage:[UIImage imageNamed:@"star-vuota.png"]forState:UIControlStateNormal];
     }
-
 }
 
 -(IBAction)changeButtonStatus:(id)sender;
@@ -177,7 +173,7 @@
         [self shopHoursAreNotAvailable];
         return;
     }
-    
+
         for (index=1; index<8; index++){
             NSString * startHour = [[hours objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"start"];
             NSString * endHour = [[hours objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"end"];

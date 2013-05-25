@@ -69,11 +69,11 @@
 
     if (indirizzo){
         [[cambiaNegozioButton titleLabel] setText:@"Cambia"];
-        [cambiaNegozioButton setFrame:CGRectMake(cambiaNegozioButton.frame.origin.x, 104, cambiaNegozioButton.frame.size.width, cambiaNegozioButton.frame.size.height)];
+        [cambiaNegozioButton setFrame:CGRectMake(cambiaNegozioButton.frame.origin.x, 102, cambiaNegozioButton.frame.size.width, cambiaNegozioButton.frame.size.height)];
         [negozioPreferitoLabel setText:indirizzo];
     }else{
         [[cambiaNegozioButton titleLabel] setText:@"Scegli"];
-        [cambiaNegozioButton setFrame:CGRectMake(cambiaNegozioButton.frame.origin.x, 85, cambiaNegozioButton.frame.size.width, cambiaNegozioButton.frame.size.height)];
+        [cambiaNegozioButton setFrame:CGRectMake(cambiaNegozioButton.frame.origin.x, 83, cambiaNegozioButton.frame.size.width, cambiaNegozioButton.frame.size.height)];
     }
 
     if ([[TTFacebookManager sharedInstance] isFacebookLoggedIn]){
@@ -85,10 +85,10 @@
             [accessoUserLabel setText:name];
             [accessoUserLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
             [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
-            [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 194, logoutButton.frame.size.width, logoutButton.frame.size.height)];
+            [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 190, logoutButton.frame.size.width, logoutButton.frame.size.height)];
         }else{
             [accessoUserLabel setText:@""];
-            [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 176, logoutButton.frame.size.width, logoutButton.frame.size.height)];
+            [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 172, logoutButton.frame.size.width, logoutButton.frame.size.height)];
         }
 
     }else{
@@ -96,7 +96,7 @@
         [accessoUserLabel setAlpha:0];
         [logoutButton setTitle:@"Login" forState:UIControlStateNormal];
 
-        [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 178, logoutButton.frame.size.width, logoutButton.frame.size.height)];
+        [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 172, logoutButton.frame.size.width, logoutButton.frame.size.height)];
 
     }
 }
@@ -117,7 +117,7 @@
         [accessoUserLabel setAlpha:0];
         [logoutButton setTitle:@"Login" forState:UIControlStateNormal];
         
-        [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 178, logoutButton.frame.size.width, logoutButton.frame.size.height)];
+        [logoutButton setFrame:CGRectMake(logoutButton.frame.origin.x, 172, logoutButton.frame.size.width, logoutButton.frame.size.height)];
 
     }
 }

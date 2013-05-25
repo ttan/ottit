@@ -229,7 +229,7 @@
         [[TTFacebookUser currentUser] clearAll];
         [self updateProfileInfo];
         facebookInfoLoaded = NO;
-        
+
     }
 }
 
@@ -536,7 +536,7 @@
     
     NSInteger yOffest = aScrollView.contentOffset.y;
     
-    if (yOffest<0&&yOffest>-150) {
+    if (yOffest<0) {
         
         yOffest=yOffest*(-1);
         

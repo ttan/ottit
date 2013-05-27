@@ -39,11 +39,8 @@
 -(void)viewWillAppear:(BOOL)animated{
 
     if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
-        
         [activityIndicator startAnimating];
-        
         if ([[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_SHOP]){
-
             [self loadWebView];
         }else{
             [self loadNoFavoriteShopView];
@@ -100,7 +97,7 @@
 
     if (!noConnectionView) {
         noConnectionView = [[UIView alloc]initWithFrame:self.view.frame];
-        [noConnectionView setBackgroundColor:[UIColor clearColor]];
+        [noConnectionView setBackgroundColor:[UIColor colorWithRed:((float)248/255) green:((float)248/255) blue:((float)248/255) alpha:1]];
         [[self view] addSubview:noConnectionView];
 
         UILabel * messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 120, 280, 100)];
@@ -111,7 +108,6 @@
         [messageLabel setTextColor:[UIColor colorWithRed:0.41 green:0.41 blue:0.41 alpha:1.0]];
         [messageLabel setTextAlignment:NSTextAlignmentCenter];
         [[self view] addSubview:messageLabel];
-
     }
 }
 
@@ -133,7 +129,6 @@
         [[self view] addSubview:noFavoriteShopView];
 
         if (!shopButton) {
-
              UILabel * messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 120, 240, 100)];
 
             [messageLabel setText:@"Seleziona il tuo negozio preferito per ricevere tutti gli aggiornamenti"];

@@ -127,11 +127,12 @@
 -(void)cacheShopInformations:(id)shops{
     
     for (NSDictionary * dict in shops){
+        [[TTShopHoursManager sharedInstance]saveHoursInfoForIDVenue:[dict objectForKey:@"cod_fb"]];
+        
         NSData * imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[dict objectForKey:@"img"]]];
         [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:[dict objectForKey:@"img"]];
         [[NSUserDefaults standardUserDefaults]synchronize];
 
-        [[TTShopHoursManager sharedInstance]saveHoursInfoForIDVenue:[dict objectForKey:@"cod_fb"]];
     }
 }
 

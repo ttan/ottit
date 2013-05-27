@@ -48,12 +48,6 @@
                                    [[NSUserDefaults standardUserDefaults]setObject:dataDict forKey:[NSString stringWithFormat:@"%@%@",FS_PREFIX_INFO,idVenue]];
                                    [[NSUserDefaults standardUserDefaults]synchronize];
                                    
-//                                       dispatch_async(dispatch_get_main_queue(),^{
-//                                           
-//                                           if ([[self delegate] respondsToSelector:@selector(shopHoursManagerDidGetHourWithDict:)]) {
-//                                               [[self delegate] shopHoursManagerDidGetHourWithDict:dataDict];
-//                                           }
-//                                       });
                                    }
                            }];
 }
@@ -88,7 +82,7 @@
 
                                            dispatch_async(dispatch_get_main_queue(), ^{
 
-                                       if ([[self delegate] respondsToSelector:@selector(foursquareManagerDidGetHour:)]) {
+                                       if ([[self delegate] respondsToSelector:@selector(shopHoursManagerDidGetHourWithDict:)]) {
                                            [[self delegate] shopHoursManagerDidGetHourWithDict:dataDict];
                                        }
                                            });                                       

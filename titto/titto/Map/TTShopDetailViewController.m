@@ -38,9 +38,18 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    [[TTShopHoursManager sharedInstance]setDelegate:self];
+
     [self performSelectorInBackground:@selector(getShopHoursData)
                            withObject:nil];
+    
+    [lunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [martediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [mercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [giovediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [venerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [sabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    [domenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
     [emailLabel setText:@"EMAIL"];
     [emailLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
@@ -80,18 +89,11 @@
     if (!img){
         img = [UIImage imageNamed:@"header"];
         startColor = [UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:0.65];
-        if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable) {
-            if ([[_infoDict objectForKey:@"img"] length]>0){
-                NSString * stringURL = [[NSString alloc]initWithString:[_infoDict objectForKey:@"img"]];
-                NSData * dataImage = [NSData dataWithContentsOfURL:[NSURL URLWithString:stringURL]];
-                img = [[UIImage alloc]initWithData:dataImage];
-                [[NSUserDefaults standardUserDefaults] setObject:dataImage forKey:[_infoDict objectForKey:@"img"]];
-                [[NSUserDefaults standardUserDefaults]synchronize];
-            }
-        }
     }
 
     [headerImageView setImage:img];
+    
+    [self performSelectorInBackground:@selector(loadImageInBackground) withObject:nil];
 
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = [[headerImageView layer] bounds];
@@ -106,6 +108,24 @@
     
     [[headerImageView layer] insertSublayer:gradient atIndex:0];
     
+}
+
+-(void)loadImageInBackground{
+
+    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable) {
+        if ([[_infoDict objectForKey:@"img"] length]>0){
+            NSString * stringURL = [[NSString alloc]initWithString:[_infoDict objectForKey:@"img"]];
+            NSData * dataImage = [NSData dataWithContentsOfURL:[NSURL URLWithString:stringURL]];
+            [[NSUserDefaults standardUserDefaults] setObject:dataImage forKey:[_infoDict objectForKey:@"img"]];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [headerImageView setImage:[UIImage imageWithData:dataImage]];
+                
+            });
+        }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -141,7 +161,6 @@
 }
 
 -(void)getShopHoursData{
-    [[TTShopHoursManager sharedInstance]setDelegate:self];
     [[TTShopHoursManager sharedInstance] requestHoursInfoForIDVenue:[_infoDict objectForKey:@"cod_fb"]];
 }
 
@@ -187,42 +206,30 @@
                 case 1:
                     [orarioLunediLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioLunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
-                    [lunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     break;
                 case 2:
                     [orarioMartediLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioMartediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
-                    [martediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
                     break;
                 case 3:
                     [orarioMercolediLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioMercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
-                    [mercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-
                     break;
                 case 4:
                     [orarioGiovediLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioGiovediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
-                    [giovediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-
                     break;
                 case 5:
                     [orarioVenerdiLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioVenerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
-                    [venerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-
                     break;
                 case 6:
                     [orarioSabatoLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioSabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
-                    [sabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-
                     break;
                 case 7:
                     [orarioDomenicaLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioDomenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
-                    [domenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-                    
                     break;
                 default:
                     break;

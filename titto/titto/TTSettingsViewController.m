@@ -133,11 +133,18 @@
 {
         if ([MFMailComposeViewController canSendMail])
         {
+            
+            NSString * appBuildString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+
+            NSString * appVersionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+
+            
             mailer = [[MFMailComposeViewController alloc] init];
             [mailer setSubject:@"Info"];
             [mailer setMailComposeDelegate:self];
             NSArray *toRecipients = [NSArray arrayWithObjects:@"info@titto.it", nil];
             [mailer setToRecipients:toRecipients];
+            [mailer setMessageBody:[NSString stringWithFormat:@"\n\n\n [%@ - %@]",appVersionString,appBuildString] isHTML:NO];
             [self presentViewController:mailer animated:YES completion:^{
 
             }];

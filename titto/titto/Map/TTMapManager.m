@@ -29,9 +29,9 @@
 
 -(void)loadShopsInformations;
 {
-    
+
     NSData * data = [[NSUserDefaults standardUserDefaults]objectForKey:MAP_PINS_CACHE];
-    
+
     if (data) {
         [self convertJSONInformation:data];
     }
@@ -49,6 +49,7 @@
                                        dispatch_async(dispatch_get_main_queue(), ^{
 
                                            [[NSUserDefaults standardUserDefaults]setObject:data forKey:MAP_PINS_CACHE];
+                                           [[NSUserDefaults standardUserDefaults]setObject:[NSDate date] forKey:@"LAST_UPDATE"];
                                            [[NSUserDefaults standardUserDefaults]synchronize];
                                            [self convertJSONInformation:data];
 
@@ -65,7 +66,6 @@
                                    }
                                }];
     }else{
-
         if ([[NSUserDefaults standardUserDefaults]objectForKey:MAP_PINS_CACHE]) {
             [self convertJSONInformation:[[NSUserDefaults standardUserDefaults]objectForKey:MAP_PINS_CACHE]];
         }else{

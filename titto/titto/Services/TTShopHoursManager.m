@@ -117,19 +117,24 @@
     [currentDateFormatter setDateFormat:@"HHMM"];
     NSInteger currentHour = [[currentDateFormatter stringFromDate:[NSDate date]] integerValue];
     NSInteger index=1;
-    
+
     if ([info count]==0) {
         return NO;
     }
 
     for (index=1; index<8; index++){
         if (index==currentDay){
-
-            NSInteger startHour = [[[info objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"start"] intValue];
-            NSInteger endHour = [[[info objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"end"] intValue];
-
-            if (currentHour>=startHour && currentHour<endHour){
-                isOpen = YES;
+            
+            NSString * startHour = [[info objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"start"];
+            NSString * endHour = [[info objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"end"];
+            
+            if (![startHour isEqualToString:@"xxxx"] && ![endHour isEqualToString:@"xxxx"]) {
+                NSInteger startHourInt = [startHour intValue];
+                NSInteger endHourInt = [endHour intValue];
+                
+                if (currentHour>=startHourInt && currentHour<endHourInt){
+                    isOpen = YES;
+                }
             }
 
         }

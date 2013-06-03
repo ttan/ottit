@@ -8,6 +8,7 @@
 
 #import "TTMapViewController.h"
 #import "Reachability.h"
+#import "TTConfigDefines.h"
 
 @interface TTMapViewController ()
 
@@ -43,7 +44,9 @@
     [mapView setDelegate:self];
     [[self view] addSubview:mapView];
     [mapView setShowsUserLocation:YES];
-
+    
+    [self checkLastUpdate];
+    
     [[TTMapManager sharedInstance]loadShopsInformations];
     
 }
@@ -63,6 +66,29 @@
         
         }
     }
+}
+
+
+-(void)checkLastUpdate{
+
+    NSDate * lastUpdate = [[NSUserDefaults standardUserDefaults]objectForKey:@"LAST_UPDATE"];
+    
+    NSTimeInterval dateDiff = [[NSDate date] timeIntervalSinceDate:lastUpdate];
+    
+    
+    if (dateDiff>518400) {
+//    if (dateDiff>10){
+
+        [self deleteStoredData];
+        
+    }
+}
+
+
+-(void)deleteStoredData{
+    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:MAP_PINS_CACHE];
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 -(void)mapView:(MKMapView *)myMapView didUpdateUserLocation:(MKUserLocation *)userLocation{

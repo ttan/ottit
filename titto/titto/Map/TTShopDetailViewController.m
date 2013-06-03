@@ -74,8 +74,6 @@
 
     [self setTitle:[_infoDict objectForKey:@"citta"]];
 
-//    self.navigationItem.leftBarButtonItem = [UIBarButtonItem styledBackBarButtonItemWithTarget:self selector:@selector(backToMap)];
-
     backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setFrame:CGRectMake(9, 5, 30, 32)];
     [backButton setImage:[UIImage imageNamed:@"frecciabig"] forState:UIControlStateNormal];
@@ -107,6 +105,18 @@
                           nil];
     
     [[headerImageView layer] insertSublayer:gradient atIndex:0];
+    
+    
+    UISwipeGestureRecognizer *swipeLeftRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+    [swipeLeftRight setDirection:(UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft )];
+    [self.view addGestureRecognizer:swipeLeftRight];
+    
+}
+
+
+-(void)handleGesture:(id)gesture{
+    
+    [self backAction];
     
 }
 
@@ -164,11 +174,6 @@
     [[TTShopHoursManager sharedInstance] requestHoursInfoForIDVenue:[_infoDict objectForKey:@"cod_fb"]];
 }
 
--(void)backToMap{
-    [[self navigationController] popViewControllerAnimated:YES];
-}
-
-
 -(void)updateStarStatus{
     if ([[_infoDict objectForKey:@"cod_fb"] isEqualToString:[[[NSUserDefaults standardUserDefaults]objectForKey:FAVORITE_SHOP] objectForKey:@"cod_fb"]]) {
         [starButton setImage:[UIImage imageNamed:@"star.png"] forState:UIControlStateNormal];
@@ -185,58 +190,200 @@
 
 -(void)shopHoursManagerDidGetHourWithDict:(NSDictionary *)hours{
 
-        [noConnectionLabel setAlpha:0];
-        NSInteger index=1;
-    
+    [noConnectionLabel setAlpha:0];
+    NSInteger index=1;
+
     if ([hours count]==0) {
         [self shopHoursAreNotAvailable];
         return;
     }
 
-        for (index=1; index<8; index++){
-            NSString * startHour = [[hours objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"start"];
-            NSString * endHour = [[hours objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"end"];
+    NSDateFormatter * dayDateFormatter = [[NSDateFormatter alloc] init];
+    [dayDateFormatter setDateFormat:@"c"];
+    NSInteger currentDay = [[dayDateFormatter stringFromDate:[NSDate date]] integerValue];
 
+    for (index=1; index<8; index++){
+
+        NSString * startHour = [[hours objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"start"];
+        NSString * endHour = [[hours objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"end"];
+        
+        if ([startHour isEqualToString:@"xxxx"] && [endHour isEqualToString:@"xxxx"]) {
+            
+            switch (index) {
+                case 1:
+                    [orarioLunediLabel setText:@"Chiuso"];
+                    [orarioLunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+                    
+                    if (currentDay==index){
+                        [lunediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                    }else{
+                        [lunediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
+
+                    break;
+                case 2:
+                    [orarioMartediLabel setText:@"Chiuso"];
+                    [orarioMartediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+
+                    
+                    if (currentDay==index){
+                        [martediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                    }else{
+                        [martediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
+
+                    break;
+                case 3:
+                    
+                    [orarioMercolediLabel setText:@"Chiuso"];
+                    [orarioMercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+                    
+                    if (currentDay==index){
+                        [mercolediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.55]];
+                    }else{
+                        [mercolediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
+
+                    break;
+                case 4:
+                    
+                    [orarioGiovediLabel setText:@"Chiuso"];
+                    [orarioGiovediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+
+                    
+                    if (currentDay==index){
+                        [giovediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                    }else{
+                        [giovediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
+
+                    break;
+                case 5:
+                    
+                    [orarioVenerdiLabel setText:@"Chiuso"];
+                    [orarioVenerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+
+                    if (currentDay==index){
+                        [venerdiLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                    }else{
+                        [venerdiLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
+
+                    break;
+                case 6:
+                    
+                    [orarioSabatoLabel setText:@"Chiuso"];
+                    [orarioSabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+
+                    if (currentDay==index){
+                        [sabatoLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                    }else{
+                        [sabatoLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
+
+                    break;
+                case 7:
+                    
+                    [orarioDomenicaLabel setText:@"Chiuso"];
+                    [orarioDomenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+
+                    if (currentDay==index){
+                        [domenicaLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.61]];
+                    }else{
+                        [domenicaLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+            
+        }else{
+            
+            
             NSMutableString * mutableStart = [NSMutableString stringWithString:startHour];
             [mutableStart insertString:@":" atIndex:2];
             NSMutableString * mutableEnd = [NSMutableString stringWithString:endHour];
             [mutableEnd insertString:@":" atIndex:2];
-
+            
             switch (index){
                 case 1:
                     [orarioLunediLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioLunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+                    
+                    if (currentDay==index){
+                        [lunediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                    }else{
+                        [lunediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
+                    
                     break;
                 case 2:
                     [orarioMartediLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioMartediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+                    
+                    if (currentDay==index){
+                        [martediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                    }else{
+                        [martediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
+                    
                     break;
                 case 3:
                     [orarioMercolediLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioMercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+                    
+                    if (currentDay==index){
+                        [mercolediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.55]];
+                    }else{
+                        [mercolediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
                     break;
                 case 4:
                     [orarioGiovediLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioGiovediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+                    if (currentDay==index){
+                        [giovediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                    }else{
+                        [giovediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
                     break;
                 case 5:
                     [orarioVenerdiLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioVenerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+                    if (currentDay==index){
+                        [venerdiLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                    }else{
+                        [venerdiLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
                     break;
                 case 6:
                     [orarioSabatoLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioSabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+                    if (currentDay==index){
+                        [sabatoLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                    }else{
+                        [sabatoLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
                     break;
                 case 7:
                     [orarioDomenicaLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioDomenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
+                    if (currentDay==index){
+                        [domenicaLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.61]];
+                    }else{
+                        [domenicaLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
+                    }
                     break;
                 default:
                     break;
             }
         }
 
-        [containerView setAlpha:1];
+            
+        }
+
+    [containerView setAlpha:1];
     
 }
 
@@ -244,14 +391,13 @@
 -(void)shopHoursAreNotAvailable{
     
     [containerView setAlpha:0];
-    
+
     [noConnectionLabel setAlpha:1];
-    
+
     [noConnectionLabel setText:@"Non sono ancora disponibili gli orari di questo negozio."];
     [noConnectionLabel setNumberOfLines:3];
     [noConnectionLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
 
-    
 }
 
 -(void)shopHoursManagerGetHourDidFail{

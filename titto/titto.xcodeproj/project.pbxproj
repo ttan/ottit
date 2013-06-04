@@ -1004,8 +1004,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marco Mazzoni (TR6B92H62T)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marco Mazzoni (TR6B92H62T)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1020,6 +1020,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "D2EFE9D5-2697-48EB-9B3E-568D8485D57B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D2EFE9D5-2697-48EB-9B3E-568D8485D57B";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1079,8 +1081,8 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2F995B0E-F7EF-41D1-95BC-88BD5AFB42AB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2F995B0E-F7EF-41D1-95BC-88BD5AFB42AB";
+				PROVISIONING_PROFILE = "D2DDEF12-E541-4230-836D-1D24E7822811";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D2DDEF12-E541-4230-836D-1D24E7822811";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1090,7 +1092,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = titto/titto.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Titto Italia srl (AG3U7NSUYD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Titto Italia srl (AG3U7NSUYD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../FacebookSDK\"",
@@ -1113,7 +1115,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "41D1368A-925B-49D8-8ECF-3A9A5DAD5A28";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "41D1368A-925B-49D8-8ECF-3A9A5DAD5A28";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

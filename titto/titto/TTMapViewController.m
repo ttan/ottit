@@ -44,18 +44,17 @@
     [mapView setDelegate:self];
     [[self view] addSubview:mapView];
     [mapView setShowsUserLocation:YES];
-    
+
     [self checkLastUpdate];
-    
+
     [[TTMapManager sharedInstance]loadShopsInformations];
-    
+
 }
 
 
 -(void)viewWillAppear:(BOOL)animated{
 
     if (opaqueView){
-        
         if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
             [opaqueView removeFromSuperview];
             opaqueView=nil;
@@ -72,35 +71,35 @@
 -(void)checkLastUpdate{
 
     NSDate * lastUpdate = [[NSUserDefaults standardUserDefaults]objectForKey:@"LAST_UPDATE"];
-    
     NSTimeInterval dateDiff = [[NSDate date] timeIntervalSinceDate:lastUpdate];
-    
-    
-    if (dateDiff>518400) {
-//    if (dateDiff>10){
 
+    if (dateDiff>518400) {
         [self deleteStoredData];
-        
     }
 }
 
 
 -(void)deleteStoredData{
-    
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:MAP_PINS_CACHE];
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 -(void)mapView:(MKMapView *)myMapView didUpdateUserLocation:(MKUserLocation *)userLocation{
+
+    [self performSelector:@selector(loadPins:) withObject:userLocation afterDelay:1];
+    
+}
+
+-(void)loadPins:(MKUserLocation *)userLocation{
     
     if (!userLocation) {
         return;
     }
-
+    
     if (userLocalized) {
         return;
     }
-
+    
     if (userLocation.coordinate.latitude==0 && userLocation.coordinate.longitude==0) {
         MKCoordinateRegion region;
         region.center = CLLocationCoordinate2DMake(44.754535,10.513916);
@@ -118,17 +117,21 @@
     }
 }
 
+
 -(void)mapManagerDidLoadData:(NSArray *)infoList{
 
     if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
-        [self performSelectorInBackground:@selector(cacheShopInformations:) withObject:infoList];
+        [NSThread detachNewThreadSelector:@selector(cacheShopInformations:) toTarget:self withObject:infoList];
     }
+
     if (shopArray) {
         shopArray=nil;
     }
     shopArray = [[NSMutableArray alloc] initWithArray:infoList];
     [self updatePinList];
 }
+
+
 
 
 -(void)mapManagerDidFailLoadData{
@@ -153,13 +156,19 @@
 -(void)cacheShopInformations:(id)shops{
     
     for (NSDictionary * dict in shops){
-        [[TTShopHoursManager sharedInstance]saveHoursInfoForIDVenue:[dict objectForKey:@"cod_fb"]];
-        
-        NSData * imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[dict objectForKey:@"img"]]];
-        [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:[dict objectForKey:@"img"]];
-        [[NSUserDefaults standardUserDefaults]synchronize];
-
+        [NSThread detachNewThreadSelector:@selector(saveElementWithInfo:) toTarget:self withObject:dict];
     }
+}
+
+
+-(void)saveElementWithInfo:(NSDictionary *)dict{
+    
+    [[TTShopHoursManager sharedInstance]saveHoursInfoForIDVenue:[dict objectForKey:@"cod_fb"]];
+    
+    NSData * imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[dict objectForKey:@"img"]]];
+    [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:[dict objectForKey:@"img"]];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+
 }
 
 -(void)updatePinList{
@@ -175,7 +184,7 @@
 
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude , longitude);
         [pin setCoordinate:coordinate];
-        
+
         [pinArray addObject:pin];
     }
 

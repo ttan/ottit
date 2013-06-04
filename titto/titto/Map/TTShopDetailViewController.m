@@ -11,7 +11,7 @@
 #import "Reachability.h"
 #import "TTConfigDefines.h"
 
-#define HEADER_IMAGE_HEIGHT 310
+#define HEADER_IMAGE_HEIGHT 500
 
 @interface TTShopDetailViewController ()
 
@@ -206,9 +206,9 @@
 
         NSString * startHour = [[hours objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"start"];
         NSString * endHour = [[hours objectForKey:[NSString stringWithFormat:@"%i",index]] objectForKey:@"end"];
-        
+
         if ([startHour isEqualToString:@"xxxx"] && [endHour isEqualToString:@"xxxx"]) {
-            
+
             switch (index) {
                 case 1:
                     [orarioLunediLabel setText:@"Chiuso"];
@@ -465,7 +465,6 @@
 
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -475,9 +474,10 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)aScrollView{
     NSInteger yOffest = aScrollView.contentOffset.y;
-    if (yOffest<0) {
+    if (yOffest<0){
         yOffest=yOffest*(-1);
-        [headerImageView setFrame:CGRectMake(0, (-95)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        
+        [headerImageView setFrame:CGRectMake(0, (-195)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
 
     }else{
 

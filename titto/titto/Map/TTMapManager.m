@@ -25,56 +25,92 @@
         // Do any other initialisation stuff here
     });
     return sharedInstance;
+
 }
 
 -(void)loadShopsInformations;
 {
+//    [NSThread detachNewThreadSelector:@selector(loadShopsInformationsInBackground) toTarget:self withObject:nil];
+    
+    [self loadShopsInformationsInBackground];
 
+}
+
+-(void)loadShopsInformationsInBackground{
+    
     NSData * data = [[NSUserDefaults standardUserDefaults]objectForKey:MAP_PINS_CACHE];
 
     if (data) {
         [self convertJSONInformation:data];
+        
+        [self performSelector:@selector(loadData) withObject:nil afterDelay:5];
+        
+        
+    }else{
+        
+        [self loadData];
     }
     
-    if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
+    
+}
 
+-(void)loadData{
+    
+    [NSThread detachNewThreadSelector:@selector(loadDataInBackground) toTarget:self withObject:nil];
+    
+}
+
+-(void)loadDataInBackground{
+
+    if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
+        
         NSURL * url = [NSURL URLWithString:URL_REQUEST];
         NSURLRequest * request = [NSURLRequest requestWithURL:url];
-
+        
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
                                completionHandler:^(NSURLResponse * response, NSData * data, NSError *error) {
-
+                                   
                                    if (!error && data){
-
-                                       dispatch_async(dispatch_get_main_queue(), ^{
-
-                                           [[NSUserDefaults standardUserDefaults]setObject:data forKey:MAP_PINS_CACHE];
-                                           [[NSUserDefaults standardUserDefaults]setObject:[NSDate date] forKey:@"LAST_UPDATE"];
-                                           [[NSUserDefaults standardUserDefaults]synchronize];
-                                           [self convertJSONInformation:data];
-
-                                       });
+                                       
+                                       //                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                       
+                                       [[NSUserDefaults standardUserDefaults]setObject:data forKey:MAP_PINS_CACHE];
+                                       [[NSUserDefaults standardUserDefaults]setObject:[NSDate date] forKey:@"LAST_UPDATE"];
+                                       [[NSUserDefaults standardUserDefaults]synchronize];
+                                       [self convertJSONInformation:data];
+                                       
+                                       //                                       });
                                    }else{
                                        dispatch_async(dispatch_get_main_queue(), ^{
-
-                                       if ([[self delegate] respondsToSelector:@selector(mapManagerDidFailLoadData)]) {
-                                           [[self delegate] mapManagerDidFailLoadData];
-                                       }
+                                           
+                                           if ([[self delegate] respondsToSelector:@selector(mapManagerDidFailLoadData)]) {
+                                               [[self delegate] mapManagerDidFailLoadData];
+                                           }
                                        });
-
-                                       
                                    }
                                }];
     }else{
+        
+        
         if ([[NSUserDefaults standardUserDefaults]objectForKey:MAP_PINS_CACHE]) {
             [self convertJSONInformation:[[NSUserDefaults standardUserDefaults]objectForKey:MAP_PINS_CACHE]];
         }else{
-            if ([[self delegate] respondsToSelector:@selector(mapManagerDidFailLoadData)]) {
-                [[self delegate] mapManagerDidFailLoadData];
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if ([[self delegate] respondsToSelector:@selector(mapManagerDidFailLoadData)]) {
+                    [[self delegate] mapManagerDidFailLoadData];
+                }
+            });
+            
+            
         }
+        
+        
     }
+
+    
 }
+
 
 -(void)convertJSONInformation:(NSData *)jsonData
 {
@@ -86,10 +122,15 @@
 
     if (!jsonError && jsonResult){
         
-        if ([[self delegate] respondsToSelector:@selector(mapManagerDidLoadData:)]) {
-            [[self delegate] mapManagerDidLoadData:jsonResult];
-        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
 
+            
+            if ([[self delegate] respondsToSelector:@selector(mapManagerDidLoadData:)]) {
+                [[self delegate] mapManagerDidLoadData:jsonResult];
+            }
+
+        });
     }
 }
 

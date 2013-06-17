@@ -10,7 +10,7 @@
 
 @protocol TTMapManagerDelegate <NSObject>
 
--(void)mapManagerDidLoadData:(NSArray *)infoList;
+-(void)mapManagerDidLoadData:(NSArray *)infoList fromCache:(BOOL)cache;
 -(void)mapManagerDidFailLoadData;
 
 @end

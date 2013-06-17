@@ -48,7 +48,7 @@
                                    [[NSUserDefaults standardUserDefaults]setObject:dataDict forKey:[NSString stringWithFormat:@"%@%@",FS_PREFIX_INFO,idVenue]];
                                    [[NSUserDefaults standardUserDefaults]synchronize];
                                    
-                                   }
+                                }
                            }];
 }
 

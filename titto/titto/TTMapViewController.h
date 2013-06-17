@@ -24,6 +24,7 @@
     BOOL userLocalized;
     
     UIView * opaqueView;
+    
 }
 
 @end

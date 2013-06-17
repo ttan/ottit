@@ -87,11 +87,11 @@
 -(void)mapView:(MKMapView *)myMapView didUpdateUserLocation:(MKUserLocation *)userLocation{
 
     [self performSelector:@selector(loadPins:) withObject:userLocation afterDelay:1];
-    
+
 }
 
 -(void)loadPins:(MKUserLocation *)userLocation{
-    
+        
     if (!userLocation) {
         return;
     }
@@ -118,17 +118,21 @@
 }
 
 
--(void)mapManagerDidLoadData:(NSArray *)infoList{
-
-    if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
-        [NSThread detachNewThreadSelector:@selector(cacheShopInformations:) toTarget:self withObject:infoList];
+-(void)mapManagerDidLoadData:(NSArray *)infoList fromCache:(BOOL)cache{
+    
+    if (!cache) {
+        if([[Reachability reachabilityForInternetConnection] currentReachabilityStatus]!=NotReachable){
+            [NSThread detachNewThreadSelector:@selector(cacheShopInformations:) toTarget:self withObject:infoList];
+        }
     }
 
     if (shopArray) {
         shopArray=nil;
     }
+
     shopArray = [[NSMutableArray alloc] initWithArray:infoList];
     [self updatePinList];
+
 }
 
 
@@ -154,7 +158,7 @@
 
 
 -(void)cacheShopInformations:(id)shops{
-    
+
     for (NSDictionary * dict in shops){
         [NSThread detachNewThreadSelector:@selector(saveElementWithInfo:) toTarget:self withObject:dict];
     }
@@ -162,9 +166,8 @@
 
 
 -(void)saveElementWithInfo:(NSDictionary *)dict{
-    
+
     [[TTShopHoursManager sharedInstance]saveHoursInfoForIDVenue:[dict objectForKey:@"cod_fb"]];
-    
     NSData * imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[dict objectForKey:@"img"]]];
     [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:[dict objectForKey:@"img"]];
     [[NSUserDefaults standardUserDefaults]synchronize];

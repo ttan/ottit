@@ -9,7 +9,7 @@
 #import "TTCardViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define HEADER_IMAGE_HEIGHT 310
+#define HEADER_IMAGE_HEIGHT 500
 
 @interface TTCardViewController ()
 
@@ -98,7 +98,7 @@
     loginView.alpha = cardView.alpha = 0.0f;
     
     nuvole = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nuvole.png"]];
-    [nuvole setFrame:CGRectMake(0, 0, 640, 310)];
+    [nuvole setFrame:CGRectMake(0, 0, 640, 500)];
     [headerImage addSubview:nuvole];
  
     [over21WebView setDelegate:self];
@@ -540,12 +540,12 @@
         
         yOffest=yOffest*(-1);
         
-        [headerImage setFrame:CGRectMake(0, (-95)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
-        [headerLogo setFrame:CGRectMake(0, (-95)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        [headerImage setFrame:CGRectMake(0, (-195)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        [headerLogo setFrame:CGRectMake(0, (-195)+(yOffest/2), self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
 
     }else if (yOffest>=0) {
-        [headerImage setFrame:CGRectMake(0, -95, self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
-        [headerLogo setFrame:CGRectMake(0, -95, self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        [headerImage setFrame:CGRectMake(0, -195, self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
+        [headerLogo setFrame:CGRectMake(0, -195, self.view.frame.size.width, HEADER_IMAGE_HEIGHT)];
     }
 }
 

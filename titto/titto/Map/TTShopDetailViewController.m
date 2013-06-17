@@ -42,7 +42,7 @@
 
     [self performSelectorInBackground:@selector(getShopHoursData)
                            withObject:nil];
-    
+
     [lunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
     [martediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
     [mercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
@@ -50,6 +50,14 @@
     [venerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
     [sabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
     [domenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
+    
+    [orarioLunediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
+    [orarioMartediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
+    [orarioMercolediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
+    [orarioGiovediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
+    [orarioVenerdiLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
+    [orarioSabatoLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
+    [orarioDomenicaLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
 
     [emailLabel setText:@"EMAIL"];
     [emailLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
@@ -62,7 +70,8 @@
     [indirizzoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:25]];
     [cittaLabel setText:[_infoDict objectForKey:@"citta"]];
     [cittaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:20]];
-
+    [cittaLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
+    
     [contentView setBackgroundColor:[UIColor colorWithRed:((float)248/255) green:((float)248/255) blue:((float)248/255) alpha:1]];
     [[self view] setBackgroundColor:[UIColor colorWithRed:((float)248/255) green:((float)248/255) blue:((float)248/255) alpha:1]];
 
@@ -148,7 +157,7 @@
 
     [emailContentLabel setTitle:[_infoDict objectForKey:@"mail"] forState:UIControlStateNormal];
     [[emailContentLabel titleLabel] setFont:[UIFont fontWithName:@"Archer-Semibold" size:18]];
-    [emailContentLabel setTitleColor:[UIColor colorWithRed:((float)100/255) green:((float)100/255) blue:((float)100/255) alpha:1] forState:UIControlStateNormal];
+    [emailContentLabel setTitleColor:[UIColor colorWithWhite:0 alpha:0.62] forState:UIControlStateNormal];
     [emailContentLabel setTitleColor:[UIColor colorWithRed:((float)50/255) green:((float)50/255) blue:((float)50/255) alpha:1] forState:UIControlStateHighlighted];
     [predefinedButton setBackgroundImage:[UIImage imageNamed:@"bottone.png"] forState:UIControlStateNormal];
     [[predefinedButton titleLabel]setFont:[UIFont fontWithName:@"Archer-Semibold" size:16]];
@@ -215,7 +224,7 @@
                     [orarioLunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     
                     if (currentDay==index){
-                        [lunediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                        [lunediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [lunediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }
@@ -227,7 +236,7 @@
 
                     
                     if (currentDay==index){
-                        [martediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                        [martediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [martediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }
@@ -239,7 +248,7 @@
                     [orarioMercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     
                     if (currentDay==index){
-                        [mercolediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.55]];
+                        [mercolediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [mercolediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }
@@ -252,7 +261,7 @@
 
                     
                     if (currentDay==index){
-                        [giovediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                        [giovediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [giovediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }
@@ -264,7 +273,7 @@
                     [orarioVenerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
 
                     if (currentDay==index){
-                        [venerdiLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                        [venerdiLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [venerdiLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }
@@ -276,7 +285,7 @@
                     [orarioSabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
 
                     if (currentDay==index){
-                        [sabatoLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                        [sabatoLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [sabatoLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }
@@ -288,7 +297,7 @@
                     [orarioDomenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
 
                     if (currentDay==index){
-                        [domenicaLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.61]];
+                        [domenicaLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [domenicaLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }
@@ -312,7 +321,7 @@
                     [orarioLunediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     
                     if (currentDay==index){
-                        [lunediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                        [lunediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [lunediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }
@@ -323,7 +332,7 @@
                     [orarioMartediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     
                     if (currentDay==index){
-                        [martediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                        [martediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [martediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }
@@ -334,7 +343,7 @@
                     [orarioMercolediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     
                     if (currentDay==index){
-                        [mercolediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.55]];
+                        [mercolediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [mercolediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }
@@ -343,7 +352,7 @@
                     [orarioGiovediLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioGiovediLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     if (currentDay==index){
-                        [giovediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                        [giovediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [giovediLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }
@@ -352,7 +361,7 @@
                     [orarioVenerdiLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioVenerdiLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     if (currentDay==index){
-                        [venerdiLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                        [venerdiLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [venerdiLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }
@@ -361,7 +370,7 @@
                     [orarioSabatoLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioSabatoLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     if (currentDay==index){
-                        [sabatoLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.70]];
+                        [sabatoLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [sabatoLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }
@@ -370,7 +379,7 @@
                     [orarioDomenicaLabel setText:[NSString stringWithFormat:@"%@-%@",mutableStart,mutableEnd]];
                     [orarioDomenicaLabel setFont:[UIFont fontWithName:@"Archer-Semibold" size:22]];
                     if (currentDay==index){
-                        [domenicaLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.61]];
+                        [domenicaLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.62]];
                     }else{
                         [domenicaLabel setTextColor:[UIColor colorWithWhite:0 alpha:0.39]];
                     }

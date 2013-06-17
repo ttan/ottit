@@ -14,6 +14,7 @@
 #import "TTSettingsViewController.h"
 #import "TTConfigDefines.h"
 
+#import "Appirater.h"
 
 @implementation AppDelegate
 
@@ -40,6 +41,13 @@
     [GAI sharedInstance].dispatchInterval = 5;
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     self.tracker = [[GAI sharedInstance] trackerWithTrackingId:ANAL_KEY];
+    
+    [Appirater setAppId:@"647736605"];
+    [Appirater setDaysUntilPrompt:1];
+    [Appirater setUsesUntilPrompt:5];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
+    [Appirater setDebug:NO];
 
     UINavigationController * navController = [[UINavigationController alloc]initWithRootViewController:mapVC];
     [navController setNavigationBarHidden:YES];
@@ -124,6 +132,8 @@
                                                      withLabel:@"TOM GAY"
                                                      withValue:nil];
 
+    [Appirater appLaunched:YES];
+    
     return YES;
 }
 
@@ -150,6 +160,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

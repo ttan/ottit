@@ -41,11 +41,9 @@
     NSData * data = [[NSUserDefaults standardUserDefaults]objectForKey:MAP_PINS_CACHE];
 
     if (data) {
-        [self convertJSONInformation:data];
-        
-        [self performSelector:@selector(loadData) withObject:nil afterDelay:5];
-        
-        
+        [self convertJSONInformation:data fromCache:YES];
+        [self performSelector:@selector(loadData) withObject:nil afterDelay:3];
+
     }else{
         
         [self loadData];
@@ -77,7 +75,7 @@
                                        [[NSUserDefaults standardUserDefaults]setObject:data forKey:MAP_PINS_CACHE];
                                        [[NSUserDefaults standardUserDefaults]setObject:[NSDate date] forKey:@"LAST_UPDATE"];
                                        [[NSUserDefaults standardUserDefaults]synchronize];
-                                       [self convertJSONInformation:data];
+                                       [self convertJSONInformation:data fromCache:NO];
                                        
                                        //                                       });
                                    }else{
@@ -93,7 +91,7 @@
         
         
         if ([[NSUserDefaults standardUserDefaults]objectForKey:MAP_PINS_CACHE]) {
-            [self convertJSONInformation:[[NSUserDefaults standardUserDefaults]objectForKey:MAP_PINS_CACHE]];
+            [self convertJSONInformation:[[NSUserDefaults standardUserDefaults]objectForKey:MAP_PINS_CACHE] fromCache:YES];
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -112,7 +110,7 @@
 }
 
 
--(void)convertJSONInformation:(NSData *)jsonData
+-(void)convertJSONInformation:(NSData *)jsonData fromCache:(BOOL)cache
 {
 
     NSError * jsonError;
@@ -124,10 +122,9 @@
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
-
             
-            if ([[self delegate] respondsToSelector:@selector(mapManagerDidLoadData:)]) {
-                [[self delegate] mapManagerDidLoadData:jsonResult];
+            if ([[self delegate] respondsToSelector:@selector(mapManagerDidLoadData:fromCache:)]) {
+                [[self delegate] mapManagerDidLoadData:jsonResult fromCache:cache];
             }
 
         });
